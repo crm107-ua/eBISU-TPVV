@@ -16,12 +16,12 @@
 							<div class="uicore-menu-container uicore-nav">
 								<ul class="uicore-menu">
 									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
-											href="#overview"><span class="ui-menu-item-wrapper">Overview</span></a></li>
+											href="#Nosotros"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
 									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a
-											href="#features"><span class="ui-menu-item-wrapper">Features</span></a></li>
+											href="#Servicios"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
 									<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
-											href="#integrations"><span
-												class="ui-menu-item-wrapper">Integrations</span></a></li>
+											href="#Integraticiones"><span
+												class="ui-menu-item-wrapper">Integraticiones</span></a></li>
 								</ul>
 							</div>
 							<div class="uicore uicore-extra">
@@ -181,7 +181,7 @@
 									</div>
 								</div>
 								<div class="elementor-section elementor-top-section elementor-element elementor-element-38fe679 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-									data-id="38fe679" data-element_type="section" id="overview"
+									data-id="38fe679" data-element_type="section" id="Nosotros"
 									data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
 									<div class="elementor-container elementor-column-gap-no">
 										<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb5deb5"
@@ -373,7 +373,7 @@
 								</div>
 								<section
 									class="elementor-section elementor-top-section elementor-element elementor-element-bc85f30 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-									data-id="bc85f30" data-element_type="section" id="features">
+									data-id="bc85f30" data-element_type="section" id="Servicios">
 									<div class="elementor-container elementor-column-gap-default">
 										<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb1c638"
 											data-id="fb1c638" data-element_type="column">
@@ -812,7 +812,7 @@
 									</div>
 								</div>
 								<div class="elementor-section elementor-top-section elementor-element elementor-element-160a9ad elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-invisible"
-									data-id="160a9ad" data-element_type="section" id="integrations"
+									data-id="160a9ad" data-element_type="section" id="Integraticiones"
 									data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;animation&quot;:&quot;fadeIn&quot;,&quot;animation_delay&quot;:400}">
 									<div class="elementor-container elementor-column-gap-default">
 										<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-5b55ad7"
@@ -832,7 +832,7 @@
 															<div class="bdt-ep-advanced-icon-box-content">
 																<h2 class="bdt-ep-advanced-icon-box-title">
 																	<span>
-																		Wallet Integrations </span>
+																		Wallet Integraticiones </span>
 																</h2>
 																<div class="bdt-ep-advanced-icon-box-description">
 																	<p>Whether you&#8217;re at home, at work, or on the
@@ -1388,11 +1388,11 @@
 				<div class="uicore-menu-container uicore-nav">
 					<ul class="uicore-menu">
 						<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
-								href="#overview"><span class="ui-menu-item-wrapper">Overview</span></a></li>
+								href="#Nosotros"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
 						<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a
-								href="#features"><span class="ui-menu-item-wrapper">Features</span></a></li>
+								href="#Servicios"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
 						<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
-								href="#integrations"><span class="ui-menu-item-wrapper">Integrations</span></a></li>
+								href="#Integraticiones"><span class="ui-menu-item-wrapper">Integraticiones</span></a></li>
 					</ul>
 				</div>
 				<div class="uicore uicore-extra">
