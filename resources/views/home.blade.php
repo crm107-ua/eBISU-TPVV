@@ -1,5 +1,5 @@
 @extends('master')
-@section('title', 'Home')
+@section('title', 'Bienvenido a eBISU')
 @section('content')
 	<div class="uicore-body-content">
 		<div id="uicore-page">
