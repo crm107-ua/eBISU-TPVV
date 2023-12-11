@@ -19,7 +19,7 @@ security:
   - bearerAuth: []
 paths:
   /transactions:
-    post: # Sin acabar
+    post:
       summary: Request the creation of a new transaction
       description: Request the creation of a new transaction. If the payment method is provided, the transaction gets instantly processed and the result is returned, if not, the transaction is created with a state of `waiting` and a form provided by us that can be used to complete the transaction with the missing payment information is returned. To complete the created transaction, a request to `POST /transactions/{id}` is required providing the missing payment information. 
       operationId: createTransaction
