@@ -19,13 +19,20 @@ security:
   - bearerAuth: []
 paths:
   /transactions:
-    post:
+    post: # Sin acabar
       summary: Request the creation of a new transaction
-      description: Request the creation of a new transaction
+      description: Request the creation of a new transaction. If the payment method is provided, the transaction gets instantly processed and the result is returned, if not, the transaction is created with a state of `waiting` and a form provided by us that can be used to complete the transaction with the missing payment information is returned. To complete the created transaction, a request to `POST /transactions/{id}` is required providing the missing payment information. 
       operationId: createTransaction
       responses:
         '200':
           description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+            text/html:
+              schema:
+                type: string
         '400':
           description: Invalid request body provided
           content:
@@ -51,7 +58,7 @@ paths:
       parameters:
         - name: page
           in: query
-          description: Page of transactionsto retrieve
+          description: Page of transactions to retrieve
           required: false
           schema:
             type: integer
@@ -63,6 +70,13 @@ paths:
             type: integer
             minimum: 1
             maximum: 100
+        - name: includeRefound
+          in: query
+          description: Specifies how to return the transactions that represent a refound, if a transaction is a refound. If `true`, includes all the information of the transaction being refunded, if `false` only returns the id of the transaction being refounded
+          required: false
+          default: false
+          schema:
+            type: boolean
       responses:
         '200':
           description: Successful operation
@@ -78,6 +92,170 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
         '401':
           description: Non valid bearer token provided, or was not provided at all
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /transactions/{id}:
+    post:
+      summary: Completes the payment information of a transaction
+      description: Provides the missing payment information of a transaction
+      operationId: provideTransactionPaymentInformation
+      parameters:
+        - name: id
+          in: path
+          description: Id of transaction to supply the missing payment information
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        $ref: '#/components/requestBodies/SupplyPaymentInformation'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid request body provided or provided payment information of a transaction that already has payment information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Non valid bearer token provided, or was not provided at all
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Cannot supply the payment information for the transaction with the given token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Supplied payment infortmation for a non existing transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: Obtains the information of a given transaction
+      description: Obtains the information of a given transaction
+      operationId: getTransaction
+      parameters:
+        - name: id
+          in: path
+          description: Id of transaction to retrieve
+          required: true
+          schema:
+            type: integer
+        - name: includeRefound
+          in: query
+          description: Specifies how to return the transaction being refounded by the requested transaction, if the requested transaction is a refound. If `true`, includes all the information of the transaction being refunded, if `false` only returns the id of the transaction being refounded
+          required: false
+          default: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid path or query parameters provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Non valid bearer token provided, or was not provided at all
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Cannot access information about the requested transaction with the given token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Requested a non existing transaction
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /transactions/{id}/refound:
+    post:
+      summary: Requests the creation of a new transaction to refound the specified transaction
+      description: Requests the creation of a new transaction to refound the specified transaction
+      operationId: createRefound
+      parameters:
+        - name: id
+          in: path
+          description: Id of transaction to retrieve
+          required: true
+          schema:
+            type: integer
+        - name: includeRefound
+          in: query
+          description: Specifies how to return the transaction being refounded by the requested transaction. If `true`, includes all the information of the transaction being refunded, if `false` only returns the id of the transaction being refounded
+          required: false
+          default: false
+          schema:
+            type: boolean
+      requestBody:
+        $ref: '#/components/requestBodies/RefoundRequest'
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Transaction'
+        '400':
+          description: Invalid request body provided, requested to refound a refound or the transaction has already been refounded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Non valid bearer token provided, or was not provided at all
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Cannot request to refound the requested transaction with the given token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Requested to refound a non existing transaction
           content:
             application/json:
               schema:
@@ -140,6 +318,23 @@ components:
       required:
         - type
         - values
+    RequestTransactionCreation:
+      type: object
+      description: Required information to create a new transaction
+      properties:
+        concept:
+          type: string
+          description: A concept associated with the transaction
+        amount:
+          type: number
+          description: Amout associated with the transaction
+        receipt_number:
+          type: string
+          description: A receipt number to be associated with the transaction
+        payment:
+          $ref: '#/components/schemas/PaymentInformation'
+      required:
+        - amount
     Transaction:
       type: object
       description: Transaction existing in the TPVV system
@@ -149,7 +344,7 @@ components:
           description: An identifier for this transaction
         concept:
           type: string
-          description: A concept associated with a transaction
+          description: A concept associated with this transaction
         amount:
           type: number
           description: Amout associated with this transaction
@@ -162,7 +357,7 @@ components:
           description: The actual state of the transaction, `waiting` means that the transaction is still being processed, for example because of missing payment information. `accepted` means that the transaction was successfull. `rejected` means that the transaction was not successfull, the reason will be specified in the field `finalize_reason`
         receipt_number:
           type: string
-          description: A receipt number to be associated with the transaction
+          description: A receipt number associated with this transaction
         emision_date:
           type: string
           format: date-time
@@ -175,8 +370,12 @@ components:
           type: string
           description: Explanation on how this transaction finished
         refounds:
-          $ref: '#/components/schemas/Transaction'
+          oneOf:
+          - type: integer
+            description: Id of the transaction being refounded
+          - $ref: '#/components/schemas/Transaction'
       required:
+        - id
         - amount
         - state
         - emision_date
@@ -210,24 +409,29 @@ components:
       required:
       - meta
       - transactions
+    RequestRefoundInformation:
+      type: object
+      description: Required information to create a refound transaction
+      properties:
+        concept:
+          type: string
+          description: A concept associated with the refound
+        receipt_number:
+          type: string
+          description: A receipt number to be associated with the transaction
   requestBodies:
-    Transaction:
-      description: Pet object that needs to be added to the store
+    RefoundRequest:
+      description: Required information to create a refound transaction
       content:
         application/json:
           schema:
-            $ref: '#/components/schemas/Pet'
-        application/xml:
-          schema:
-            $ref: '#/components/schemas/Pet'
-    UserArray:
-      description: List of user object
+            $ref: '#/components/schemas/RequestRefoundInformation'
+    SupplyPaymentInformation:
+      description: Supplies the payment information of a transaction
       content:
         application/json:
           schema:
-            type: array
-            items:
-              $ref: '#/components/schemas/User'
+            $ref: '#/components/schemas/PaymentInformation'
   securitySchemes:
     bearerAuth:
       type: http
