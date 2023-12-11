@@ -1,0 +1,235 @@
+openapi: 3.0.3
+info:
+  title: eBISU TPVV
+  description: |-
+    The eBISU TPVV HTTP API Specification defines a standardized interface for seamless integration of third-party verification and validation services into payment systems. This specification streamlines the automation of key tasks, providing a secure and efficient means for creating transactions, retrieving transaction details, and facilitating refunds. The API is designed to be user-friendly, scalable, and interoperable, enabling developers to seamlessly incorporate Payment TPVV functionality into their applications.
+  termsOfService: ¿?
+  contact:
+    email: ea57@gcloud.ua.es
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 0.1.0
+externalDocs:
+  description: More extensive documentation
+  url: mkdocs
+servers:
+  - url: https://pcdecarloselputero.com?
+security:
+  - bearerAuth: []
+paths:
+  /transactions:
+    post:
+      summary: Request the creation of a new transaction
+      description: Request the creation of a new transaction
+      operationId: createTransaction
+      responses:
+        '200':
+          description: Successful operation
+        '400':
+          description: Invalid request body provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Non valid bearer token provided, or was not provided at all
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+    get:
+      summary: Obtains a paginated list of all transactions
+      description: Obtains a paginated list of all the transactions
+      operationId: getTransactions
+      parameters:
+        - name: page
+          in: query
+          description: Page of transactionsto retrieve
+          required: false
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: The amount of transactions to retrieve
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedTransactionList'
+        '400':
+          description: Invalid query parameters provided
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Non valid bearer token provided, or was not provided at all
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: The name of the error
+          example: Authentication error
+        description:
+          type: string
+          description: An explanation of what went wrong
+          example: The bearer token was not provided
+      required:
+        - error
+        - description
+    PaymentInformation:
+      type: object 
+      description: Payment information for a transaction. Depending on the type, the required fields change
+      properties:
+        type:
+          type: string
+          description: The type of payment
+          enum: 
+          - paypal
+          - credit_card
+        values:
+          type: object
+          description: The values of the payment information
+          properties:
+            paypal_user:
+              type: string
+              description: Required if the type is `paypal`, represents the paypal user
+            credit_card_number:
+              type: string
+              description: Required if the type is `credit_card`, represents the credit card number
+            credit_card_expiration_month:
+              type: integer
+              minimum: 1
+              maximum: 12
+              description: Required if the type is `credit_card`, represents the credit card expiration month
+            credit_card_expiration_year:
+              type: integer
+              description: Required if the type is `credit_card`, represents the credit card expiration year
+            credit_card_csv:
+              type: integer
+              minimum: 0
+              maximum: 999
+              description: Required if the type is `credit_card`, represents the credit card csv
+      required:
+        - type
+        - values
+    Transaction:
+      type: object
+      description: Transaction existing in the TPVV system
+      properties:
+        id:
+          type: integer
+          description: An identifier for this transaction
+        concept:
+          type: string
+          description: A concept associated with a transaction
+        amount:
+          type: number
+          description: Amout associated with this transaction
+        state:
+          type: string
+          enum:
+          - waiting
+          - accepted
+          - rejected
+          description: The actual state of the transaction, `waiting` means that the transaction is still being processed, for example because of missing payment information. `accepted` means that the transaction was successfull. `rejected` means that the transaction was not successfull, the reason will be specified in the field `finalize_reason`
+        receipt_number:
+          type: string
+          description: A receipt number to be associated with the transaction
+        emision_date:
+          type: string
+          format: date-time
+          description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string representig the date and time at which the transaction was created
+        finalized_date:
+          type: string
+          format: date-time
+          description: An [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string representig the date and time at which the transaction was finalized, wither successfully or not
+        finalized_reason:
+          type: string
+          description: Explanation on how this transaction finished
+        refounds:
+          $ref: '#/components/schemas/Transaction'
+      required:
+        - amount
+        - state
+        - emision_date
+    PaginatedTransactionList:
+      type: object
+      description: A list of transactions with information about the current page
+      properties:
+        meta:
+          type: object
+          properties:
+            page:
+              type: integer
+              minimum: 0
+              description: Page returned
+            retrieved:
+              type: integer
+              minimum: 0
+              description: Amout of transactions returned
+            total:
+              type: integer
+              minimum: 0
+              description: Total amount of available transactions
+          required:
+            - page
+            - retrieved
+            - total
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+      required:
+      - meta
+      - transactions
+  requestBodies:
+    Transaction:
+      description: Pet object that needs to be added to the store
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Pet'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Pet'
+    UserArray:
+      description: List of user object
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/User'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
