@@ -19,9 +19,15 @@ Route::get('/', function () {
 });
 
 # Esto incluye la master y el home de la plantilla nuestra
-Route::get('/test', function () {
+Route::get('/home', function () {
     return view('home');
 });
+
+Route::get('/test', function () {
+    return view('home_sin_contenido');
+});
+
+#######################################
 
 Route::get('/dashboard', function () {
     return view('dashboard');
