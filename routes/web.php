@@ -18,6 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+# Esto incluye la master y el home de la plantilla nuestra
+Route::get('/test', function () {
+    return view('home');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
