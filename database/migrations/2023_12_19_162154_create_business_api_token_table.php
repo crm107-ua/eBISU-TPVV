@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('issuer');
             $table->dateTime('expiration_date');
-            $table->timestamps();
             $table->unsignedInteger('times_used')->default(0);
-            $table->boolean('invalidated')->default(0);
+            $table->boolean('invalidated')->default(false);
+            $table->timestamps();
         });
     }
 

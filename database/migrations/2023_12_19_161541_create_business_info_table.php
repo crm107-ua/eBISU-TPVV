@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('contact_info_phone_number')->nullable();
             $table->string('contact_info_email');
             $table->dateTime('registration_date');
-            $table->decimal('balance', 8, 2);
+            $table->dateTime('discharge_date')->nullable();
+            $table->decimal('balance', 10, 2);
             $table->timestamps();
         });
     }
