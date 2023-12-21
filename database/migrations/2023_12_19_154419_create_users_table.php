@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('direccion');
-            $table->string('postal_code')->length(5);
-            $table->string('poblation');
+            $table->enum('role', ['admin', 'technician', 'business']);
             $table->rememberToken();
             $table->timestamps();
         });
