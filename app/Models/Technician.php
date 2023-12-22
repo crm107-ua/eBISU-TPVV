@@ -13,4 +13,9 @@ class Technician extends Model
     {
         return $this->belongsTo(User::class,'id');
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'technitian_id');
+    }
 }

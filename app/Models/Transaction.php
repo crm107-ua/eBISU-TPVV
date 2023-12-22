@@ -38,4 +38,8 @@ class Transaction extends Model
     public function refoundsTo() {
         return $this->hasOne(Transaction::class, 'refounds_id');
     }
+
+    public function tickets() {
+        return $this->hasMany(Ticket::class, 'transaction_id');
+    }
 }
