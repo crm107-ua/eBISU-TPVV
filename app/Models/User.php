@@ -21,6 +21,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
+        'direction_direction',
+        'direction_postal_code',
+        'direction_poblation',
     ];
 
     /**
@@ -42,4 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'direction_country_id');
+    }
 }
