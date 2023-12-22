@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Country::class, 'direction_country_id');
     }
+
+    public function business()
+    {
+        return $this->hasOne(Business::class, 'id');
+    }
 }
