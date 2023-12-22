@@ -28,4 +28,9 @@ class Business extends Model
     {
         return $this->hasMany(ApiToken::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'business_id');
+    }
 }
