@@ -23,4 +23,9 @@ class Business extends Model
     {
         return $this->belongsTo(User::class, 'id');
     }
+
+    public function apiTokens()
+    {
+        return $this->hasMany(ApiToken::class);
+    }
 }
