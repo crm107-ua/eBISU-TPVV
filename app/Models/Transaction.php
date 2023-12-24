@@ -31,7 +31,7 @@ class Transaction extends Model
         return $this->belongsTo(Business::class, 'business_id');
     }
 
-    public function refoundBy() {
+    public function refoundedBy() {
         return $this->belongsTo(Transaction::class, 'refounds_id');
     }
 

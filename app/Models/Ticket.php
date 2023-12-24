@@ -19,6 +19,7 @@ class Ticket extends Model
         'technitian_id',
         'valoration_comment',
         'valoration_valoration',
+        'transaction_id',
     ];
 
     public function comments()

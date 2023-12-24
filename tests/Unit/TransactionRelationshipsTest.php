@@ -71,13 +71,13 @@ class TransactionRelationshipsTest extends TestCase
         $refundTransaction->emision_date = now();
         $refundTransaction->finished_date = now();
         $refundTransaction->finalize_reason = 1;
-        $refundTransaction->refounds_id = $transaction->id;
         $refundTransaction->business_id = $business->id;
         $refundTransaction->payment_id = $payment->id;
         $refundTransaction->save();
+        $refundTransaction->refoundsTo()->save($transaction);
 
-        $this->assertEquals($refundTransaction->id, $transaction->refoundsTo->id);
-        $this->assertEquals($transaction->id, $refundTransaction->refoundBy->id);
+        $this->assertEquals($refundTransaction->id, $transaction->refoundedBy()->first()->id);
+        $this->assertEquals($transaction->id, $refundTransaction->refoundsTo()->first()->id);
     }
 
     protected function createBusiness()
