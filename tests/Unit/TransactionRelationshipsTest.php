@@ -2,6 +2,9 @@
 
 namespace Tests\Unit;
 
+use App\Enums\PaymentType;
+use App\Enums\TransactionStateType;
+use App\Enums\UserRole;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Transaction;
@@ -19,7 +22,7 @@ class TransactionRelationshipsTest extends TestCase
         $business->save();
 
         $payment = new Payment();
-        $payment->type = 'credit_card';
+        $payment->type = PaymentType::CreditCard;
         $payment->credit_card_number = '1234567812345678';
         $payment->credit_card_month_of_expiration = '12';
         $payment->credit_card_year_of_expiration = '2025';
@@ -29,7 +32,7 @@ class TransactionRelationshipsTest extends TestCase
         $transaction = new Transaction();
         $transaction->concept = 'Test Transaction';
         $transaction->amount = 100;
-        $transaction->state = 'waiting';
+        $transaction->state = TransactionStateType::Waiting;
         $transaction->emision_date = now();
         $transaction->payment()->associate($payment);
         $transaction->business()->associate($business);
@@ -47,7 +50,7 @@ class TransactionRelationshipsTest extends TestCase
         $business->save();
 
         $payment = new Payment();
-        $payment->type = 'credit_card';
+        $payment->type =PaymentType::CreditCard;
         $payment->credit_card_number = '1234567812345678';
         $payment->credit_card_month_of_expiration = '12';
         $payment->credit_card_year_of_expiration = '2025';
@@ -57,7 +60,7 @@ class TransactionRelationshipsTest extends TestCase
         $transaction = new Transaction();
         $transaction->concept = 'Test Transaction';
         $transaction->amount = 100;
-        $transaction->state = 'waiting';
+        $transaction->state = TransactionStateType::Waiting;
         $transaction->emision_date = now();
         $transaction->payment_id = $payment->id;
         $transaction->business_id = $business->id;
@@ -67,7 +70,7 @@ class TransactionRelationshipsTest extends TestCase
         $refundTransaction = new Transaction();
         $refundTransaction->concept = 'Refund Transaction';
         $refundTransaction->amount = -100;
-        $refundTransaction->state = 'accepted';
+        $refundTransaction->state = TransactionStateType::Accepted;
         $refundTransaction->emision_date = now();
         $refundTransaction->finished_date = now();
         $refundTransaction->finalize_reason = 1;
@@ -86,7 +89,7 @@ class TransactionRelationshipsTest extends TestCase
         $user->name = 'Erik';
         $user->email = 'erik@gmail.com';
         $user->password = bcrypt('password');
-        $user->role = 'admin';
+        $user->role = UserRole::Technician;
         $user->direction_direction = 'Calle de la piruleta';
         $user->direction_postal_code = '12345';
         $user->direction_poblation = 'Madrid';

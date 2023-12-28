@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Enums\UserRole;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Business;
@@ -18,7 +19,7 @@ class BusinessApiTokenRelationshipTest extends TestCase
         $user->name = 'Erik';
         $user->email = 'erik@gmail.com';
         $user->password = bcrypt('password');
-        $user->role = 'admin';
+        $user->role = UserRole::Business;
         $user->direction_direction = 'Calle de la piruleta';
         $user->direction_postal_code = '12345';
         $user->direction_poblation = 'Madrid';

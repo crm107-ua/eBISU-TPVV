@@ -2,6 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Enums\PaymentType;
+use App\Enums\TicketStateType;
+use App\Enums\TransactionStateType;
+use App\Enums\UserRole;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Ticket;
@@ -27,7 +31,7 @@ class TicketRelationshipsTest extends TestCase
         $ticket->title = 'Test Ticket';
         $ticket->description = 'Test Description';
         $ticket->creation_date = now();
-        $ticket->state = 'closed';
+        $ticket->state = TicketStateType::Open;
         $ticket->priority = 1;
         $ticket->transaction()->associate($transaction);
         $ticket->save();
@@ -45,7 +49,7 @@ class TicketRelationshipsTest extends TestCase
         $ticket->title = 'Test Ticket';
         $ticket->description = 'Test Description';
         $ticket->creation_date = now();
-        $ticket->state = 'closed';
+        $ticket->state = TicketStateType::Closed;
         $ticket->priority = 1;
         $ticket->transaction()->associate($transaction);
         $ticket->save();
@@ -54,7 +58,7 @@ class TicketRelationshipsTest extends TestCase
         $author->name = 'Erik';
         $author->email = 'author@maol.com';
         $author->password = bcrypt('password');
-        $author->role = 'admin';
+        $author->role = UserRole::Admin;
         $author->direction_direction = 'Calle de la piruleta';
         $author->direction_postal_code = '12345';
         $author->direction_poblation = 'Madrid';
@@ -84,7 +88,7 @@ class TicketRelationshipsTest extends TestCase
          $ticket->title = 'Test Ticket';
          $ticket->description = 'Test Description';
          $ticket->creation_date = now();
-         $ticket->state = 'closed';
+         $ticket->state = TicketStateType::Closed;
          $ticket->priority = 1;
          $ticket->transaction()->associate($transaction);
          $ticket->technitian()->associate($technician);
@@ -100,7 +104,7 @@ class TicketRelationshipsTest extends TestCase
         $user->name = 'Erik';
         $user->email = 'erik@gmail.com';
         $user->password = bcrypt('password');
-        $user->role = 'admin';
+        $user->role = UserRole::Admin;
         $user->direction_direction = 'Calle de la piruleta';
         $user->direction_postal_code = '12345';
         $user->direction_poblation = 'Madrid';
@@ -130,7 +134,7 @@ class TicketRelationshipsTest extends TestCase
         $transaction = new Transaction();
         $transaction->concept = 'Test Transaction';
         $transaction->amount = 100;
-        $transaction->state = 'waiting';
+        $transaction->state = TransactionStateType::Waiting;
         $transaction->emision_date = now();
         $transaction->payment()->associate($payment);
         $transaction->business()->associate($business);
@@ -140,7 +144,7 @@ class TicketRelationshipsTest extends TestCase
     protected function createPayment()
     {
         $payment = new Payment();
-        $payment->type = 'credit_card';
+        $payment->type = PaymentType::CreditCard;
         $payment->credit_card_number = '1234567812345678';
         $payment->credit_card_month_of_expiration = '12';
         $payment->credit_card_year_of_expiration = '2025';
@@ -154,7 +158,7 @@ class TicketRelationshipsTest extends TestCase
         $technician->name = 'Erik';
         $technician->email = 'tech@mail.com';
         $technician->password = bcrypt('password');
-        $technician->role = 'technician';
+        $technician->role = UserRole::Technician;
         $technician->direction_direction = 'Calle de la piruleta';
         $technician->direction_postal_code = '12345';
         $technician->direction_poblation = 'Madrid';

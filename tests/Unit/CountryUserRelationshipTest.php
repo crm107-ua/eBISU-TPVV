@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Enums\UserRole;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\Country;
@@ -25,7 +26,7 @@ class CountryUserRelationshipTest extends TestCase
             'name' => 'Erik',
             'email' => 'erik@gmail.com',
             'password' => '12345678',
-            'role' => 'admin',
+            'role' => UserRole::Admin,
             'direction_direction' => 'Calle de la piruleta',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'Madrid',
@@ -38,7 +39,7 @@ class CountryUserRelationshipTest extends TestCase
             'name' => 'Javier',
             'email' => 'javier@mail.com',
             'password' => '12345678',
-            'role' => 'admin',
+            'role' => UserRole::Admin,
             'direction_direction' => 'Calle de la piruleta',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'Madrid',

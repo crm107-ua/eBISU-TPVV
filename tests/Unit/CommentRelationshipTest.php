@@ -2,6 +2,10 @@
 
 namespace Tests\Unit;
 
+use App\Enums\PaymentType;
+use App\Enums\TicketStateType;
+use App\Enums\TransactionStateType;
+use App\Enums\UserRole;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 use App\Models\Comment;
@@ -50,7 +54,7 @@ class CommentRelationshipTest extends TestCase
         $user->name = 'Erik';
         $user->email = 'test@gmail.com';
         $user->password = bcrypt('password');
-        $user->role = 'admin';
+        $user->role = UserRole::Admin;
         $user->direction_direction = 'Calle de la piruleta';
         $user->direction_postal_code = '12345';
         $user->direction_poblation = 'Madrid';
@@ -65,7 +69,7 @@ class CommentRelationshipTest extends TestCase
         $ticket = new Ticket();
         $ticket->title = 'Test Ticket';
         $ticket->description = 'Test Description';
-        $ticket->state = 'open';
+        $ticket->state = TicketStateType::Open;
         $ticket->priority = 1;
         $ticket->creation_date = now();
         $ticket->transaction()->associate($transaction);
@@ -78,7 +82,7 @@ class CommentRelationshipTest extends TestCase
         $user->name = 'Erik';
         $user->email = 'erik@gmail.com';
         $user->password = bcrypt('password');
-        $user->role = 'admin';
+        $user->role = UserRole::Admin;
         $user->direction_direction = 'Calle de la piruleta';
         $user->direction_postal_code = '12345';
         $user->direction_poblation = 'Madrid';
@@ -103,7 +107,7 @@ class CommentRelationshipTest extends TestCase
         $business->save();
 
         $payment = new Payment();
-        $payment->type = 'credit_card';
+        $payment->type = PaymentType::CreditCard;
         $payment->credit_card_number = '1234567812345678';
         $payment->credit_card_month_of_expiration = '12';
         $payment->credit_card_year_of_expiration = '2025';
@@ -113,7 +117,7 @@ class CommentRelationshipTest extends TestCase
         $transaction = new Transaction();
         $transaction->concept = 'Test Transaction';
         $transaction->amount = 100;
-        $transaction->state = 'waiting';
+        $transaction->state = TransactionStateType::Waiting;
         $transaction->emision_date = now();
         $transaction->payment()->associate($payment);
         $transaction->business()->associate($business);
