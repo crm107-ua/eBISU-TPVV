@@ -110,6 +110,7 @@ return [
     |
     */
 
-    'password_timeout' => 10800,
-
+    'password_timeout' => 0 , /* Esto se ha cambiado para que no rediriga a
+                                 /confirm-password al hacer login.
+                                */
 ];

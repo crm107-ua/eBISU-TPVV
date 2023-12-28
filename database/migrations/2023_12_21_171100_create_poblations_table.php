@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('poblation', function (Blueprint $table) {
+        Schema::create('poblations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
         });
@@ -8134,7 +8134,7 @@ return new class extends Migration
             array('name' => 'Ceuta'),
             array('name' => 'Melilla'),
         );
-        DB::table('poblation')->insert($poblations);    
+        DB::table('poblations')->insert($poblations);
     }
 
     /**
@@ -8142,6 +8142,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('poblation');
+        Schema::dropIfExists('poblations');
     }
 };

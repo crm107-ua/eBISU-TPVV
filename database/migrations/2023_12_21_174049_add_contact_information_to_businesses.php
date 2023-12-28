@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('business_info', function (Blueprint $table) {
-            $table->id();
-            $table->string('cif')->unique();
-            $table->string('social_reason');
+        Schema::table('businesses', function (Blueprint $table) {
             $table->string('contact_info_name')->nullable();
             $table->string('contact_info_phone_number')->nullable();
             $table->string('contact_info_email');
-            $table->dateTime('registration_date');
-            $table->decimal('balance', 8, 2);
-            $table->timestamps();
         });
     }
 
@@ -29,6 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_info');
+        Schema::table('businesses', function (Blueprint $table) {
+            $table->dropColumn('contact_info_name');
+            $table->dropColumn('contact_info_phone_number');
+            $table->dropColumn('contact_info_email');
+        });
     }
 };

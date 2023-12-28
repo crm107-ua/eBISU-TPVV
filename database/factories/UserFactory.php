@@ -26,6 +26,11 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => $this->faker->randomElement(['admin', 'technician', 'business']),
+            'direction_direction' => $this->faker->streetAddress,
+            'direction_postal_code' => substr($this->faker->postcode, 0, 5),
+            'direction_poblation' => $this->faker->city,
+            'direction_country_id' => \App\Models\Country::all()->random()->id,
         ];
     }
 

@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('business_api_token', function (Blueprint $table) {
+        Schema::create('technicians', function (Blueprint $table) {
             $table->id();
-            $table->string('issuer');
-            $table->dateTime('expiration_date');
             $table->timestamps();
-            $table->unsignedInteger('times_used')->default(0);
-            $table->boolean('invalidated')->default(0);
+
+            $table->foreign('id')
+                ->references('id')
+                ->on('users')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('business_api_token');
+        Schema::dropIfExists('technicians');
     }
 };
