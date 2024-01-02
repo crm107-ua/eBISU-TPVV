@@ -215,7 +215,16 @@
 	<link rel="icon" href="{{ asset('icon.png') }}" type="image/x-icon">
 </head>
     <body class="home page-template-default page page-id-13 wp-embed-responsive ui-a-dsmm-slide  elementor-default elementor-kit-4 elementor-page elementor-page-13">
+
+
+		
         @yield('content')
+
+
+
+
+
+
         <script>
             var uicore_frontend = { 'back': 'Back', 'rtl': '', 'mobile_br': '1025' };
             console.log('Using Vault v.1.1.2');
