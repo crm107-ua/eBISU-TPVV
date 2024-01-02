@@ -12,6 +12,9 @@ Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/comercios', function () {
+    return view('dashboard.pages.comercios');
+})->middleware(['auth', 'verified'])->name('comercios');
 
 
 // Route::middleware('auth')->group(function () {   
