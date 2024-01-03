@@ -60,6 +60,11 @@ Route::get('/valoraciones-tecnico', function () {
     return view('home.technical-views.valoraciones');
 })->middleware(['auth', 'verified'])->name('valoraciones-tecnico');
 
+Route::get('/incidencias', function () {
+    return view('home.technical-views.incidencias');
+})->middleware(['auth', 'verified'])->name('incidencias');
+
+
 // Route::middleware('auth')->group(function () {   
 // });
 
