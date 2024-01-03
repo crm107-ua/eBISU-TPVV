@@ -64,6 +64,10 @@ Route::get('/incidencias', function () {
     return view('home.technical-views.incidencias');
 })->middleware(['auth', 'verified'])->name('incidencias');
 
+Route::get('/incidencia', function () {
+    return view('home.technical-views.incidencia');
+})->middleware(['auth', 'verified'])->name('incidencia');
+
 
 // Route::middleware('auth')->group(function () {   
 // });

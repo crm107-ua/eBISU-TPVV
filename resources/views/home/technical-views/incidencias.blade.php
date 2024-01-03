@@ -38,37 +38,37 @@
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 0</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">Atlas S.A</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 1</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">Buerguer King S.A</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 2</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">Atlas S.A</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 3</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">Ayuntamiento INC</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 4</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">Atlas S.A</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 5</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">Cremas S.A</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

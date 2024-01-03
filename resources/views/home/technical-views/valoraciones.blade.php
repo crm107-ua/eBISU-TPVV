@@ -19,7 +19,7 @@
                                             <div class="mt-5 elementor-widget-wrap elementor-element-populated">
                                                 <section class="reviews-section">
                                                     <h1 style="color:white;">Valoraciones sobre {{ Auth::user()->name }}</h1>
-                                                    <p style="color:white;">Trabajando en eBISU desde: 2012</p>
+                                                    <p style="color:white;">Trabajando en eBISU desde: 2012 - Valoración media: ★★★★☆</p>
                                                     <div class="mt-5 reviews-container">
                                                         <div class="review-item">
                                                             <h3 style="color:white;">Sofía - Tienda de Ropa</h3>
