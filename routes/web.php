@@ -72,6 +72,9 @@ Route::get('/pagos', function () {
     return view('home.business-views.pagos');
 })->middleware(['auth', 'verified'])->name('pagos');
 
+Route::get('/pago', function () {
+    return view('home.business-views.pago');
+})->middleware(['auth', 'verified'])->name('pago');
 
 // Route::middleware('auth')->group(function () {   
 // });
