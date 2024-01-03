@@ -51,7 +51,7 @@
 														<div class="centering-container">
 															<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-066b9f6"
 																data-id="066b9f6" data-element_type="column">
-																<a href="/incidencias">
+																<a href="/incidencias" style="all: unset">
 																	<div
 																		class="elementor-widget-wrap elementor-element-populated">
 																		<div data-ep-wrapper-link="{&quot;url&quot;:&quot;#&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}"
@@ -89,39 +89,39 @@
 															</div>
 															<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-71c1821"
 																data-id="71c1821" data-element_type="column">
-																<a href="/valoraciones-tecnico">
-																<div
-																	class="elementor-widget-wrap elementor-element-populated">
-																	<div data-ep-wrapper-link="{&quot;url&quot;:&quot;#&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}"
-																		style="cursor: pointer"
-																		class="bdt-element-link elementor-element elementor-element-8a244d2 bdt-icon-type-icon elementor-position-top bdt-icon-effect-none elementor-widget elementor-widget-bdt-advanced-icon-box"
-																		data-id="8a244d2" data-element_type="widget"
-																		data-widget_type="bdt-advanced-icon-box.default">
-																		<div class="elementor-widget-container">
-																			<div class="bdt-ep-advanced-icon-box">
-																				<div class="bdt-ep-advanced-icon-box-icon">
-																					<span
-																						class="bdt-ep-advanced-icon-box-icon-wrap">
-																						<i aria-hidden="true"
-																							class="far fa-handshake"></i>
-																					</span>
-																				</div>
-																				<div
-																					class="bdt-ep-advanced-icon-box-content">
-																					<h4
-																						class="bdt-ep-advanced-icon-box-title">
-																						<span>
-																							Mis valoraciones </span>
-																					</h4>
+																<a href="/valoraciones-tecnico" style="all: unset">
+																	<div
+																		class="elementor-widget-wrap elementor-element-populated">
+																		<div data-ep-wrapper-link="{&quot;url&quot;:&quot;#&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}"
+																			style="cursor: pointer"
+																			class="bdt-element-link elementor-element elementor-element-8a244d2 bdt-icon-type-icon elementor-position-top bdt-icon-effect-none elementor-widget elementor-widget-bdt-advanced-icon-box"
+																			data-id="8a244d2" data-element_type="widget"
+																			data-widget_type="bdt-advanced-icon-box.default">
+																			<div class="elementor-widget-container">
+																				<div class="bdt-ep-advanced-icon-box">
+																					<div class="bdt-ep-advanced-icon-box-icon">
+																						<span
+																							class="bdt-ep-advanced-icon-box-icon-wrap">
+																							<i aria-hidden="true"
+																								class="far fa-handshake"></i>
+																						</span>
+																					</div>
 																					<div
-																						class="bdt-ep-advanced-icon-box-description">
-																						<p>Descubre qué opinan los clientes sobre tu trabajo.</p>
+																						class="bdt-ep-advanced-icon-box-content">
+																						<h4
+																							class="bdt-ep-advanced-icon-box-title">
+																							<span>
+																								Mis valoraciones </span>
+																						</h4>
+																						<div
+																							class="bdt-ep-advanced-icon-box-description">
+																							<p>Descubre qué opinan los clientes sobre tu trabajo.</p>
+																						</div>
 																					</div>
 																				</div>
 																			</div>
 																		</div>
 																	</div>
-																</div>
 																</a>
 															</div>
 														</div>
