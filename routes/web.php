@@ -3,11 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+// Rutas provisionales para crear el front-end
 Route::get('/', function () {
     return view('home.index');
 });
 
-// Rutas provisionales para crear el front-end
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
