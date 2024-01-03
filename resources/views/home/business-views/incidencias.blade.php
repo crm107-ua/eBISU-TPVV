@@ -1,5 +1,5 @@
 @extends('home.partials.master')
-@section('title', 'Bienvenido a eBISU - Técnico')
+@section('title', 'Bienvenido a eBISU - Historial de incidencias')
 @section('content')
 <div class="uicore-body-content">
     <div id="uicore-page">

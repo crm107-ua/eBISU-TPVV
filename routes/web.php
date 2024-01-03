@@ -76,6 +76,10 @@ Route::get('/mi-incidencia', function () {
     return view('home.business-views.incidencia');
 })->middleware(['auth', 'verified'])->name('mi-incidencia');
 
+Route::get('/generar-token', function () {
+    return view('home.business-views.token');
+})->middleware(['auth', 'verified'])->name('generar-token');
+
 Route::get('/pagos', function () {
     return view('home.business-views.pagos');
 })->middleware(['auth', 'verified'])->name('pagos');
