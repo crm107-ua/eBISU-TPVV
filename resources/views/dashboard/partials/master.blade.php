@@ -50,5 +50,6 @@
     <script src="{{ asset('assets/vendors/select2/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/select2.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('assets/js/advanced.js') }}"></script>
   </body>
 </html>

@@ -75,5 +75,13 @@
           <span class="menu-title">Detalles de incidencia</span>
         </a>
       </li>
+      <li class="nav-item menu-items {{ request()->is('tokens-admin') ? 'active' : '' }}">
+        <a class="nav-link" href="/tokens-admin">
+          <span class="menu-icon">
+            <i class="mdi mdi-key-change"></i>
+          </span>
+          <span class="menu-title">API Tokens</span>
+        </a>
+      </li>
     </ul>
   </nav>

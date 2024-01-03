@@ -44,6 +44,10 @@ Route::get('/detalles-incidencia', function () {
     return view('dashboard.pages.detalles-incidencia');
 })->middleware(['auth', 'verified'])->name('detalles-incidencia');
 
+Route::get('/tokens-admin', function () {
+    return view('dashboard.pages.tokens');
+})->middleware(['auth', 'verified'])->name('tokens-admin');
+
 
 // Route::middleware('auth')->group(function () {   
 // });

@@ -7674,6 +7674,7 @@ svg {
   vertical-align: middle; }
 
 table {
+  color: white;
   caption-side: bottom;
   border-collapse: collapse; }
 
@@ -20846,6 +20847,52 @@ div.tagsinput {
   color: white; /* Set the text color to white for active page */
   background-color: black; /* Set the background to black for active page */
   border-color: black; /* Set the border color to black for active page */
+}
+
+.conversation {
+  height: 250px;
+  overflow-y: auto; /* Permite el scroll vertical */
+}
+
+.message {
+  position: relative;
+  display: block;
+  clear: both;
+  border-radius: 16px;
+  padding: 15px;
+  margin-bottom: 8px;
+}
+
+.message.received {
+  background-color: #007bff3e;
+  color: #ffffff;
+  width: 50%;
+}
+
+.message.sent {
+  background-color: #007bff3e;
+  color: #ffffff;
+  margin-left: 50%;
+}
+
+.message-header {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.send-message-form textarea {
+  flex: 1;
+  margin-right: 10px;
+  border-radius: 8px;
+}
+
+.send-message-form button {
+  border-radius: 8px;
+}
+
+.status {
+  font-size: 0.8rem;
+  color: #28a745; /* Bootstrap's .text-success color */
 }
 
 /*# sourceMappingURL=maps/style.css.map */

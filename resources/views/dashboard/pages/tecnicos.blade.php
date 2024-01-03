@@ -25,10 +25,10 @@
               <div class="card">
                 <div class="card-body">
                   <h3 class="card-title mb-4">Usuarios técnicos
-                    <button type="button" class="btn btn-success btn-fw ms-3">Registrar un técnico</button>
+                    <a href="/tecnico-form" class="btn btn-success btn-fw ms-3">Registrar un técnico</a>
                   </h3>
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" style="color: white">
                       <thead>
                         <tr>
                           <th>Nombre</th>

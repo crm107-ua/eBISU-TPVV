@@ -18,65 +18,126 @@
                 <div class="card-body">
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <h3 class="card-title mb-0">Comercios</h3>
-                    <div class="dropdown mb-3">
-                      <a type="button" href="/comercios-form" class="btn btn-success btn-fw">Añadir comercio</a>
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Exportar datos</button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        <h6 class="dropdown-header">Settings</h6>
-                        <a class="dropdown-item" href="#">Opcion 1</a>
-                        <a class="dropdown-item" href="#">Opcion 2</a>
-                        <a class="dropdown-item" href="#">Opcion 3</a>
+                      <div class="d-flex justify-content-end">
+                        <a type="button" href="/admin-form" class="btn btn-success mb-2 mt-2">Crear comercio</a>
+                          <div class="dropdown me-2">
+                              <button class="btn btn-secondary dropdown-toggle ms-3 m-2" type="button" id="sortButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Exportar datos:
+                              </button>
+                              <div class="dropdown-menu">
+                                  <h6 class="dropdown-header">Tipo de exportación:</h6>
+                                  <a class="dropdown-item" href="#">Opcion 1</a>
+                                  <a class="dropdown-item" href="#">Opcion 2</a>
+                                  <a class="dropdown-item" href="#">Opcion 3</a>
+                              </div>
+                          </div>             
+                          <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle ms-1 m-2" type="button" id="sortButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  Ordenar por:
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="sortButton">
+                                  <h6 class="dropdown-header">Tipo de ordenación:</h6>
+                                  <a class="dropdown-item option" href="#">Opcion 1</a>
+                                  <a class="dropdown-item option" href="#">Opcion 2</a>
+                                  <a class="dropdown-item option" href="#">Opcion 3</a>
+                              </div>
+                          </div>
                       </div>
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ordenar por: CIF</button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                        <h6 class="dropdown-header">Settings</h6>
-                        <a class="dropdown-item" href="#">Opcion 1</a>
-                        <a class="dropdown-item" href="#">Opcion 2</a>
-                        <a class="dropdown-item" href="#">Opcion 3</a>
-                      </div>
-                    </div>
                   </div>
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table mt-3" style="color: white;">
                       <thead>
                         <tr>
-                          <th>Profile</th>
-                          <th>VatNo.</th>
-                          <th>Created</th>
-                          <th>Status</th>
+                          <th>Razón social</th>
+                          <th>Responsable</th>
+                          <th>Correo electrónico</th>
+                          <th>Teléfono</th>
+                          <th>Fecha de registro</th>
+                          <th>CIF</th>
+                          <th>Acciones</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr>
-                          <td>Jacob</td>
-                          <td>53275531</td>
-                          <td>12 May 2017</td>
-                          <td><label class="badge badge-danger">Pending</label></td>
+                          <td>Atlas S.A</td>
+                          <td>Carlos Navas</td>
+                          <td>crm111ua@alu.ua.es</td>
+                          <td>965 90 34 56</td>
+                          <td>12/05/2021</td>
+                          <td>A12345678</td>
+                          <td>
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ...
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Detalles</a>
+                                <a class="dropdown-item" href="#">Editar</a>
+                                <a class="dropdown-item" href="#">Borrar</a>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
                         <tr>
-                          <td>Messsy</td>
-                          <td>53275532</td>
-                          <td>15 May 2017</td>
-                          <td><label class="badge badge-warning">In progress</label></td>
+                          <td>Atlas S.A</td>
+                          <td>Carlos Navas</td>
+                          <td>crm111ua@alu.ua.es</td>
+                          <td>965 90 34 56</td>
+                          <td>12/05/2021</td>
+                          <td>A12345678</td>
+                          <td>
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ...
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Detalles</a>
+                                <a class="dropdown-item" href="#">Editar</a>
+                                <a class="dropdown-item" href="#">Borrar</a>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
                         <tr>
-                          <td>John</td>
-                          <td>53275533</td>
-                          <td>14 May 2017</td>
-                          <td><label class="badge badge-info">Fixed</label></td>
+                          <td>Atlas S.A</td>
+                          <td>Carlos Navas</td>
+                          <td>crm111ua@alu.ua.es</td>
+                          <td>965 90 34 56</td>
+                          <td>12/05/2021</td>
+                          <td>A12345678</td>
+                          <td>
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ...
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Detalles</a>
+                                <a class="dropdown-item" href="#">Editar</a>
+                                <a class="dropdown-item" href="#">Borrar</a>
+                              </div>
+                            </div>
+                          </td>
                         </tr>
                         <tr>
-                          <td>Peter</td>
-                          <td>53275534</td>
-                          <td>16 May 2017</td>
-                          <td><label class="badge badge-success">Completed</label></td>
-                        </tr>
-                        <tr>
-                          <td>Dave</td>
-                          <td>53275535</td>
-                          <td>20 May 2017</td>
-                          <td><label class="badge badge-warning">In progress</label></td>
-                        </tr>
+                          <td>Atlas S.A</td>
+                          <td>Carlos Navas</td>
+                          <td>crm111ua@alu.ua.es</td>
+                          <td>965 90 34 56</td>
+                          <td>12/05/2021</td>
+                          <td>A12345678</td>
+                          <td>
+                            <div class="dropdown">
+                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                ...
+                              </button>
+                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Detalles</a>
+                                <a class="dropdown-item" href="#">Editar</a>
+                                <a class="dropdown-item" href="#">Borrar</a>
+                              </div>
+                            </div>
+                          </td>
+                        </tr>                 
                       </tbody>
                     </table>
                     <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-5">
@@ -98,3 +159,4 @@
     </div>
   </div>
 @endsection
+

@@ -19,35 +19,36 @@
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <h3 class="card-title mb-0">Incidencias</h3>        
                         <div class="d-flex justify-content-end">
-
                             <div class="col-sm-9">
                                 <input class="form-control m-1" placeholder="Fecha de creación: dd/mm/yyyy" />
-                            </div>
-                        
+                            </div>                   
                             <div class="dropdown me-2">
-                                <button class="btn btn-secondary dropdown-toggle ms-4 m-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estado</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <button class="btn btn-secondary dropdown-toggle ms-4 m-2" type="button" id="sortButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Estado
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="sortButton">
                                     <h6 class="dropdown-header">Estado actual:</h6>
-                                    <a class="dropdown-item" href="#">Opcion 1</a>
-                                    <a class="dropdown-item" href="#">Opcion 2</a>
-                                    <a class="dropdown-item" href="#">Opcion 3</a>
+                                    <a class="dropdown-item option" href="#">Opcion 1</a>
+                                    <a class="dropdown-item option" href="#">Opcion 2</a>
+                                    <a class="dropdown-item option" href="#">Opcion 3</a>
                                 </div>
-                            </div>
-                        
+                            </div>                       
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle ms-1 m-2" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Asignación</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                                <button class="btn btn-secondary dropdown-toggle ms-1 m-2" type="button" id="sortButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Asignación
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="sortButton">
                                     <h6 class="dropdown-header">Persona asignada:</h6>
-                                    <a class="dropdown-item" href="#">Opcion 1</a>
-                                    <a class="dropdown-item" href="#">Opcion 2</a>
-                                    <a class="dropdown-item" href="#">Opcion 3</a>
+                                    <a class="dropdown-item option" href="#">Opcion 1</a>
+                                    <a class="dropdown-item option" href="#">Opcion 2</a>
+                                    <a class="dropdown-item option" href="#">Opcion 3</a>
                                 </div>
                             </div>
                         </div>         
                     </div>
                   </div>
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" style="color: white">
                         <thead>
                             <tr>
                                 <th>Creador</th>
@@ -110,10 +111,10 @@
                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
                             </ul>
                         </nav>                    
-                    </div>
-                </div>
-              </div>
-            </div>
+                     </div>
+                  </div>
+               </div>
+             </div>
           </div>
         </div>
       </div>

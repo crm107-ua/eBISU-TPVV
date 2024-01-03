@@ -3,7 +3,7 @@
       <ul class="navbar-nav w-100">
         <li class="nav-item w-100">
           <form class="nav-link">
-            <input type="text" class="form-control" placeholder="Buscar">
+            <input type="text" style="color:white;" class="form-control" placeholder="Buscar">
           </form>
         </li>
       </ul>

@@ -28,7 +28,7 @@
                     <a type="button" href="/admin-form" class="btn btn-success btn-fw ms-3">Registrar un administrador</a>
                   </h3>
                   <div class="table-responsive">
-                    <table class="table">
+                    <table class="table" style="color: white">
                       <thead>
                         <tr>
                           <th>Nombre</th>
