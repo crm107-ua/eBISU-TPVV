@@ -48,6 +48,13 @@ Route::get('/tokens-admin', function () {
     return view('dashboard.pages.tokens');
 })->middleware(['auth', 'verified'])->name('tokens-admin');
 
+Route::get('/technical-home', function () {
+    return view('home.technical-views.technical-home');
+})->middleware(['auth', 'verified'])->name('technical-home');
+
+Route::get('/business-home', function () {
+    return view('home.business-views.business-home');
+})->middleware(['auth', 'verified'])->name('business-home');
 
 // Route::middleware('auth')->group(function () {   
 // });
