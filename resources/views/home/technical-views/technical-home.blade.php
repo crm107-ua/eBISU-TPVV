@@ -32,7 +32,8 @@
 													data-settings="{&quot;ui_animate_split&quot;:&quot;ui-split-animate&quot;,&quot;ui_animate_split_by&quot;:&quot;chars&quot;,&quot;ui_animate_split_style&quot;:&quot;fadeInUp&quot;}"
 													data-widget_type="heading.default">
 													<div class="elementor-widget-container">
-														<h2 class="elementor-heading-title elementor-size-default">Bienvenido {{ Auth::user()->name }}</h2>
+														<h2 class="elementor-heading-title elementor-size-default">Bienvenido</h2>
+														<h2 class="elementor-heading-title elementor-size-default">{{ Auth::user()->name }}</h2>
 													</div>
 												</div>
 												<div class="elementor-element elementor-element-70b0e81 elementor-widget__width-inherit elementor-invisible elementor-widget elementor-widget-text-editor"
@@ -65,7 +66,7 @@
 																						<span
 																							class="bdt-ep-advanced-icon-box-icon-wrap">
 																							<i aria-hidden="true"
-																								class="far fa-building"></i>
+																								class="fa fa-exclamation-triangle"></i>
 																						</span>
 																					</div>
 																					<div

@@ -68,6 +68,10 @@ Route::get('/incidencia', function () {
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
+Route::get('/pagos', function () {
+    return view('home.business-views.pagos');
+})->middleware(['auth', 'verified'])->name('pagos');
+
 
 // Route::middleware('auth')->group(function () {   
 // });
