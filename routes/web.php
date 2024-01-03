@@ -56,6 +56,10 @@ Route::get('/business-home', function () {
     return view('home.business-views.business-home');
 })->middleware(['auth', 'verified'])->name('business-home');
 
+Route::get('/valoraciones-tecnico', function () {
+    return view('home.technical-views.valoraciones');
+})->middleware(['auth', 'verified'])->name('valoraciones-tecnico');
+
 // Route::middleware('auth')->group(function () {   
 // });
 

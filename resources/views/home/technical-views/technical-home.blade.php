@@ -17,7 +17,7 @@
 										<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb5deb5"
 											data-id="fb5deb5" data-element_type="column">
 											<div class="elementor-widget-wrap elementor-element-populated">
-												<div style="margin-top: 100px;" class="elementor-element elementor-element-68cf322 elementor-invisible elementor-widget elementor-widget-heading"
+												<div style="margin-top: 210px;" class="elementor-element elementor-element-68cf322 elementor-invisible elementor-widget elementor-widget-heading"
 													data-id="68cf322" data-element_type="widget"
 													data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;}"
 													data-widget_type="heading.default">
