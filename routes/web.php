@@ -4,22 +4,11 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home.index');
 });
-
-# Esto incluye la master y el home de la plantilla nuestra
-Route::get('/home', function () {
-    return view('home');
-});
-
-Route::get('/test', function () {
-    return view('home_sin_contenido');
-});
-
-#######################################
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
