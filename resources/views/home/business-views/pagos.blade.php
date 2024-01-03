@@ -17,7 +17,6 @@
                                     <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb5deb5"
                                         data-id="fb5deb5" data-element_type="column">
                                         <div class="elementor-widget-wrap elementor-element-populated">
-                                            <!-- Aquí comienza la tabla de historial de incidencias -->
                                             <div class="elementor-element elementor-element-70b0e81 elementor-widget__width-inherit elementor-widget elementor-widget-text-editor"
                                                 data-id="70b0e81" data-element_type="widget"
                                                 data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:300}"
