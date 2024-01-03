@@ -19,24 +19,20 @@
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <h3 class="card-title mb-0">Comercios</h3>
                     <div class="dropdown mb-3">
-                      <button type="button" class="btn btn-success btn-fw">Añadir comercio</button>
+                      <a type="button" href="/comercios-form" class="btn btn-success btn-fw">Añadir comercio</a>
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Exportar datos</button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <h6 class="dropdown-header">Settings</h6>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="#">Opcion 1</a>
+                        <a class="dropdown-item" href="#">Opcion 2</a>
+                        <a class="dropdown-item" href="#">Opcion 3</a>
                       </div>
                       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ordenar por: CIF</button>
                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                         <h6 class="dropdown-header">Settings</h6>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Separated link</a>
+                        <a class="dropdown-item" href="#">Opcion 1</a>
+                        <a class="dropdown-item" href="#">Opcion 2</a>
+                        <a class="dropdown-item" href="#">Opcion 3</a>
                       </div>
                     </div>
                   </div>
@@ -83,6 +79,15 @@
                         </tr>
                       </tbody>
                     </table>
+                    <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-5">
+                        <ul class="pagination">
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                        </ul>
+                    </nav> 
                   </div>
                 </div>
               </div>

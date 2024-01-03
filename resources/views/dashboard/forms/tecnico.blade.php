@@ -1,5 +1,5 @@
 @extends('dashboard.partials.master')
-@section('title', 'eBISU Dashboard - Agregar comercio')
+@section('title', 'eBISU Dashboard - Agregar técnico')
 @section('content')
 
 <div class="container-scroller">
@@ -16,47 +16,31 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title mt-2 mb-5">Agrega un comercio</h4>
+                  <h4 class="card-title mt-2 mb-5">Registro de técnicos</h4>
                   <form class="forms-sample">
                     <div class="row">
 
                       <!-- Columna 1 -->
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <div class="form-group">
-                          <label for="exampleInputUsername1">CIF:</label>
-                          <input type="text" class="form-control" id="cif" name="cif" style="color: white;" placeholder="CIF">
+                            <label for="exampleInputEmail1">Nombre</label>
+                            <input type="email" class="form-control" id="name" name="name" style="color: white;" placeholder="Nombre">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputEmail1">Nombre del representante</label>
-                          <input type="email" class="form-control" id="name" name="name" style="color: white;" placeholder="Nombre del representante">
+                            <label for="exampleInputEmail1">Correo de contacto</label>
+                            <input type="email" class="form-control" id="email" name="email" style="color: white;" placeholder="Correo de contacto">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" style="color: white;" placeholder="Contraseña">
-                        </div>
-                      </div>
-
-                      <!-- Columna 2 -->
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="exampleInputUsername1">Razón social:</label>
-                          <input type="text" class="form-control" id="razon" name="razon" style="color: white;" placeholder="Razon social">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Correo de contacto</label>
-                          <input type="email" class="form-control" id="email" name="email" style="color: white;" placeholder="Correo de contacto">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Teléfono de contacto</label>
-                            <input type="text" class="form-control" id="telefono" name="telefono" style="color: white;" placeholder="Teléfono de contacto">
+                            <input type="password" class="form-control" id="password" name="password" style="color: white;"  placeholder="Contraseña">
                         </div>
                       </div>
 
                       <!-- Columna 3 -->
-                      <div class="col-md-4">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label for="exampleInputUsername1">Dirección:</label>
-                          <input type="text" class="form-control" id="address" name="address" style="color: white;" placeholder="Dirección">
+                          <input type="text" class="form-control" id="address" name="address" style="color: white;"  placeholder="Dirección">
                         </div>
                         <div class="row">
                           <div class="col-sm-6 form-group">
@@ -91,12 +75,12 @@
                     <br>
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-success me-2">Darse de alta</button>
+                            <button type="submit" class="btn btn-success me-2">Registrar</button>
                             <button class="btn btn-dark">Cancelar</button>
                         </div>
                         <div class="col">
                           <x-password-generator/>
-                        </div>     
+                        </div>      
                     </form>
                 </div>
               </div>

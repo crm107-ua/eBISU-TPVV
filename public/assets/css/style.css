@@ -20834,4 +20834,18 @@ div.tagsinput {
   -webkit-flex-grow: 1;
   flex-grow: 1; }
 
+/* Custom styles for pagination */
+.pagination a.page-link {
+  color: black; /* Set the text color to black */
+  background-color: white; /* Set the background to white */
+  border-color: #dee2e6; /* Use a light grey border, adjust as needed */
+}
+
+/* Style for the active page */
+.pagination .page-item.active .page-link {
+  color: white; /* Set the text color to white for active page */
+  background-color: black; /* Set the background to black for active page */
+  border-color: black; /* Set the border color to black for active page */
+}
+
 /*# sourceMappingURL=maps/style.css.map */

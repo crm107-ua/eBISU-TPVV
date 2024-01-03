@@ -20,7 +20,7 @@
                   <div class="row">
                     <div class="col-8 col-sm-12 col-xl-8 my-auto">
                       <div class="d-flex d-sm-block d-md-flex align-items-center">
-                        <h2 class="mb-0">$32123</h2>
+                        <h2 class="mb-0">3212,33€</h2>
                         <p class="text-success ms-2 mb-0 font-weight-medium">+3.5%</p>
                       </div>
                       <h6 class="text-muted font-weight-normal">11.38% Since last month</h6>
