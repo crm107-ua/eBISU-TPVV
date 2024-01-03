@@ -23,7 +23,7 @@
                                                 data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:300}"
                                                 data-widget_type="text-editor.default">
                                                 <div class="elementor-widget-container mt-5">
-                                                    <h2 style="text-align:center; color:white;" class="mb-4">Incidencias activas</h2>
+                                                    <h2 style="text-align:center; color:white;" class="mb-4">Historial de incidencias</h2>
                                                     <table style="width:100%; margin-top:20px; text-align:center; border-collapse: collapse;">
                                                         <thead>
                                                             <tr>
@@ -38,37 +38,37 @@
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 0</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">★★★★☆</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/mi-incidencia" style="all: unset">Ver incidencia</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 1</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">★★★★☆</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/mi-incidencia" style="all: unset">Ver incidencia</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 2</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">★★★★☆</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/mi-incidencia" style="all: unset">Ver incidencia</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 3</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">★★★★☆</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/mi-incidencia" style="all: unset">Ver incidencia</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 4</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">★★★★☆</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/mi-incidencia" style="all: unset">Ver incidencia</a></td>
                                                             </tr>
                                                             <tr>
                                                                 <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 5</td>
                                                                 <td style="padding: 10px 0; color:white;">PENDIENTE</td>
                                                                 <td style="padding: 10px 0; color:white;">★★★★☆</td>
-                                                                <td style="padding: 10px 0; color:white;"><a href="#" style="all: unset">Resolver</a></td>
+                                                                <td style="padding: 10px 0; color:white;"><a href="/mi-incidencia" style="all: unset">Ver incidencia</a></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>

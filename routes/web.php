@@ -64,9 +64,17 @@ Route::get('/incidencias', function () {
     return view('home.technical-views.incidencias');
 })->middleware(['auth', 'verified'])->name('incidencias');
 
+Route::get('/mis-incidencias', function () {
+    return view('home.business-views.incidencias');
+})->middleware(['auth', 'verified'])->name('mis-incidencias');
+
 Route::get('/incidencia', function () {
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
+
+Route::get('/mi-incidencia', function () {
+    return view('home.business-views.incidencia');
+})->middleware(['auth', 'verified'])->name('mi-incidencia');
 
 Route::get('/pagos', function () {
     return view('home.business-views.pagos');
