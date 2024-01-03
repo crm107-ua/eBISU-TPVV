@@ -3,7 +3,7 @@
     <div class="uicore-header-wrapper">
         <nav class="uicore elementor-container">
             <div class="uicore-branding">
-                <a href="/" rel="home">
+                <a href="/" rel="home" style="all: unset">
                     <h3 style="margin:3%; color:white;">eBISU</h3>
                 </a>
             </div>
