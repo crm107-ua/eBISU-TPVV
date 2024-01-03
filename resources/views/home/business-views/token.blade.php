@@ -13,7 +13,7 @@
                             <div class="elementor-section elementor-top-section elementor-element elementor-element-38fe679 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                                 data-id="38fe679" data-element_type="section" id="Nosotros"
                                 data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
-                                <div class="elementor-container elementor-column-gap-no">
+                                <div class="elementor-container elementor-column-gap-no" style="margin-bottom: 20%;">
                                     <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb5deb5"
                                         data-id="fb5deb5" data-element_type="column">
                                         <div class="elementor-widget-wrap elementor-element-populated">

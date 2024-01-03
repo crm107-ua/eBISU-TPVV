@@ -17,8 +17,7 @@
                                     <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb5deb5"
                                         data-id="fb5deb5" data-element_type="column">
                                         <div class="elementor-widget-wrap elementor-element-populated">
-                                            <!-- Detalles de pago -->
-                                            <div class="elementor-widget-container mt-5" style="width: 80%">
+                                            <div class="elementor-widget-container mt-5" style="width: 80%; margin-bottom: 25%;">
                                                 <h2 style="text-align:center; color:white; padding-bottom: 20px; margin-top: 40px;">Detalles de pago</h2>
                                                 <div style="border: 1px solid white; padding: 15px;">
                                                     <div style="display: flex; justify-content: space-between; margin-bottom: 10px; color:white;">
@@ -40,7 +39,6 @@
                                                     <button style="border: none; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Crear incidencia</button>
                                                 </div>
                                             </div>
-                                            <!-- Fin Detalles de pago -->
                                         </div>
                                     </div>
                                 </div>
