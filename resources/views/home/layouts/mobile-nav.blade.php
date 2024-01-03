@@ -18,23 +18,18 @@
         </button>
     </nav>
     <div class="uicore-navigation-content">
-        <div class="uicore-menu-container uicore-nav">
-            <ul class="uicore-menu">
-                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
-                        href="#Nosotros"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a
-                        href="#Servicios"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
-                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
-                        href="#Integraticiones"><span class="ui-menu-item-wrapper">Integraticiones</span></a></li>
-            </ul>
-        </div>
-        <div class="uicore uicore-extra">
-            <div class="uicore-cta-wrapper">
-                <a href="#" target="_self" class="uicore-btn uicore-inverted">
-                    <span class="elementor-button-text">
-                        Iniciar sesión</span>
-                </a>
+        @if(request()->is('/')) 
+            <div class="uicore-menu-container uicore-nav">
+                <ul class="uicore-menu">
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
+                            href="#Nosotros"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a
+                            href="#Servicios"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
+                            href="#Integraticiones"><span class="ui-menu-item-wrapper">Integraticiones</span></a></li>
+                </ul>
             </div>
-        </div>
+        @endif
+        <x-session-role-buttons />
     </div>
 </div>
