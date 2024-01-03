@@ -7,14 +7,49 @@ Route::get('/', function () {
     return view('home.index');
 });
 
+// Rutas provisionales para crear el front-end
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+Route::get('/comercios-form', function () {
+    return view('dashboard.forms.comercio');
+})->middleware(['auth', 'verified'])->name('comercios-form');
+
+Route::get('/admin-form', function () {
+    return view('dashboard.forms.admin');
+})->middleware(['auth', 'verified'])->name('admin-form');
+
+Route::get('/tecnico-form', function () {
+    return view('dashboard.forms.tecnico');
+})->middleware(['auth', 'verified'])->name('tecnico-form');
+
+Route::get('/listado-comercios', function () {
+    return view('dashboard.pages.comercios');
+})->middleware(['auth', 'verified'])->name('comercios');
+
+Route::get('/listado-admins', function () {
+    return view('dashboard.pages.admins');
+})->middleware(['auth', 'verified'])->name('admins');
+
+Route::get('/listado-tecnicos', function () {
+    return view('dashboard.pages.tecnicos');
+})->middleware(['auth', 'verified'])->name('tecnicos');
+
+Route::get('/listado-incidencias', function () {
+    return view('dashboard.pages.incidencias');
+})->middleware(['auth', 'verified'])->name('incidencias');
+
+Route::get('/detalles-incidencia', function () {
+    return view('dashboard.pages.detalles-incidencia');
+})->middleware(['auth', 'verified'])->name('detalles-incidencia');
+
+Route::get('/tokens-admin', function () {
+    return view('dashboard.pages.tokens');
+})->middleware(['auth', 'verified'])->name('tokens-admin');
+
+
+// Route::middleware('auth')->group(function () {   
+// });
 
 require __DIR__.'/auth.php';
