@@ -497,7 +497,33 @@
 													sizes="(max-width: 864px) 100vw, 864px" />
 											</div>
 										</div>
-									</div>			
+									</div>
+									<div class="elementor-section elementor-inner-section elementor-element elementor-element-bc6615d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+										data-id="bc6615d" data-element_type="section" id="automated">
+										<div class="elementor-container elementor-column-gap-no">
+											<div class="elementor-widget-container">
+												<img decoding="async" width="1064" height="392"
+													src="https://img.graphicsurf.com/2019/12/data-analysis-vector-free-illustration2.jpg"
+													class="attachment-full size-full wp-image-20"
+													alt
+													srcset="https://img.graphicsurf.com/2019/12/data-analysis-vector-free-illustration2.jpg 968w, https://img.graphicsurf.com/2019/12/data-analysis-vector-free-illustration2.jpg 650w"
+													sizes="(max-width: 864px) 100vw, 864px" />
+											</div>
+										</div>
+									</div>
+									<div class="elementor-section elementor-inner-section elementor-element elementor-element-bc6615d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+										data-id="bc6615d" data-element_type="section" id="crypto">
+										<div class="elementor-container elementor-column-gap-no">
+											<div class="elementor-widget-container">
+												<img decoding="async" width="1064" height="392"
+													src="https://img.freepik.com/free-vector/young-tiny-girl-sitting-coding-via-laptop-computer-programmer-code-flat-vector-illustration-it-digital-technology_74855-8751.jpg"
+													class="attachment-full size-full wp-image-20"
+													alt
+													srcset="https://img.freepik.com/free-vector/young-tiny-girl-sitting-coding-via-laptop-computer-programmer-code-flat-vector-illustration-it-digital-technology_74855-8751.jpg 968w, https://img.freepik.com/free-vector/young-tiny-girl-sitting-coding-via-laptop-computer-programmer-code-flat-vector-illustration-it-digital-technology_74855-8751.jpg 650w"
+													sizes="(max-width: 864px) 100vw, 864px" />
+											</div>
+										</div>
+									</div>		
 								</div>
 							</div>
 						</div>
