@@ -30,7 +30,7 @@ class AuthenticatedSessionController extends Controller
 
         // Aquí se maneja la redirección basada en el rol del usuario
         if (auth()->user()->role == 'admin') {
-            return redirect('/dashboard');
+            return redirect('/admin');
         } else if (auth()->user()->role == 'technician') {
             return redirect('/technical-home');
         }else{
