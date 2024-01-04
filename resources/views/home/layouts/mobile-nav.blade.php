@@ -22,11 +22,13 @@
             <div class="uicore-menu-container uicore-nav">
                 <ul class="uicore-menu">
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
-                            href="#Nosotros"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
+                            href="#Inicio" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Inicio</span></a></li>
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a
-                            href="#Servicios"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
+                            href="#Servicios" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
                     <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
-                            href="#Integraticiones"><span class="ui-menu-item-wrapper">Integraticiones</span></a></li>
+                            href="#Integraticiones" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Integraciciones</span></a></li>
+                    <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
+                        href="#Nosotros" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
                 </ul>
             </div>
         @endif
