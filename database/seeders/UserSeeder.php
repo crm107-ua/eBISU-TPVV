@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -15,14 +16,14 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-        
+
         // Crear usuario Admin
         User::create([
             'id' => 1,
             'name' => 'Admin User',
             'email' => 'admin@ebisu.com',
             'password' => Hash::make('1234'),
-            'role' => 'admin',
+            'role' => UserRole::Admin,
             'direction_direction' => 'Calle 13422',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'San Vicente',
@@ -35,7 +36,7 @@ class UserSeeder extends Seeder
             'name' => 'Technician User',
             'email' => 'technician@ebisu.com',
             'password' => Hash::make('1234'),
-            'role' => 'technician',
+            'role' => UserRole::Technician,
             'direction_direction' => 'Calle 143243',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'Madrid',
@@ -48,12 +49,12 @@ class UserSeeder extends Seeder
             'name' => 'Business User',
             'email' => 'business@ebisu.com',
             'password' => Hash::make('1234'),
-            'role' => 'business',
+            'role' => UserRole::Business,
             'direction_direction' => 'Calle 123124',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'San Juan',
             'direction_country_id' => 199
         ]);
-     
+
     }
 }
