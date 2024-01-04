@@ -20,15 +20,14 @@
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
                                                 <h2 class="elementor-heading-title elementor-size-default">
-                                                    Contact information</h2>
+                                                    Contacta con nosotros</h2>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-daf2b5e elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor"
                                             data-id="daf2b5e" data-element_type="widget"
                                             data-widget_type="text-editor.default">
                                             <div class="elementor-widget-container">
-                                                Rhoncus quam dolor enim egestas cras. Senectus quis lectus
-                                                pharetra diam sociis etiam magna </div>
+                                                ¡Nos encantaría escuchar de ti! Si tienes preguntas, comentarios o simplemente quieres saludar, no dudes en contactarnos. </div>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +47,7 @@
                                                                 <i aria-hidden="true"
                                                                     class="far fa-envelope"></i> </span>
                                                             <span
-                                                                class="elementor-icon-list-text">hello@finflow.com</span>
+                                                                class="elementor-icon-list-text">contacto@ebisu.com</span>
                                                         </a>
                                                     </li>
                                                     <li class="elementor-icon-list-item">
@@ -56,8 +55,8 @@
                                                             <span class="elementor-icon-list-icon">
                                                                 <i aria-hidden="true"
                                                                     class="fas fa-phone-alt"></i> </span>
-                                                            <span class="elementor-icon-list-text">(239)
-                                                                555-0108</span>
+                                                            <span class="elementor-icon-list-text">+34
+                                                                637 088 445</span>
                                                         </a>
                                                     </li>
                                                     <li class="elementor-icon-list-item">
@@ -66,9 +65,8 @@
                                                                 <i aria-hidden="true"
                                                                     class="fas fa-map-marker-alt"></i>
                                                             </span>
-                                                            <span class="elementor-icon-list-text">4140
-                                                                Parker Rd. Allentown, New Mexico
-                                                                31134</span>
+                                                            <span class="elementor-icon-list-text">Universidad de Alicante. San Vicente del Raspeig, Alicante (España)
+                                                                03690</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -90,7 +88,7 @@
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
                                                 <h5 class="elementor-heading-title elementor-size-default">
-                                                    Product</h5>
+                                                    Empresa</h5>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-9301b93 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
@@ -99,33 +97,9 @@
                                             <div class="elementor-widget-container">
                                                 <ul class="elementor-icon-list-items">
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a href="/terminos-condiciones">
                                                             <span
-                                                                class="elementor-icon-list-text">Nosotros</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Servicios</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Integraciones</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Tutorials</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Pricing</span>
+                                                                class="elementor-icon-list-text">Términos y condiciones</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -141,7 +115,7 @@
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
                                                 <h5 class="elementor-heading-title elementor-size-default">
-                                                    Company</h5>
+                                                    Legislación</h5>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-ebef82a elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
@@ -150,33 +124,8 @@
                                             <div class="elementor-widget-container">
                                                 <ul class="elementor-icon-list-items">
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span class="elementor-icon-list-text">About
-                                                                us</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Careers</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Press</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">News</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Contact</span>
+                                                        <a href="https://www.apache.org/licenses/LICENSE-2.0">
+                                                            <span class="elementor-icon-list-text">Licencia</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -192,7 +141,7 @@
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
                                                 <h5 class="elementor-heading-title elementor-size-default">
-                                                    Resources</h5>
+                                                    En la red</h5>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-6b678ab elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
@@ -201,27 +150,9 @@
                                             <div class="elementor-widget-container">
                                                 <ul class="elementor-icon-list-items">
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a>
                                                             <span
                                                                 class="elementor-icon-list-text">Blog</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span class="elementor-icon-list-text">Help
-                                                                center</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Tutorials</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Support</span>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -246,25 +177,25 @@
                                             <div class="elementor-widget-container">
                                                 <ul class="elementor-icon-list-items">
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a>
                                                             <span
                                                                 class="elementor-icon-list-text">Twitter</span>
                                                         </a>
                                                     </li>
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a>
                                                             <span
                                                                 class="elementor-icon-list-text">LinkedIn</span>
                                                         </a>
                                                     </li>
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a>
                                                             <span
                                                                 class="elementor-icon-list-text">Facebook</span>
                                                         </a>
                                                     </li>
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a>
                                                             <span
                                                                 class="elementor-icon-list-text">GitHub</span>
                                                         </a>
@@ -291,19 +222,13 @@
                                             <div class="elementor-widget-container">
                                                 <ul class="elementor-icon-list-items">
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
-                                                            <span
-                                                                class="elementor-icon-list-text">Terms</span>
-                                                        </a>
-                                                    </li>
-                                                    <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a>
                                                             <span
                                                                 class="elementor-icon-list-text">Privacy</span>
                                                         </a>
                                                     </li>
                                                     <li class="elementor-icon-list-item">
-                                                        <a href="#">
+                                                        <a>
                                                             <span
                                                                 class="elementor-icon-list-text">Cookies</span>
                                                         </a>
@@ -325,12 +250,7 @@
                                             data-id="2fd19c8" data-element_type="widget"
                                             data-widget_type="image.default">
                                             <div class="elementor-widget-container">
-                                                <img width="341" height="64"
-                                                    src="sources/uploads/sites/2/2023/01/finflow-logo-1.webp"
-                                                    class="attachment-full size-full wp-image-5" alt
-                                                    loading="lazy"
-                                                    srcset="sources/uploads/sites/2/2023/01/finflow-logo-1.webp 341w, sources/uploads/sites/2/2023/01/finflow-logo-1-300x56.webp 300w"
-                                                    sizes="(max-width: 341px) 100vw, 341px" />
+                                                <h2 style="color:white;">eBISU</h2>
                                             </div>
                                         </div>
                                     </div>
@@ -342,9 +262,9 @@
                                             data-id="a97b883" data-element_type="widget"
                                             data-widget_type="text-editor.default">
                                             <div class="elementor-widget-container">
-                                                <p>Copyright: © 2023 FinFlow WordPress theme by <a
-                                                        href="https://uicore.co/" target="_blank"
-                                                        rel="noopener">UiCore</a>. All Rights Reserved.</p>
+                                                <p>Copyright: © 2023 Desarrollado por <a
+                                                        target="_blank"
+                                                        rel="noopener">eBISU S.A</a>. Todos los derechos reservados.</p>
                                             </div>
                                         </div>
                                     </div>

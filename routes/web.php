@@ -92,6 +92,10 @@ Route::get('/crear-incidencia', function () {
     return view('home.forms.incidencia');
 })->middleware(['auth', 'verified'])->name('crear-incidencia');
 
+Route::get('/terminos-condiciones', function () {
+    return view('home.general-views.terminos');
+})->name('terminos-condiciones');
+
 // Route::middleware('auth')->group(function () {   
 // });
 
