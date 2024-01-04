@@ -18,7 +18,7 @@
                                         data-id="fb5deb5" data-element_type="column">
                                         <div class="elementor-widget-wrap elementor-element-populated">
                                             
-                                            <div style="max-width: 600px; margin: 100 auto; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background: #FFF;">
+                                            <div style="width: 80%; margin: 100 auto; padding: 30px; box-shadow: 0 0 10px rgba(0,0,0,0.1); border-radius: 8px; background: #FFF;">
                                                 <h2 style="color: #333; text-align: center; margin-bottom: 20px;">¿Necesitas reportar un incidente?</h2>
                                                 <h5 style="color: #333; text-align: center; margin-bottom: 30px;"> Contáctanos mediante el siguiente formulario </h5>
                                                 <form action="/report-incident" method="post" enctype="multipart/form-data">
