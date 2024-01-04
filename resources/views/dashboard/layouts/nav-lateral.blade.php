@@ -14,14 +14,6 @@
           <span class="menu-title">Dashboard</span>
         </a>
       </li>
-      <li class="nav-item menu-items {{ request()->is('comercios-form') ? 'active' : '' }}">
-        <a class="nav-link" href="/comercios-form">
-          <span class="menu-icon">
-            <i class="mdi mdi-basket"></i>
-          </span>
-          <span class="menu-title">Añadir comercio</span>
-        </a>
-      </li>
       <li class="nav-item menu-items {{ request()->is('admin-form') ? 'active' : '' }}">
         <a class="nav-link" href="/admin-form">
           <span class="menu-icon">
@@ -38,8 +30,8 @@
           <span class="menu-title">Añadir técnico</span>
         </a>
       </li>
-      <li class="nav-item menu-items {{ request()->is('listado-comercios') ? 'active' : '' }}">
-        <a class="nav-link" href="/listado-comercios">
+      <li class="nav-item menu-items {{ request()->is('admin/business') ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('admin.business')}}">
           <span class="menu-icon">
             <i class="mdi mdi-store"></i>
           </span>

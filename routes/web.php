@@ -7,10 +7,6 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-Route::get('/comercios-form', function () {
-    return view('dashboard.forms.comercio');
-})->middleware(['auth', 'verified'])->name('comercios-form');
-
 Route::get('/admin-form', function () {
     return view('dashboard.forms.admin');
 })->middleware(['auth', 'verified'])->name('admin-form');
@@ -18,10 +14,6 @@ Route::get('/admin-form', function () {
 Route::get('/tecnico-form', function () {
     return view('dashboard.forms.tecnico');
 })->middleware(['auth', 'verified'])->name('tecnico-form');
-
-Route::get('/listado-comercios', function () {
-    return view('dashboard.pages.comercios');
-})->middleware(['auth', 'verified'])->name('comercios');
 
 Route::get('/listado-admins', function () {
     return view('dashboard.pages.admins');
