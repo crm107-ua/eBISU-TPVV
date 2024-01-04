@@ -88,6 +88,10 @@ Route::get('/pago', function () {
     return view('home.business-views.pago');
 })->middleware(['auth', 'verified'])->name('pago');
 
+Route::get('/crear-incidencia', function () {
+    return view('home.forms.incidencia');
+})->middleware(['auth', 'verified'])->name('crear-incidencia');
+
 // Route::middleware('auth')->group(function () {   
 // });
 
