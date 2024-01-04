@@ -213,7 +213,7 @@
                                             data-widget_type="heading.default">
                                             <div class="elementor-widget-container">
                                                 <h5 class="elementor-heading-title elementor-size-default">
-                                                    Legal</h5>
+                                                    Apartado legal</h5>
                                             </div>
                                         </div>
                                         <div class="elementor-element elementor-element-d256615 elementor-icon-list--layout-traditional elementor-list-item-link-full_width elementor-widget elementor-widget-icon-list"
@@ -224,7 +224,7 @@
                                                     <li class="elementor-icon-list-item">
                                                         <a>
                                                             <span
-                                                                class="elementor-icon-list-text">Privacy</span>
+                                                                class="elementor-icon-list-text">Privacidad</span>
                                                         </a>
                                                     </li>
                                                     <li class="elementor-icon-list-item">
