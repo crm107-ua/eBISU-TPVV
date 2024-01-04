@@ -77,6 +77,42 @@ class TransactionSeeder extends Seeder
                 'business_id' => 4, 
                 'payment_id' => 2,
             ],
+            [
+                'concept' => 'Service Payment 432234',
+                'amount' => 100.50,
+                'state' => 'waiting',
+                'receipt_number' => 'RPP143343411',
+                'emision_date' => Carbon::now(),
+                'finished_date' => null,
+                'finalize_reason' => 0,
+                'refounds_id' => null,
+                'business_id' => 3,
+                'payment_id' => 1,
+            ],
+            [
+                'concept' => 'Service Payment 442334',
+                'amount' => 100.50,
+                'state' => 'waiting',
+                'receipt_number' => 'RPP143343411',
+                'emision_date' => Carbon::now(),
+                'finished_date' => null,
+                'finalize_reason' => 0,
+                'refounds_id' => null,
+                'business_id' => 6,
+                'payment_id' => 15,
+            ],
+            [
+                'concept' => 'Service Payment 234423',
+                'amount' => 100.50,
+                'state' => 'waiting',
+                'receipt_number' => 'RPP143343411',
+                'emision_date' => Carbon::now(),
+                'finished_date' => null,
+                'finalize_reason' => 0,
+                'refounds_id' => null,
+                'business_id' => 6,
+                'payment_id' => 14,
+            ]
         ];
 
         // Insert transactions into the database
