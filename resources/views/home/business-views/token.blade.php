@@ -14,7 +14,7 @@
                             <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb5deb5"
                                 data-id="fb5deb5" data-element_type="column">
                                 <div class="elementor-widget-wrap elementor-element-populated">
-                                    <div style="background-color: #f2f2f2; width: 100%; padding: 20px; border-radius: 8px; margin-top: 50px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                                    <div style="background-color: #f2f2f2; width: 100%; padding: 20px; border-radius: 8px; margin-top: 120px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                                         <h3 style="margin-bottom: 20px; text-align: left;">Token de eBISU API</h3>
                                         <div style="background-color: white; padding: 20px; border-radius: 8px;">
                                             <p><strong>Mi token:</strong></p>
