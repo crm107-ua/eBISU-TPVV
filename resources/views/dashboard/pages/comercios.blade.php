@@ -19,7 +19,7 @@
                   <div class="d-flex justify-content-between align-items-center mb-2">
                     <h3 class="card-title mb-0">Comercios</h3>
                       <div class="d-flex justify-content-end">
-                        <a type="button" href="/comercios-form" class="btn btn-success mb-2 mt-2">Crear comercio</a>
+                        <a type="button" href="{{ route('admin.business.create') }}" class="btn btn-success mb-2 mt-2">Crear comercio</a>
                           <div class="dropdown me-2">
                               <button class="btn btn-secondary dropdown-toggle ms-3 m-2" type="button" id="sortButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Exportar datos:
@@ -60,7 +60,7 @@
                       <tbody>
                       @foreach($businessList as $business)
                           <tr>
-                              <td>{{ $business->name }}</td>
+                              <td>{{ $business->user->name }}</td>
                               <td>{{ $business->contact_info_name }}</td>
                               <td>{{ $business->contact_info_email }}</td>
                               <td>{{ $business->contact_info_phone_number }}</td>
@@ -74,35 +74,12 @@
                                       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                           <a class="dropdown-item" href="#">Detalles</a>
                                           <a class="dropdown-item" href="#">Editar</a>
-                                          <a class="dropdown-item" href="#">Borrar</a>
+                                          <a class="dropdown-item" href="#">Dar de baja</a>
                                       </div>
                                   </div>
                               </td>
                           </tr>
                       @endforeach
-                        <tr>
-                          <td>Atlas S.A</td>
-                          <td>Carlos Navas</td>
-                          <td>crm111ua@alu.ua.es</td>
-                          <td>965 90 34 56</td>
-                          <td>12/05/2021</td>
-                          <td>A12345678</td>
-                          <td>
-                            <div class="dropdown">
-                              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                ...
-                              </button>
-                              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Detalles</a>
-                                <a class="dropdown-item" href="#">Editar</a>
-                                <a class="dropdown-item" href="#">Borrar</a>
-                              </div>
-                            </div>
-                          </td>
-                        </tr>
-
-
-
                       </tbody>
                     </table>
                     <nav aria-label="Page navigation example" class="d-flex justify-content-center mt-5">
@@ -113,7 +90,10 @@
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
                             <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
+
                     </nav>
+                      {{--  TODO: PAGINACIÓN  --}}
+                      {!! $businessList->links()!!}
                   </div>
                 </div>
               </div>
