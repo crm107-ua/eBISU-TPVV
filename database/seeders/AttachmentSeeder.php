@@ -37,6 +37,26 @@ class AttachmentSeeder extends Seeder
                 'filename' => 'image_local.png',
                 'upload_date' => Carbon::now(),
             ],
+            [
+                'filename' => 'sample_document_1322323.pdf',
+                'upload_date' => Carbon::now(),
+            ],
+            [
+                'filename' => 'image_24354.png',
+                'upload_date' => Carbon::now(),
+            ],
+            [
+                'filename' => 'image_3656565.png',
+                'upload_date' => Carbon::now(),
+            ],
+            [
+                'filename' => 'image_new_45422.png',
+                'upload_date' => Carbon::now(),
+            ],
+            [
+                'filename' => 'image_local_434332.png',
+                'upload_date' => Carbon::now(),
+            ],
         ];
 
         foreach ($attachments as $attachment) {
