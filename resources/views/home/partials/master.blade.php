@@ -140,6 +140,14 @@
 			background: none !important;
 			padding: 0 !important;
 		}
+		.centering-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			width: 100%;
+			height: 100%;
+		}
 	</style>
 	<link rel="stylesheet" id="wp-block-library-css"
 		href="estilos/css/dist/block-library/style.min%EF%B9%96ver=6.4.1.css" media="all" />
@@ -213,6 +221,7 @@
 	<link rel="apple-touch-icon" sizes="76x76" href="{{ asset('icon.png') }}">
 	<link rel="apple-touch-icon" href="{{ asset('icon.png') }}">
 	<link rel="icon" href="{{ asset('icon.png') }}" type="image/x-icon">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
     <body class="home page-template-default page page-id-13 wp-embed-responsive ui-a-dsmm-slide  elementor-default elementor-kit-4 elementor-page elementor-page-13">
 
