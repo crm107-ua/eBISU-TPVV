@@ -225,14 +225,14 @@
 </head>
     <body class="home page-template-default page page-id-13 wp-embed-responsive ui-a-dsmm-slide  elementor-default elementor-kit-4 elementor-page elementor-page-13">
 
-
-		
-        @yield('content')
-
-
-
-
-
+		<div class="uicore-body-content">
+			<div id="uicore-page">
+				@include('home.layouts.nav')
+				@yield('content')
+				@include('home.layouts.footer')
+			</div>	
+			@include('home.layouts.mobile-nav')
+		</div>
 
         <script>
             var uicore_frontend = { 'back': 'Back', 'rtl': '', 'mobile_br': '1025' };
