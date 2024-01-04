@@ -68,6 +68,29 @@ Route::get('/incidencia', function () {
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
+Route::get('/mis-incidencias', function () {
+    return view('home.business-views.incidencias');
+})->middleware(['auth', 'verified'])->name('mis-incidencias');
+
+Route::get('/mi-incidencia', function () {
+    return view('home.business-views.incidencia');
+})->middleware(['auth', 'verified'])->name('mi-incidencia');
+
+Route::get('/generar-token', function () {
+    return view('home.business-views.token');
+})->middleware(['auth', 'verified'])->name('generar-token');
+
+Route::get('/pagos', function () {
+    return view('home.business-views.pagos');
+})->middleware(['auth', 'verified'])->name('pagos');
+
+Route::get('/pago', function () {
+    return view('home.business-views.pago');
+})->middleware(['auth', 'verified'])->name('pago');
+
+Route::get('/crear-incidencia', function () {
+    return view('home.forms.incidencia');
+})->middleware(['auth', 'verified'])->name('crear-incidencia');
 
 // Route::middleware('auth')->group(function () {   
 // });
