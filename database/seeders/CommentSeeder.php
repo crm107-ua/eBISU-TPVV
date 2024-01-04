@@ -45,6 +45,34 @@ class CommentSeeder extends Seeder
                 'attachment_id' => 4,
                 'ticket_id' => 4,
             ],
+            [
+                'message' => 'Comment number 1.',
+                'sent_date' => Carbon::now()->subDays(4),
+                'author_id' => 3,
+                'attachment_id' => 1,
+                'ticket_id' => 1,
+            ],
+            [
+                'message' => 'Comment number 2.',
+                'sent_date' => Carbon::now()->subDays(3),
+                'author_id' => 4,
+                'attachment_id' => 2,
+                'ticket_id' => 2,
+            ],
+            [
+                'message' => 'Comment number 3.',
+                'sent_date' => Carbon::now()->subDays(4),
+                'author_id' => 3,
+                'attachment_id' => 3,
+                'ticket_id' => 3,
+            ],
+            [
+                'message' => 'Comment number 4.',
+                'sent_date' => Carbon::now()->subDays(3),
+                'author_id' => 4,
+                'attachment_id' => 4,
+                'ticket_id' => 4,
+            ],
         ];
 
         foreach ($comments as $comment) {
