@@ -12,6 +12,19 @@ class BusinessController extends Controller
 {
     private $businessService;
 
+    private $businessRules = [
+        'cif' => 'required|unique:business,cif|size:9|regex:/^[A-Z][0-9]{8}]$/',
+        'contact-name' => '',
+        'password' => 'required',
+        'business-name' => 'required',
+        'email' => 'required',
+        'phone' => '',
+        'address' => '',
+        'country' => '',
+        'town' => '',
+        'cp' => '',
+    ];
+
     public function __construct()
     {
         $this->businessService = new BusinessService();

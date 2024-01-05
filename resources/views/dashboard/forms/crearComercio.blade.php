@@ -17,24 +17,49 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title mt-2 mb-5">Dar de alta un comercio</h4>
-                  <form class="forms-sample">
+                  <form class="forms-sample" action="{{route('admin.business.create.post')}}" method="POST">
+                    @csrf
                     <div class="row">
                       <!-- Columna 1 -->
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="exampleInputUsername1">CIF:</label>
+                          @if($errors->has('cif'))
+                            <ul>
+                              @foreach($errors->get('cif') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
                           <input type="text" class="form-control" id="cif" name="cif"
-                                 style="color: white;" placeholder="CIF">
+                                 style="color: white;" placeholder="CIF" required
+                                  value="{{old('cif')}}">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Nombre del representante</label>
-                          <input type="email" class="form-control" id="name" name="name"
-                                 style="color: white;" placeholder="Nombre del representante">
+                          @if($errors->has('contact-name'))
+                            <ul>
+                              @foreach($errors->get('contact-name') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
+                          <input type="text" class="form-control" id="contact-name" name="contact-name"
+                                 style="color: white;" placeholder="Nombre del representante"
+                                 value="{{old('contact-name')}}">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Contraseña</label>
+                          @if($errors->has('password'))
+                            <ul>
+                              @foreach($errors->get('password') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
                           <input type="password" class="form-control" id="password"
-                                 name="password" style="color: white;"
+                                 name="password" style="color: white;" required
+                                 value="{{old('password')}}"
                                  placeholder="Contraseña">
                         </div>
                       </div>
@@ -42,20 +67,43 @@
                       <!-- Columna 2 -->
                       <div class="col-md-4">
                         <div class="form-group">
+                          @if($errors->has('business-name'))
+                            <ul>
+                              @foreach($errors->get('business-name') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
                           <label for="exampleInputUsername1">Razón social:</label>
-                          <input type="text" class="form-control" id="razon" name="razon"
-                                 style="color: white;" placeholder="Razon social">
+                          <input type="text" class="form-control" id="business-name" name="business-name"
+                                 style="color: white;" placeholder="Razon social" required>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Correo de contacto</label>
+                          @if($errors->has('email'))
+                            <ul>
+                              @foreach($errors->get('email') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
                           <input type="email" class="form-control" id="email" name="email"
-                                 style="color: white;" placeholder="Correo de contacto">
+                                 style="color: white;" placeholder="Correo de contacto" required
+                                 value="{{old('email')}}">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Teléfono de contacto</label>
-                          <input type="text" class="form-control" id="telefono"
-                                 name="telefono" style="color: white;"
-                                 placeholder="Teléfono de contacto">
+                          @if($errors->has('phone'))
+                            <ul>
+                              @foreach($errors->get('phone') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
+                          <input type="text" class="form-control" id="phone"
+                                 name="phone" style="color: white;"
+                                 placeholder="Teléfono de contacto"
+                                 value="{{old('phone')}}">
                         </div>
                       </div>
 
@@ -63,14 +111,29 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           <label for="exampleInputUsername1">Dirección:</label>
+                          @if($errors->has('address'))
+                            <ul>
+                              @foreach($errors->get('address') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
                           <input type="text" class="form-control" id="address" name="address"
-                                 style="color: white;" placeholder="Dirección">
+                                 style="color: white;" placeholder="Dirección" required>
                         </div>
                         <div class="row">
                           <div class="col-sm-6 form-group">
                             <label for="country">País:</label>
+                            @if($errors->has('country'))
+                              <ul>
+                                @foreach($errors->get('country') as $error)
+                                  <li>{{ $error }}</li>
+                                @endforeach
+                              </ul>
+                            @endif
                             <select id="country"
-                                    name="country" style="width:100%">
+                                    name="country" style="width:100%"
+                                    required>
                               <option value="">Selecciona un país</option>
                               @foreach($countries as $country)
                                 <option value="{{ $country->code }}"
@@ -81,8 +144,8 @@
                           </div>
                           <div class="col-sm-6 form-group">
                             <label for="city">Población:</label>
-                            <select id="poblacion"
-                                    name="poblacion" style="width:100%">
+                            <select id="town"
+                                    name="town" style="width:100%">
                               @foreach($poblations as $poblation)
                                 <option
                                   value="{{ $poblation->id }}">{{ $poblation->name }}</option>
@@ -92,17 +155,25 @@
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Código postal</label>
+                          @if($errors->has('cp'))
+                            <ul>
+                              @foreach($errors->get('cp') as $error)
+                                <li>{{ $error }}</li>
+                              @endforeach
+                            </ul>
+                          @endif
                           <input type="text" class="form-control" id="cp" name="cp"
-                                 style="color: white;" placeholder="Código postal">
+                                 style="color: white;" placeholder="Código postal" required>
                         </div>
                       </div>
                     </div>
                     <br>
                     <div class="row align-items-center">
                       <div class="col-auto">
-                        <button type="submit" class="btn btn-success me-2">Darse de alta
+                        <button type="submit" class="btn btn-success me-2">
+                          Dar de alta
                         </button>
-                        <button class="btn btn-dark">Cancelar</button>
+                        <a href="{{route('admin.business')}}" class="btn btn-dark">Cancelar</a>
                       </div>
                       <div class="col">
                         <x-password-generator/>
@@ -122,7 +193,7 @@
     <script defer>
       document.addEventListener('DOMContentLoaded', (event) => {
         const countrySelect = document.getElementById('country');
-        const poblacionSelect = document.getElementById('poblacion');
+        const poblacionSelect = document.getElementById('town');
 
         countrySelect.addEventListener('change', (event) => {
           if (event.target.value !== 'ES') { // Assuming 'ES' is the value for Spain
