@@ -31,6 +31,19 @@
                         href="#Nosotros" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
                 </ul>
             </div>
+        @else
+        <div class="uicore-menu-container uicore-nav">
+            <ul class="uicore-menu">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
+                        href="/#Inicio" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Inicio</span></a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-9"><a
+                        href="/#Servicios" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
+                        href="/#Integraticiones" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Integraciciones</span></a></li>
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
+                    href="/#Nosotros" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
+            </ul>
+        </div>
         @endif
         <x-session-role-buttons />
     </div>

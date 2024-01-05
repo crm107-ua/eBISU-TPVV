@@ -400,10 +400,10 @@
 																		</a>
 																	</div>
 																	<div class="bdt-tabs-item">
-																		<a data-title="Automated-invoicing"
+																		<a data-title="Income-and-expenses-tracker"
 																			class="bdt-tabs-item-title"
-																			id="bdt-tab-Automated-invoicing"
-																			data-tab-index="1" href="#">
+																			id="bdt-tab-Income-and-expenses-tracker"
+																			data-tab-index="0" href="#">
 																			<div
 																				class="bdt-tab-text-wrapper bdt-flex-column">
 																				<div
@@ -425,10 +425,10 @@
 																		</a>
 																	</div>
 																	<div class="bdt-tabs-item">
-																		<a data-title="Crypto-connection"
+																		<a data-title="Income-and-expenses-tracker"
 																			class="bdt-tabs-item-title"
-																			id="bdt-tab-Crypto-connection"
-																			data-tab-index="2" href="#">
+																			id="bdt-tab-Income-and-expenses-tracker"
+																			data-tab-index="0" href="#">
 																			<div
 																				class="bdt-tab-text-wrapper bdt-flex-column">
 																				<div
@@ -453,27 +453,7 @@
 																</div>
 															</div>
 														</div>
-														<div
-															class="bdt-switcher-wrapper bdt-width-expand@s">
-															<div id="bdt-tab-content-c1a523e"
-																class="bdt-switcher bdt-switcher-item-content">
-																<div class="bdt-tab-content-item "
-																	data-content-id="income-and-expenses-tracker">
-																	<div>
-																	</div>
-																</div>
-																<div class="bdt-tab-content-item "
-																	data-content-id="automated-invoicing">
-																	<div>
-																	</div>
-																</div>
-																<div class="bdt-tab-content-item "
-																	data-content-id="crypto-connection">
-																	<div>
-																	</div>
-																</div>
-															</div>
-														</div>
+														
 													</div> <a href="#" id="bottom-anchor-c1a523e"
 														data-bdt-hidden></a>
 												</div>
@@ -482,50 +462,17 @@
 									</div>
 								</div>
 							</div>
-							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-e12dadc"
-								data-id="e12dadc" data-element_type="column">
+							<div class="elementor-column elementor-col-50 elementor-top-column elementor-element">
 								<div class="elementor-widget-wrap elementor-element-populated">
-									<div class="elementor-section elementor-inner-section elementor-element elementor-element-bc6615d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-										data-id="bc6615d" data-element_type="section" id="income">
+									<div class="elementor-section elementor-inner-section elementor-element">
 										<div class="elementor-container elementor-column-gap-no">
 											<div class="elementor-widget-container">
-												<img decoding="async" width="1064" height="392"
-													src="https://i.fbcd.co/products/original/270919-business-teamwork-puzzle-concept-mainpreview-d649bafb4496ca76963d55a29f40f7c038b1df0ec7f36b03d8f6406e8ee66e62.jpg"
-													class="attachment-full size-full wp-image-20"
-													alt
-													srcset="https://i.fbcd.co/products/original/270919-business-teamwork-puzzle-concept-mainpreview-d649bafb4496ca76963d55a29f40f7c038b1df0ec7f36b03d8f6406e8ee66e62.jpg 968w, https://i.fbcd.co/products/original/270919-business-teamwork-puzzle-concept-mainpreview-d649bafb4496ca76963d55a29f40f7c038b1df0ec7f36b03d8f6406e8ee66e62.jpg 650w"
-													sizes="(max-width: 864px) 100vw, 864px" />
+												<img decoding="async" width="1064" height="392" src="https://i.fbcd.co/products/original/270919-business-teamwork-puzzle-concept-mainpreview-d649bafb4496ca76963d55a29f40f7c038b1df0ec7f36b03d8f6406e8ee66e62.jpg" class="attachment-full size-full" alt="" />
 											</div>
 										</div>
 									</div>
-									<div class="elementor-section elementor-inner-section elementor-element elementor-element-bc6615d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-										data-id="bc6615d" data-element_type="section" id="automated">
-										<div class="elementor-container elementor-column-gap-no">
-											<div class="elementor-widget-container">
-												<img decoding="async" width="1064" height="392"
-													src="https://img.graphicsurf.com/2019/12/data-analysis-vector-free-illustration2.jpg"
-													class="attachment-full size-full wp-image-20"
-													alt
-													srcset="https://img.graphicsurf.com/2019/12/data-analysis-vector-free-illustration2.jpg 968w, https://img.graphicsurf.com/2019/12/data-analysis-vector-free-illustration2.jpg 650w"
-													sizes="(max-width: 864px) 100vw, 864px" />
-											</div>
-										</div>
-									</div>
-									<div class="elementor-section elementor-inner-section elementor-element elementor-element-bc6615d elementor-section-boxed elementor-section-height-default elementor-section-height-default"
-										data-id="bc6615d" data-element_type="section" id="crypto">
-										<div class="elementor-container elementor-column-gap-no">
-											<div class="elementor-widget-container">
-												<img decoding="async" width="1064" height="392"
-													src="https://img.freepik.com/free-vector/young-tiny-girl-sitting-coding-via-laptop-computer-programmer-code-flat-vector-illustration-it-digital-technology_74855-8751.jpg"
-													class="attachment-full size-full wp-image-20"
-													alt
-													srcset="https://img.freepik.com/free-vector/young-tiny-girl-sitting-coding-via-laptop-computer-programmer-code-flat-vector-illustration-it-digital-technology_74855-8751.jpg 968w, https://img.freepik.com/free-vector/young-tiny-girl-sitting-coding-via-laptop-computer-programmer-code-flat-vector-illustration-it-digital-technology_74855-8751.jpg 650w"
-													sizes="(max-width: 864px) 100vw, 864px" />
-											</div>
-										</div>
-									</div>		
-								</div>
-							</div>
+								</div>	
+							</div>							
 						</div>
 					</div>
 					<section
