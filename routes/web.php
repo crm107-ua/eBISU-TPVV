@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 
 // Rutas provisionales para crear el front-end
 Route::get('/', function () {
@@ -98,5 +99,8 @@ Route::get('/terminos-condiciones', function () {
 
 // Route::middleware('auth')->group(function () {   
 // });
+
+
+Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
 require __DIR__.'/auth.php';

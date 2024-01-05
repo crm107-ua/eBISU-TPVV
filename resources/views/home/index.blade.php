@@ -58,21 +58,16 @@
 										data-widget_type="bdt-mailchimp.default">
 										<div class="elementor-widget-container">
 											<div class="bdt-newsletter-wrapper">
+
 												<form
-													action="https://finflow.uicore.co/online-banking/wp-admin/admin-ajax.php"
-													class="bdt-mailchimp bdt-grid bdt-grid-collapse bdt-flex-middle"
-													bdt-grid>
+													class="bdt-grid bdt-grid-collapse bdt-flex-middle"
+													method="POST" action="{{ route('send.email') }}">
+													@csrf
 													<div
 														class="bdt-newsletter-input-wrapper bdt-width-expand">
 														<input type="email" name="email"
 															placeholder="Introduce tu email" required
-															class="bdt-input" />
-														<input type="hidden" name="action"
-															value="element_pack_mailchimp_subscribe" />
-														<input type="hidden"
-															name="bdt-sf-bdt-mailchimp-b388645"
-															value="true" />
-
+															class="bdt-input" />													
 													</div>
 													<div
 														class="bdt-newsletter-signup-wrapper bdt-width-auto">
@@ -87,6 +82,12 @@
 														</button>
 													</div>
 												</form>
+
+												@if(session('success'))
+													<div class="bdt-newsletter-signup-wrapper bdt-width-auto m-3" style="color: white;">
+														{{ session('success') }}
+													</div>
+												@endif
 
 											</div>
 										</div>
