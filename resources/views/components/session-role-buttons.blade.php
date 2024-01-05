@@ -3,7 +3,7 @@
         <div class="uicore uicore-extra">
             <div class="uicore-cta-wrapper">
                 <a href="/business-home" target="_self" class="uicore-btn uicore-inverted">
-                    <span class="elementor-button-text">Mi cuenta</span>
+                    <span class="elementor-button-text">{{ Auth::user()->name }}</span>
                 </a>
             </div>
         </div>
@@ -11,7 +11,7 @@
         <div class="uicore uicore-extra">
             <div class="uicore-cta-wrapper">
                 <a href="/technical-home" target="_self" class="uicore-btn uicore-inverted">
-                    <span class="elementor-button-text">Mi cuenta</span>
+                    <span class="elementor-button-text">{{ Auth::user()->name }}</span>
                 </a>
             </div>
         </div>
