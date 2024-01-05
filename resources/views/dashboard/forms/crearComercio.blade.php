@@ -19,7 +19,6 @@
                   <h4 class="card-title mt-2 mb-5">Dar de alta un comercio</h4>
                   <form class="forms-sample">
                     <div class="row">
-
                       <!-- Columna 1 -->
                       <div class="col-md-4">
                         <div class="form-group">
@@ -70,7 +69,7 @@
                         <div class="row">
                           <div class="col-sm-6 form-group">
                             <label for="country">País:</label>
-                            <select class="js-example-basic-single" id="country"
+                            <select id="country"
                                     name="country" style="width:100%">
                               <option value="">Selecciona un país</option>
                               @foreach($countries as $country)
@@ -82,7 +81,7 @@
                           </div>
                           <div class="col-sm-6 form-group">
                             <label for="city">Población:</label>
-                            <select class="js-example-basic-single" id="poblacion"
+                            <select id="poblacion"
                                     name="poblacion" style="width:100%">
                               @foreach($poblations as $poblation)
                                 <option
@@ -121,8 +120,17 @@
 
   @push('scripts')
     <script defer>
-      $(document).ready(function() {
-        $('#country').on('select2:select', console.log);
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const countrySelect = document.getElementById('country');
+        const poblacionSelect = document.getElementById('poblacion');
+
+        countrySelect.addEventListener('change', (event) => {
+          if (event.target.value !== 'ES') { // Assuming 'ES' is the value for Spain
+            poblacionSelect.setAttribute('disabled', '');
+          } else {
+            poblacionSelect.removeAttribute('disabled');
+          }
+        });
       });
     </script>
   @endpush
