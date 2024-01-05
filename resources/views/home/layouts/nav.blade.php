@@ -17,7 +17,7 @@
                                     href="#Servicios" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
                             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
                                     href="#Integraticiones" style="text-decoration: none;"><span
-                                        class="ui-menu-item-wrapper">Integraciciones</span></a></li>
+                                        class="ui-menu-item-wrapper">Integraciones</span></a></li>
                             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
                                 href="#Nosotros" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
                         </ul>
@@ -31,7 +31,7 @@
                                     href="/#Servicios" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Servicios</span></a></li>
                             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-10"><a
                                     href="/#Integraticiones" style="text-decoration: none;"><span
-                                        class="ui-menu-item-wrapper">Integraciciones</span></a></li>
+                                        class="ui-menu-item-wrapper">Integraciones</span></a></li>
                             <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8"><a
                                 href="/#Nosotros" style="text-decoration: none;"><span class="ui-menu-item-wrapper">Nosotros</span></a></li>
                         </ul>
