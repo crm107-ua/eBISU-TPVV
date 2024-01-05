@@ -17,38 +17,19 @@
                                     <section class="reviews-section">
                                         <h1 style="color:white;">Valoraciones sobre {{ Auth::user()->name }}</h1>
                                         <p style="color:white;">Trabajando en eBISU desde: 2012 - Valoración media: ★★★★☆</p>
-                                        <div class="mt-5 reviews-container">
-                                            <div class="review-item">
-                                                <h3 style="color:white;">Sofía - Tienda de Ropa</h3>
-                                                <div class="review-rating">★★★★☆</div>
-                                                <p>El técnico asignado, Jose Luis, proporcionó un servicio excepcional durante todo el proceso. Se mostró receptivo desde el principio, haciendo preguntas clave para comprender la naturaleza del problema. La comunicación fue clara y precisa, lo que ayudó a establecer una base sólida para la resolución del problema.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5 reviews-container">
-                                            <div class="review-item">
-                                                <h3 style="color:white;">Carlos - Peluquería</h3>
-                                                <div class="review-rating">★★★☆☆</div>
-                                                <p>El técnico asignado, Jose Luis, proporcionó un servicio excepcional durante todo el proceso. Se mostró receptivo desde el principio, haciendo preguntas clave para comprender la naturaleza del problema. La comunicación fue clara y precisa, lo que ayudó a establecer una base sólida para la resolución del problema.</p>
-                                            </div>
-                                        </div>
-                                        <div class="mt-5 reviews-container">
-                                            <div class="review-item">
-                                                <h3 style="color:white;">Luís - Tienda de pelotas</h3>
-                                                <div class="review-rating">★★★★★</div>
-                                                <p>El técnico asignado, Jose Luis, proporcionó un servicio excepcional durante todo el proceso. Se mostró receptivo desde el principio, haciendo preguntas clave para comprender la naturaleza del problema. La comunicación fue clara y precisa, lo que ayudó a establecer una base sólida para la resolución del problema.</p>
-                                            </div>
-                                        </div>
+{{--                                        <div class="mt-5 reviews-container">--}}
+{{--                                            <div class="review-item">--}}
+{{--                                                <h3 style="color:white;">Sofía - Tienda de Ropa</h3>--}}
+{{--                                                <div class="review-rating">★★★★☆</div>--}}
+{{--                                                <p>El técnico asignado, Jose Luis, proporcionó un servicio excepcional durante todo el proceso. Se mostró receptivo desde el principio, haciendo preguntas clave para comprender la naturaleza del problema. La comunicación fue clara y precisa, lo que ayudó a establecer una base sólida para la resolución del problema.</p>--}}
+{{--                                            </div>--}}
+{{--                                        </div>--}}
+                                        @foreach($valorations as $valoration)
+                                            <h1 style="color:#FFFFFF;">{{$valoration->valoration_valoration}}</h1>
+                                        @endforeach
+                                        {!! $valorations->links() !!}
                                     </section>
-                                    <nav class="mt-5 reviews-pagination">
-                                        <ul class="pagination">
-                                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">«</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                        </ul>
-                                    </nav>
-                                </div> 
+                                </div>
                             </div>
                         </div>
                     </div>

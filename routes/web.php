@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TechnicianController;
 use Illuminate\Support\Facades\Route;
 
 // Rutas provisionales para crear el front-end
@@ -56,9 +57,8 @@ Route::get('/business-home', function () {
     return view('home.business-views.business-home');
 })->middleware(['auth', 'verified'])->name('business-home');
 
-Route::get('/valoraciones-tecnico', function () {
-    return view('home.technical-views.valoraciones');
-})->middleware(['auth', 'verified'])->name('valoraciones-tecnico');
+Route::get('/valoraciones-tecnico', [TechnicianController::class, 'showTechnicianValorations'])
+    ->middleware(['auth', 'verified'])->name('valoraciones-tecnico');
 
 Route::get('/incidencias', function () {
     return view('home.technical-views.incidencias');
@@ -92,7 +92,7 @@ Route::get('/crear-incidencia', function () {
     return view('home.forms.incidencia');
 })->middleware(['auth', 'verified'])->name('crear-incidencia');
 
-// Route::middleware('auth')->group(function () {   
+// Route::middleware('auth')->group(function () {
 // });
 
 require __DIR__.'/auth.php';
