@@ -32,6 +32,6 @@ class EmailController extends Controller
         // Enviar correo al administrador
         Mail::to($adminEmail)->send(new ContactMail($title_admin, $body_admin));
 
-        return back()->with('success', 'Te hemos enviado un correo de confirmación');
+        return back()->with('success', 'Te hemos enviado un correo de contacto.');
     }
 }
