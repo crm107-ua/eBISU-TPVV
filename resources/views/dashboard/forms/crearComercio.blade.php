@@ -23,13 +23,13 @@
                       <!-- Columna 1 -->
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label for="exampleInputUsername1">CIF:</label>
+                          <label for="exampleInputUsername1">CIF</label>
                           @if($errors->has('cif'))
-                            <ul>
-                              @foreach($errors->get('cif') as $error)
-                                <li>{{ $error }}</li>
-                              @endforeach
-                            </ul>
+                            @foreach($errors->get('cif') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <input type="text" class="form-control" id="cif" name="cif"
                                  style="color: white;" placeholder="CIF" required
@@ -38,11 +38,11 @@
                         <div class="form-group">
                           <label for="exampleInputEmail1">Nombre del representante</label>
                           @if($errors->has('contact-name'))
-                            <ul>
                               @foreach($errors->get('contact-name') as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
                               @endforeach
-                            </ul>
                           @endif
                           <input type="text" class="form-control" id="contact-name" name="contact-name"
                                  style="color: white;" placeholder="Nombre del representante"
@@ -51,11 +51,11 @@
                         <div class="form-group">
                           <label for="exampleInputPassword1">Contraseña</label>
                           @if($errors->has('password'))
-                            <ul>
                               @foreach($errors->get('password') as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
                               @endforeach
-                            </ul>
                           @endif
                           <input type="password" class="form-control" id="password"
                                  name="password" style="color: white;" required
@@ -68,24 +68,24 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           @if($errors->has('business-name'))
-                            <ul>
                               @foreach($errors->get('business-name') as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
                               @endforeach
-                            </ul>
                           @endif
-                          <label for="exampleInputUsername1">Razón social:</label>
+                          <label for="exampleInputUsername1">Razón social</label>
                           <input type="text" class="form-control" id="business-name" name="business-name"
                                  style="color: white;" placeholder="Razon social" required>
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Correo de contacto</label>
                           @if($errors->has('email'))
-                            <ul>
                               @foreach($errors->get('email') as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
                               @endforeach
-                            </ul>
                           @endif
                           <input type="email" class="form-control" id="email" name="email"
                                  style="color: white;" placeholder="Correo de contacto" required
@@ -94,11 +94,11 @@
                         <div class="form-group">
                           <label for="exampleInputPassword1">Teléfono de contacto</label>
                           @if($errors->has('phone'))
-                            <ul>
                               @foreach($errors->get('phone') as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
                               @endforeach
-                            </ul>
                           @endif
                           <input type="text" class="form-control" id="phone"
                                  name="phone" style="color: white;"
@@ -110,26 +110,26 @@
                       <!-- Columna 3 -->
                       <div class="col-md-4">
                         <div class="form-group">
-                          <label for="exampleInputUsername1">Dirección:</label>
+                          <label for="exampleInputUsername1">Dirección</label>
                           @if($errors->has('address'))
-                            <ul>
                               @foreach($errors->get('address') as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
                               @endforeach
-                            </ul>
                           @endif
                           <input type="text" class="form-control" id="address" name="address"
                                  style="color: white;" placeholder="Dirección" required>
                         </div>
                         <div class="row">
                           <div class="col-sm-6 form-group">
-                            <label for="country">País:</label>
+                            <label for="country">País</label>
                             @if($errors->has('country'))
-                              <ul>
                                 @foreach($errors->get('country') as $error)
-                                  <li>{{ $error }}</li>
+                                  <div class="alert alert-danger mt-2">
+                                    {{ $error }}
+                                  </div>
                                 @endforeach
-                              </ul>
                             @endif
                             <select id="country"
                                     name="country" style="width:100%"
@@ -143,12 +143,12 @@
                             </select>
                           </div>
                           <div class="col-sm-6 form-group">
-                            <label for="city">Población:</label>
+                            <label for="city">Población</label>
                             <select id="town"
                                     name="town" style="width:100%">
                               @foreach($poblations as $poblation)
                                 <option
-                                  value="{{ $poblation->id }}">{{ $poblation->name }}</option>
+                                  value="{{ $poblation->name }}">{{ $poblation->name }}</option>
                               @endforeach
                             </select>
                           </div>
@@ -156,11 +156,11 @@
                         <div class="form-group">
                           <label for="exampleInputPassword1">Código postal</label>
                           @if($errors->has('cp'))
-                            <ul>
                               @foreach($errors->get('cp') as $error)
-                                <li>{{ $error }}</li>
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
                               @endforeach
-                            </ul>
                           @endif
                           <input type="text" class="form-control" id="cp" name="cp"
                                  style="color: white;" placeholder="Código postal" required>
