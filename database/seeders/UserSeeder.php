@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
         
         // Crear usuario Admin
         User::create([
-            'id' => 1,
             'name' => 'Admin User',
             'email' => 'admin@ebisu.com',
             'password' => Hash::make('1234'),
@@ -31,7 +30,6 @@ class UserSeeder extends Seeder
 
         // Crear usuario Tecnico
         User::create([
-            'id' => 2,
             'name' => 'Technician User',
             'email' => 'technician@ebisu.com',
             'password' => Hash::make('1234'),
@@ -44,7 +42,6 @@ class UserSeeder extends Seeder
 
         // Crear usuario Cliente
         User::create([
-            'id' => 3,
             'name' => 'Business User',
             'email' => 'business@ebisu.com',
             'password' => Hash::make('1234'),
@@ -52,6 +49,39 @@ class UserSeeder extends Seeder
             'direction_direction' => 'Calle 123124',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'San Juan',
+            'direction_country_id' => 199
+        ]);
+
+        User::create([
+            'name' => 'Business User 2',
+            'email' => 'business2@ebisu.com',
+            'password' => Hash::make('1234'),
+            'role' => 'business',
+            'direction_direction' => 'Calle 123224',
+            'direction_postal_code' => '12245',
+            'direction_poblation' => 'San Luis',
+            'direction_country_id' => 199
+        ]);
+
+        User::create([
+            'name' => 'Business User 3',
+            'email' => 'business3@ebisu.com',
+            'password' => Hash::make('1234'),
+            'role' => 'business',
+            'direction_direction' => 'Calle 123224',
+            'direction_postal_code' => '12245',
+            'direction_poblation' => 'San Luis',
+            'direction_country_id' => 199
+        ]);
+
+        User::create([
+            'name' => 'Business User 4',
+            'email' => 'business4@ebisu.com',
+            'password' => Hash::make('1234'),
+            'role' => 'business',
+            'direction_direction' => 'Calle 123224',
+            'direction_postal_code' => '12245',
+            'direction_poblation' => 'San Luis',
             'direction_country_id' => 199
         ]);
      
