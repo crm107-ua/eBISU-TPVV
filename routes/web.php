@@ -64,7 +64,7 @@ Route::get('/incidencias', function () {
     return view('home.technical-views.incidencias');
 })->middleware(['auth', 'verified'])->name('incidencias');
 
-Route::get('/incidencia', function () {
+Route::get('/incidencia', function () { //TODO añadir enlace a esta pagina en la vista de valoraciones
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
