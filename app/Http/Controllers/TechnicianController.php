@@ -11,10 +11,27 @@ class TechnicianController extends Controller
 
     public function showTechnicianValorations()
     {
-        $tickets = Ticket::where('technitian_id', Auth::id())->paginate(5);
-        $tickets = Ticket::paginate(5);
+        $tickets = Ticket::where('technitian_id', Auth::id())
+            ->where('valoration_valoration', '!=', 0)
+            ->orderBy('creation_date', 'desc')
+            ->paginate(10);
+        $averageValoration = Ticket::where('technitian_id', Auth::id())
+            ->where('valoration_valoration', '!=', 0)
+            ->avg('valoration_valoration');
+        $businessContactNames = [];
+        $businessNames = [];
 
-        return view('home.technical-views.valoraciones', ['valorations' => $tickets]);
+        foreach ($tickets as $ticket) {
+            $transaction = $ticket->transaction;
+            $business = $transaction->business;
+            $businessContactNames[] = $business->contact_info_name;
+            $businessNames[] = $business->user->name;
+        }
+
+        return view('home.technical-views.valoraciones',
+            ['valorations' => $tickets,
+             'businessContactNames' => $businessContactNames, 'businessNames' => $businessNames,
+             'averageValoration' => $averageValoration]);
     }
 
 }

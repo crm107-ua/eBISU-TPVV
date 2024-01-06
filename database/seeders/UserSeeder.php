@@ -15,7 +15,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-        
+
         // Crear usuario Admin
         User::create([
             'name' => 'Admin User',
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
 
         // Crear usuario Cliente
         User::create([
-            'name' => 'Business User',
+            'name' => 'Sport español',
             'email' => 'business@ebisu.com',
             'password' => Hash::make('1234'),
             'role' => 'business',
@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Business User 2',
+            'name' => 'Kiosco Zipe',
             'email' => 'business2@ebisu.com',
             'password' => Hash::make('1234'),
             'role' => 'business',
@@ -64,7 +64,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Business User 3',
+            'name' => 'Hermanos Gonzalez SL',
             'email' => 'business3@ebisu.com',
             'password' => Hash::make('1234'),
             'role' => 'business',
@@ -75,7 +75,7 @@ class UserSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Business User 4',
+            'name' => 'Ropas Manolo',
             'email' => 'business4@ebisu.com',
             'password' => Hash::make('1234'),
             'role' => 'business',
@@ -84,6 +84,6 @@ class UserSeeder extends Seeder
             'direction_poblation' => 'San Luis',
             'direction_country_id' => 199
         ]);
-     
+
     }
 }
