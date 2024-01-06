@@ -14,7 +14,7 @@ class TechnicianController extends Controller
         $tickets = Ticket::where('technitian_id', Auth::id())
             ->where('valoration_valoration', '!=', 0)
             ->orderBy('creation_date', 'desc')
-            ->paginate(10);
+            ->paginate(2);
         $averageValoration = Ticket::where('technitian_id', Auth::id())
             ->where('valoration_valoration', '!=', 0)
             ->avg('valoration_valoration');

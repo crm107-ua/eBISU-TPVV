@@ -33,6 +33,11 @@
                                                     @endfor
                                                 </div>
                                             </div>
+                                            @if($valorations->total() == 0)
+                                                <h4 style="color: #FFFFFF; text-align: center">
+                                                    No hay valoraciones sobre {{ Auth::user()->name }}
+                                                </h4>
+                                            @endif
                                             @foreach($valorations as $index => $valoration)
                                                 <div style="margin-bottom: 40px">
                                                     <h3 style="color:#FFFFFF; display: inline">
