@@ -53,4 +53,43 @@ class BusinessController extends Controller
             return redirect()->back()->withErrors(['error' => 'Error al crear el comercio']);
         }
     }
+
+    public function showBusinessDetail(Request $request, $id)
+    {
+        $business = $this->businessService->getBusinessById($id);
+        return view('dashboard.pages.detallesComercio', ['business' => $business]);
+    }
+
+    public function dischargeBusiness(Request $request, $id)
+    {
+        $this->businessService->dischargeBusiness($id);
+        return redirect()->route('admin.business')->with(['success' => 'Comercio dado de baja correctamente']);
+    }
+
+    public function activateBusinessAccount(Request $request, $id)
+    {
+        $this->businessService->activateBusinessAccount($id);
+        return redirect()->route('admin.business')->with(['success' => 'Cuenta de comercio activada correctamente']);
+    }
+
+    public function showBusinessEditForm(Request $request, $id)
+    {
+        $business = $this->businessService->getBusinessById($id);
+        $countries = Country::all();
+        $poblations = Poblation::all();
+        return view('dashboard.forms.editarComercio',
+            ['business' => $business, 'countries' => $countries, 'poblations' => $poblations]);
+    }
+
+    public function editBusiness(Request $request, $id)
+    {
+        $validatedData = request()->validate($this->businessRules);
+        try {
+            $this->businessService->editBusiness($id, $validatedData);
+            return redirect()->route('admin.business')->with(['success' => 'Comercio editado correctamente']);
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Error al editar el comercio']);
+        }
+    }
+
 }

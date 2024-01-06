@@ -16,8 +16,8 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title mt-2 mb-5">Dar de alta un comercio</h4>
-                  <form class="forms-sample" action="{{route('admin.business.create.post')}}" method="POST">
+                  <h4 class="card-title mt-2 mb-5">Editar un comercio</h4>
+                  <form class="forms-sample" action="{{route('admin.business.edit.post', ['id'=>$business->id])}}" method="POST">
                     @csrf
                     <div class="row">
                       <!-- Columna 1 -->
@@ -33,33 +33,33 @@
                           @endif
                           <input type="text" class="form-control" id="cif" name="cif"
                                  style="color: white;" placeholder="CIF" required
-                                  value="{{old('cif')}}">
+                                 value="{{old('cif', $business->cif)}}">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Nombre del representante</label>
                           @if($errors->has('contact-name'))
-                              @foreach($errors->get('contact-name') as $error)
-                                <div class="alert alert-danger mt-2">
-                                  {{ $error }}
-                                </div>
-                              @endforeach
+                            @foreach($errors->get('contact-name') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <input type="text" class="form-control" id="contact-name" name="contact-name"
                                  style="color: white;" placeholder="Nombre del representante"
-                                 value="{{old('contact-name')}}">
+                                 value="{{old('contact-name', $business->contact_info_name)}}">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Contraseña</label>
                           @if($errors->has('password'))
-                              @foreach($errors->get('password') as $error)
-                                <div class="alert alert-danger mt-2">
-                                  {{ $error }}
-                                </div>
-                              @endforeach
+                            @foreach($errors->get('password') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <input type="password" class="form-control" id="password"
                                  name="password" style="color: white;" required
-                                 value="{{old('password')}}"
+                                 value="{{old('password', $business->user->password)}}"
                                  placeholder="Contraseña">
                         </div>
                       </div>
@@ -68,43 +68,43 @@
                       <div class="col-md-4">
                         <div class="form-group">
                           @if($errors->has('business-name'))
-                              @foreach($errors->get('business-name') as $error)
-                                <div class="alert alert-danger mt-2">
-                                  {{ $error }}
-                                </div>
-                              @endforeach
+                            @foreach($errors->get('business-name') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <label for="exampleInputUsername1">Razón social</label>
                           <input type="text" class="form-control" id="business-name" name="business-name"
-                                 style="color: white;" placeholder="Razon social"
-                                 value="{{old('business-name')}}" required>
+                                 style="color: white;" placeholder="Razon social" required
+                                  value="{{old('business-name', $business->user->name)}}">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputEmail1">Correo de contacto</label>
                           @if($errors->has('email'))
-                              @foreach($errors->get('email') as $error)
-                                <div class="alert alert-danger mt-2">
-                                  {{ $error }}
-                                </div>
-                              @endforeach
+                            @foreach($errors->get('email') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <input type="email" class="form-control" id="email" name="email"
                                  style="color: white;" placeholder="Correo de contacto" required
-                                 value="{{old('email')}}">
+                                 value="{{old('email', $business->contact_info_email)}}">
                         </div>
                         <div class="form-group">
                           <label for="exampleInputPassword1">Teléfono de contacto</label>
                           @if($errors->has('phone'))
-                              @foreach($errors->get('phone') as $error)
-                                <div class="alert alert-danger mt-2">
-                                  {{ $error }}
-                                </div>
-                              @endforeach
+                            @foreach($errors->get('phone') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <input type="text" class="form-control" id="phone"
                                  name="phone" style="color: white;"
                                  placeholder="Teléfono de contacto"
-                                 value="{{old('phone')}}">
+                                 value="{{old('phone', $business->contact_info_phone_number)}}">
                         </div>
                       </div>
 
@@ -113,25 +113,25 @@
                         <div class="form-group">
                           <label for="exampleInputUsername1">Dirección</label>
                           @if($errors->has('address'))
-                              @foreach($errors->get('address') as $error)
-                                <div class="alert alert-danger mt-2">
-                                  {{ $error }}
-                                </div>
-                              @endforeach
+                            @foreach($errors->get('address') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <input type="text" class="form-control" id="address" name="address"
-                                 style="color: white;" placeholder="Dirección"
-                                 value="{{old('address')}}" required>
+                                 style="color: white;" placeholder="Dirección" required
+                                  value="{{old('address', $business->user->direction_direction)}}">
                         </div>
                         <div class="row">
                           <div class="col-sm-6 form-group">
                             <label for="country">País</label>
                             @if($errors->has('country'))
-                                @foreach($errors->get('country') as $error)
-                                  <div class="alert alert-danger mt-2">
-                                    {{ $error }}
-                                  </div>
-                                @endforeach
+                              @foreach($errors->get('country') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
                             @endif
                             <select id="country"
                                     name="country" style="width:100%"
@@ -139,18 +139,20 @@
                               <option value="">Selecciona un país</option>
                               @foreach($countries as $country)
                                 <option value="{{ $country->code }}"
-                                  {{ $country->name == 'Spain' ? 'selected' : '' }}>
+                                  {{ old('country', $business->user->country->code) == $country->code ? 'selected' : '' }}>
                                   {{ $country->name }}</option>
                               @endforeach
                             </select>
                           </div>
                           <div class="col-sm-6 form-group">
-                            <label for="city">Población</label>
-                            <select id="town"
-                                    name="town" style="width:100%">
+                            <label for="town">Población</label>
+                            <p>{{$business->user->direction_poblation}}</p>
+                            <select id="town" name="town" style="width:100%">
                               @foreach($poblations as $poblation)
-                                <option
-                                  value="{{ $poblation->name }}">{{ $poblation->name }}</option>
+                                <option value="{{ $poblation->name }}"
+                                  {{ old('town', $business->user->direction_poblation) == $poblation->name ? 'selected' : '' }}>
+                                  {{ $poblation->name }}
+                                </option>
                               @endforeach
                             </select>
                           </div>
@@ -158,15 +160,15 @@
                         <div class="form-group">
                           <label for="exampleInputPassword1">Código postal</label>
                           @if($errors->has('cp'))
-                              @foreach($errors->get('cp') as $error)
-                                <div class="alert alert-danger mt-2">
-                                  {{ $error }}
-                                </div>
-                              @endforeach
+                            @foreach($errors->get('cp') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
                           @endif
                           <input type="text" class="form-control" id="cp" name="cp"
-                                 style="color: white;" placeholder="Código postal"
-                                 value="{{old('cp')}}" required>
+                                 style="color: white;" placeholder="Código postal" required
+                                 value="{{old('cp', $business->user->direction_postal_code)}}">
                         </div>
                       </div>
                     </div>
@@ -199,7 +201,7 @@
         const poblacionSelect = document.getElementById('town');
 
         countrySelect.addEventListener('change', (event) => {
-          if (event.target.value !== 'ES') { // Assuming 'ES' is the value for Spain
+          if (event.target.value !== 'ES') {
             poblacionSelect.setAttribute('disabled', '');
           } else {
             poblacionSelect.removeAttribute('disabled');

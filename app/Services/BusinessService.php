@@ -37,4 +37,24 @@ class BusinessService
         $business->user()->associate($user);
         $business->save();
     }
+
+    public function getBusinessById($id) {
+        return Business::findOrFail($id);
+    }
+
+    public function dischargeBusiness($id) {
+        $business = Business::findOrFail($id);
+        $business->discharge_date = now();
+        $business->save();
+    }
+
+    public function activateBusinessAccount($id) {
+        $business = Business::findOrFail($id);
+        $business->discharge_date = null;
+        $business->save();
+    }
+
+    public function editBusiness($data, $id) {
+
+    }
 }
