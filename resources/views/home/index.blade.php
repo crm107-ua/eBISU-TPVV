@@ -28,7 +28,7 @@
 										data-id="d4c233d" data-element_type="widget"
 										data-widget_type="spacer.default">
 										<div class="elementor-widget-container">
-											
+
 											<div class="elementor-spacer">
 												<div class="elementor-spacer-inner"></div>
 											</div>
@@ -39,7 +39,7 @@
 										data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:500}"
 										data-widget_type="text-editor.default">
 										<div class="elementor-widget-container">
-							
+
 											<p>Gestiona las ventas de tu negocio</p>
 										</div><br>
 									</div>
@@ -123,10 +123,10 @@
 																}
 															</style> <img fetchpriority="high"
 																decoding="async" width="1633" height="737"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp"
 																class="attachment-full size-full wp-image-19"
 																alt
-																srcset="sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp 1633w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-300x135.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1024x462.webp 1024w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-768x347.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1536x693.webp 1536w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-650x293.webp 650w"
+																srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp 1633w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-300x135.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1024x462.webp 1024w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-768x347.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1536x693.webp 1536w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-650x293.webp 650w"
 																sizes="(max-width: 1633px) 100vw, 1633px" />
 														</div>
 													</div>
@@ -519,10 +519,10 @@
 														data-widget_type="image.default">
 														<div class="elementor-widget-container">
 															<img decoding="async" width="864" height="392"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1.webp"
 																class="attachment-full size-full wp-image-20"
 																alt
-																srcset="sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1-300x136.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1-768x348.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1-650x295.webp 650w"
+																srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1-300x136.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1-768x348.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-1-650x295.webp 650w"
 																sizes="(max-width: 864px) 100vw, 864px" />
 														</div>
 													</div>
@@ -531,10 +531,10 @@
 														data-widget_type="image.default">
 														<div class="elementor-widget-container">
 															<img decoding="async" width="864" height="294"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Income-Image.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Income-Image.webp"
 																class="attachment-full size-full wp-image-22"
 																alt
-																srcset="sources/uploads/sites/2/2023/01/Online-Banking-Income-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-300x102.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-768x261.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-650x221.webp 650w"
+																srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Income-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-300x102.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-768x261.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Income-Image-650x221.webp 650w"
 																sizes="(max-width: 864px) 100vw, 864px" />
 														</div>
 													</div>
@@ -556,10 +556,10 @@
 														<div class="elementor-widget-container">
 															<img loading="lazy" decoding="async" width="864"
 																height="812"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image.webp"
 																class="attachment-full size-full wp-image-23"
 																alt
-																srcset="sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image-650x611.webp 650w"
+																srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Automated-Image-650x611.webp 650w"
 																sizes="(max-width: 864px) 100vw, 864px" />
 														</div>
 													</div>
@@ -581,10 +581,10 @@
 														<div class="elementor-widget-container">
 															<img loading="lazy" decoding="async" width="864"
 																height="812"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1.webp"
 																class="attachment-full size-full wp-image-34"
 																alt
-																srcset="sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1-650x611.webp 650w"
+																srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Crypto-Image-1-650x611.webp 650w"
 																sizes="(max-width: 864px) 100vw, 864px" />
 														</div>
 													</div>
@@ -610,9 +610,9 @@
 										data-widget_type="image.default">
 										<div class="elementor-widget-container">
 											<img loading="lazy" decoding="async" width="864" height="812"
-												src="sources/uploads/sites/2/2023/01/Online-Banking-Money-Image.webp"
+												src="/sources/uploads/sites/2/2023/01/Online-Banking-Money-Image.webp"
 												class="attachment-full size-full wp-image-25" alt
-												srcset="sources/uploads/sites/2/2023/01/Online-Banking-Money-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Money-Image-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Money-Image-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Money-Image-650x611.webp 650w"
+												srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Money-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Money-Image-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Money-Image-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Money-Image-650x611.webp 650w"
 												sizes="(max-width: 864px) 100vw, 864px" />
 										</div>
 									</div>
@@ -680,9 +680,9 @@
 										data-widget_type="image.default">
 										<div class="elementor-widget-container">
 											<img loading="lazy" decoding="async" width="864" height="812"
-												src="sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image.webp"
+												src="/sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image.webp"
 												class="attachment-full size-full wp-image-26" alt
-												srcset="sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image-650x611.webp 650w"
+												srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image.webp 864w, sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image-300x282.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image-768x722.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Choice-Image-650x611.webp 650w"
 												sizes="(max-width: 864px) 100vw, 864px" />
 										</div>
 									</div>
@@ -715,10 +715,10 @@
 														<div class="elementor-widget-container">
 															<img loading="lazy" decoding="async" width="640"
 																height="640"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image.webp"
 																class="attachment-full size-full wp-image-27"
 																alt
-																srcset="sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image.webp 640w, sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image-300x300.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image-150x150.webp 150w"
+																srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image.webp 640w, sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image-300x300.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Image-150x150.webp 150w"
 																sizes="(max-width: 640px) 100vw, 640px" />
 														</div>
 													</div>
@@ -734,7 +734,7 @@
 														<div class="elementor-widget-container">
 															<img loading="lazy" decoding="async" width="244"
 																height="64"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Logo.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Testimonial-Logo.webp"
 																class="attachment-full size-full wp-image-28"
 																alt />
 														</div>
@@ -830,7 +830,7 @@
 																	<span
 																		class="bdt-ep-advanced-icon-box-icon-wrap">
 																		<img decoding="async"
-																			src="sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-1.webp"
+																			src="/sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-1.webp"
 																			alt>
 																	</span>
 																</div>
@@ -861,7 +861,7 @@
 																	<span
 																		class="bdt-ep-advanced-icon-box-icon-wrap">
 																		<img decoding="async"
-																			src="sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-2.webp"
+																			src="/sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-2.webp"
 																			alt>
 																	</span>
 																</div>
@@ -899,7 +899,7 @@
 																	<span
 																		class="bdt-ep-advanced-icon-box-icon-wrap">
 																		<img decoding="async"
-																			src="sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-3.webp"
+																			src="/sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-3.webp"
 																			alt>
 																	</span>
 																</div>
@@ -931,7 +931,7 @@
 																	<span
 																		class="bdt-ep-advanced-icon-box-icon-wrap">
 																		<img decoding="async"
-																			src="sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-4.webp"
+																			src="/sources/uploads/sites/2/2023/01/Online-Banking-Wallet-Image-4.webp"
 																			alt>
 																	</span>
 																</div>

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 // Rutas provisionales para crear el front-end
 Route::get('/', function () {
     return view('home.index');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -56,9 +56,9 @@ Route::get('/technical-home', function () {
 Route::get('/business-home', function () {
     return view('home.business-views.business-home');
 })->middleware(['auth', 'verified'])->name('business-home');
-
-Route::get('/valoraciones-tecnico', [TechnicianController::class, 'showTechnicianValorations'])
-    ->middleware(['auth', 'verified'])->name('valoraciones-tecnico');
+// /technician/reviews
+Route::get('/technician/reviews', [TechnicianController::class, 'showTechnicianValorations'])
+    ->middleware(['auth', 'verified','technician'])->name('technician.reviews');
 
 Route::get('/incidencias', function () {
     return view('home.technical-views.incidencias');

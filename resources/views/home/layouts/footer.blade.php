@@ -40,7 +40,7 @@
                                             data-widget_type="icon-list.default">
                                             <div class="elementor-widget-container">
                                                 <link rel="stylesheet"
-                                                    href="sources/plugins/elementor/assets/css/widget-icon-list.min.css">
+                                                    href="/sources/plugins/elementor/assets/css/widget-icon-list.min.css">
                                                 <ul class="elementor-icon-list-items">
                                                     <li class="elementor-icon-list-item">
                                                         <a href="#">
@@ -326,10 +326,10 @@
                                             data-widget_type="image.default">
                                             <div class="elementor-widget-container">
                                                 <img width="341" height="64"
-                                                    src="sources/uploads/sites/2/2023/01/finflow-logo-1.webp"
+                                                    src="/sources/uploads/sites/2/2023/01/finflow-logo-1.webp"
                                                     class="attachment-full size-full wp-image-5" alt
                                                     loading="lazy"
-                                                    srcset="sources/uploads/sites/2/2023/01/finflow-logo-1.webp 341w, sources/uploads/sites/2/2023/01/finflow-logo-1-300x56.webp 300w"
+                                                    srcset="/sources/uploads/sites/2/2023/01/finflow-logo-1.webp 341w, sources/uploads/sites/2/2023/01/finflow-logo-1-300x56.webp 300w"
                                                     sizes="(max-width: 341px) 100vw, 341px" />
                                             </div>
                                         </div>
