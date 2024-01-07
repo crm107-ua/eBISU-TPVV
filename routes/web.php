@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TechnicianController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
 
 // Rutas provisionales para crear el front-end
 Route::get('/', function () {
@@ -56,7 +57,7 @@ Route::get('/technical-home', function () {
 Route::get('/business-home', function () {
     return view('home.business-views.business-home');
 })->middleware(['auth', 'verified'])->name('business-home');
-// /technician/reviews
+
 Route::get('/technician/reviews', [TechnicianController::class, 'showTechnicianValorations'])
     ->middleware(['auth', 'verified','technician'])->name('technician.reviews');
 
@@ -92,7 +93,14 @@ Route::get('/crear-incidencia', function () {
     return view('home.forms.incidencia');
 })->middleware(['auth', 'verified'])->name('crear-incidencia');
 
+Route::get('/terminos-condiciones', function () {
+    return view('home.general-views.terminos');
+})->name('terminos-condiciones');
+
 // Route::middleware('auth')->group(function () {
 // });
+
+
+Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
 require __DIR__.'/auth.php';
