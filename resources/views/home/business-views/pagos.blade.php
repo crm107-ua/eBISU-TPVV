@@ -87,7 +87,7 @@
                                                         <td style="padding: 10px 0; color:white;">{{$payment->emision_date}}</td>
                                                         <td style="padding: 10px 0; color:white;">{{$payment->finished_date}}</td>
                                                         <td style="padding: 10px 0; color:white;">
-                                                            <a href="{{  route('payment') }}" style="all: unset; cursor: pointer">Ver más</a>
+                                                            <a href="{{  route('payment', $payment->id) }}" style="all: unset; cursor: pointer">Ver más</a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
