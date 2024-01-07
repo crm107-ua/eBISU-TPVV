@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TechnicianController;
 use Illuminate\Support\Facades\Route;
@@ -81,13 +82,12 @@ Route::get('/generar-token', function () {
     return view('home.business-views.token');
 })->middleware(['auth', 'verified'])->name('generar-token');
 
-Route::get('/pagos', function () {
-    return view('home.business-views.pagos');
-})->middleware(['auth', 'verified'])->name('pagos');
+Route::get('/payments', [BusinessController::class, 'showPayments'])
+    ->middleware(['auth', 'verified'])->name('payments');
 
-Route::get('/pago', function () {
+Route::get('/payment', function () {
     return view('home.business-views.pago');
-})->middleware(['auth', 'verified'])->name('pago');
+})->middleware(['auth', 'verified'])->name('payment');
 
 Route::get('/crear-incidencia', function () {
     return view('home.forms.incidencia');
