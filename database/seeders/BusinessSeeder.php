@@ -14,14 +14,14 @@ class BusinessSeeder extends Seeder
     public function run(): void
     {
         Business::truncate();
-        
+
         Business::create([
             'id' => 3,
             'cif' => 'A12345678',
             'registration_date' => now(),
             'discharge_date' => now(),
             'balance' => 10000,
-            'contact_info_name' => 'Contact Name',
+            'contact_info_name' => 'Santiago Feijoo',
             'contact_info_phone_number' => '123456789',
             'contact_info_email' => 'contact@ebisu.com',
         ]);
@@ -32,7 +32,7 @@ class BusinessSeeder extends Seeder
             'registration_date' => now(),
             'discharge_date' => now(),
             'balance' => 10000,
-            'contact_info_name' => 'Contact Name',
+            'contact_info_name' => 'Elena Martinez',
             'contact_info_phone_number' => '123456789',
             'contact_info_email' => 'contact@ebisu.com',
         ]);
@@ -43,7 +43,7 @@ class BusinessSeeder extends Seeder
             'registration_date' => now(),
             'discharge_date' => now(),
             'balance' => 10000,
-            'contact_info_name' => 'Contact Name',
+            'contact_info_name' => 'Vanessa Sanchez',
             'contact_info_phone_number' => '123456789',
             'contact_info_email' => 'contact@ebisu.com',
         ]);
@@ -54,7 +54,7 @@ class BusinessSeeder extends Seeder
             'registration_date' => now(),
             'discharge_date' => now(),
             'balance' => 10000,
-            'contact_info_name' => 'Contact Name',
+            'contact_info_name' => 'Pedro Abascal',
             'contact_info_phone_number' => '123456789',
             'contact_info_email' => 'contact@ebisu.com',
         ]);

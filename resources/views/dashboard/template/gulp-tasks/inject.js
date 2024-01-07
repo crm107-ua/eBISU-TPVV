@@ -55,7 +55,7 @@ gulp.task('replacePath', function () {
     var replacePath1 = gulp.src('./pages/**/*.html', {
             base: "./"
         })
-        .pipe(replace('src="assets/images/', 'src="../../assets/images/'))
+        .pipe(replace('src="/assets/images/', 'src="../../assets/images/'))
         .pipe(replace('href="pages/', 'href="../../pages/'))
         .pipe(replace('href="documentation"', 'href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html"'))
         .pipe(replace('href="index.html"', 'href="../../index.html"'))

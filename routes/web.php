@@ -1,13 +1,14 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TechnicianController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
 
 // Rutas provisionales para crear el front-end
 Route::get('/', function () {
     return view('home.index');
-});
+})->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
@@ -57,15 +58,14 @@ Route::get('/business-home', function () {
     return view('home.business-views.business-home');
 })->middleware(['auth', 'verified'])->name('business-home');
 
-Route::get('/valoraciones-tecnico', function () {
-    return view('home.technical-views.valoraciones');
-})->middleware(['auth', 'verified'])->name('valoraciones-tecnico');
+Route::get('/technician/reviews', [TechnicianController::class, 'showTechnicianValorations'])
+    ->middleware(['auth', 'verified','technician'])->name('technician.reviews');
 
 Route::get('/incidencias', function () {
     return view('home.technical-views.incidencias');
 })->middleware(['auth', 'verified'])->name('incidencias');
 
-Route::get('/incidencia', function () {
+Route::get('/incidencia', function () { //TODO añadir enlace a esta pagina en la vista de valoraciones
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
@@ -97,7 +97,7 @@ Route::get('/terminos-condiciones', function () {
     return view('home.general-views.terminos');
 })->name('terminos-condiciones');
 
-// Route::middleware('auth')->group(function () {   
+// Route::middleware('auth')->group(function () {
 // });
 
 

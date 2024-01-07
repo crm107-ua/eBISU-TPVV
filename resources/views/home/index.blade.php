@@ -28,7 +28,7 @@
 										data-id="d4c233d" data-element_type="widget"
 										data-widget_type="spacer.default">
 										<div class="elementor-widget-container">
-											
+
 											<div class="elementor-spacer">
 												<div class="elementor-spacer-inner"></div>
 											</div>
@@ -39,7 +39,7 @@
 										data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:500}"
 										data-widget_type="text-editor.default">
 										<div class="elementor-widget-container">
-							
+
 											<p>Gestiona las ventas de tu negocio</p>
 										</div><br>
 									</div>
@@ -67,7 +67,7 @@
 														class="bdt-newsletter-input-wrapper bdt-width-expand">
 														<input type="email" name="email"
 															placeholder="Introduce tu email" required
-															class="bdt-input" />													
+															class="bdt-input" />
 													</div>
 													<div
 														class="bdt-newsletter-signup-wrapper bdt-width-auto">
@@ -124,10 +124,10 @@
 																}
 															</style> <img fetchpriority="high"
 																decoding="async" width="1633" height="737"
-																src="sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp"
+																src="/sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp"
 																class="attachment-full size-full wp-image-19"
 																alt
-																srcset="sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp 1633w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-300x135.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1024x462.webp 1024w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-768x347.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1536x693.webp 1536w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-650x293.webp 650w"
+																srcset="/sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image.webp 1633w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-300x135.webp 300w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1024x462.webp 1024w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-768x347.webp 768w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-1536x693.webp 1536w, sources/uploads/sites/2/2023/01/Online-Banking-Hero-Image-650x293.webp 650w"
 																sizes="(max-width: 1633px) 100vw, 1633px" />
 														</div>
 													</div>
@@ -276,7 +276,7 @@
 																	</h4>
 																	<div
 																		class="bdt-ep-advanced-icon-box-description">
-																		<p>Abre un ticket y en minutos 
+																		<p>Abre un ticket y en minutos
 																			estaremos atendiéndote</p>
 																	</div>
 																</div>
@@ -346,7 +346,7 @@
 													</h2>
 													<a class="bdt-ep-advanced-icon-box-readmore bdt-display-inline-block" href="https://ea57-ua.github.io/iw.api.doc/api_newUI/" style="display: flex; align-items: center; justify-content: center; height: 70px; text-align: center;">
 														Accede a nuestra API
-													</a>													
+													</a>
 												</div>
 											</div>
 										</div>
@@ -454,7 +454,7 @@
 																</div>
 															</div>
 														</div>
-														
+
 													</div> <a href="#" id="bottom-anchor-c1a523e"
 														data-bdt-hidden></a>
 												</div>
@@ -472,8 +472,8 @@
 											</div>
 										</div>
 									</div>
-								</div>	
-							</div>							
+								</div>
+							</div>
 						</div>
 					</div>
 					<section

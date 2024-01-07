@@ -39,7 +39,7 @@
                                             data-widget_type="icon-list.default">
                                             <div class="elementor-widget-container">
                                                 <link rel="stylesheet"
-                                                    href="sources/plugins/elementor/assets/css/widget-icon-list.min.css">
+                                                    href="/sources/plugins/elementor/assets/css/widget-icon-list.min.css">
                                                 <ul class="elementor-icon-list-items">
                                                     <li class="elementor-icon-list-item">
                                                         <a href="#">
