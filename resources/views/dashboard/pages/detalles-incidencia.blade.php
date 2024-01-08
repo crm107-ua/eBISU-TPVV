@@ -9,20 +9,28 @@
         @include('dashboard.layouts.nav-superior')
         <div class="main-panel">
             <div class="content-wrapper">
-                <div class="row">
+              <div class="row">
                     <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">Título: Problema con los pagos por paypal</h4>
-                            <p><strong>Creador de la incidencia:</strong> Rafael Perez</p>
-                            <p><strong>Empresa:</strong> Atlas SA</p>
-                            <p><strong>Fecha:</strong> 12/12/2023</p>
-                            <p><strong>Pago asociado:</strong> Concepto de pago relacionado</p>
-                            <p><strong>Técnico:</strong> Juan Morales</p>
-                            <p><strong>Descripción:</strong> Nuestros clientes no pueden realizar los pagos por paypal, la operación siempre se cancela con código de error 646. Estamos trabajando diligentemente para resolver esta situación y garantizar una experiencia de compra sin contratiempos.</p>
-                            <p><strong>Archivos adjuntados:</strong> <a href="#">image1.png</a> <a href="#">image2.png</a></p>
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col d-flex justify-content-between">
+                            <h4 class="card-title">Título: {{$ticket->title}}</h4>
+                            <a href="{{ route('admin.tickets') }}" class="btn btn-primary">Volver</a>
+                          </div>
+                        </div>
+                            <p><strong>Creador de la incidencia:</strong> {{$ticket->transaction->business->contact_info_name}}</p>
+                            <p><strong>Empresa:</strong> {{$ticket->transaction->business->user->name}}</p>
+                            <p><strong>Fecha:</strong> {{$ticket->creation_date}}</p>
+                            <p><strong>Pago asociado:</strong> {{$ticket->transaction->concept}}</p>
+                            <p><strong>Técnico:</strong> {{$ticket->technitian->user->name}}</p>
+                            <p><strong>Descripción:</strong> {{$ticket->description}}</p>
+                            <p><strong>Archivos adjuntados:</strong>
+                              @foreach($ticket->attachment) @endforeach
+                              <a href="#">image1.png</a></p>
                         </div>
                     </div>
-                </div>
+
+              </div>
                 <div class="row">
                     <div class="mt-4 card p-4">
                         <div id="conversation" class="conversation p-3">
@@ -74,7 +82,13 @@
         </div>
     </div>
 </div>
-
+<style>
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
 <script>
     window.onload = function() {
         // Realiza un scroll hasta el final de la conversacion

@@ -1,5 +1,5 @@
 @extends('dashboard.partials.master')
-@section('title', 'eBISU Dashboard - Agregar técnico')
+@section('title', 'eBISU Dashboard - Agregar administrador')
 @section('content')
 
 <div class="container-scroller">
@@ -16,7 +16,7 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title mt-2 mb-5">Registro de técnicos</h4>
+                  <h4 class="card-title mt-2 mb-5">Agrega un administrador</h4>
                   <form class="forms-sample">
                     <div class="row">
 
@@ -32,7 +32,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" style="color: white;"  placeholder="Contraseña">
+                            <input type="password" class="form-control" id="password" name="password" style="color: white;" placeholder="Contraseña">
                         </div>
                       </div>
 
@@ -40,7 +40,7 @@
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="exampleInputUsername1">Dirección:</label>
-                          <input type="text" class="form-control" id="address" name="address" style="color: white;"  placeholder="Dirección">
+                          <input type="text" class="form-control" id="address" name="address" style="color: white;" placeholder="Dirección">
                         </div>
                         <div class="row">
                           <div class="col-sm-6 form-group">
@@ -53,7 +53,7 @@
                               <option value="country4">País 4</option>
                               <option value="country5">País 5</option>
                             </select>
-                          </div>                          
+                          </div>
                           <div class="col-sm-6 form-group">
                             <label for="city">Población:</label>
                             <select class="js-example-basic-single" id="poblacion" name="poblacion" style="width:100%">
@@ -76,11 +76,12 @@
                     <div class="row align-items-center">
                         <div class="col-auto">
                             <button type="submit" class="btn btn-success me-2">Registrar</button>
-                            <button class="btn btn-dark">Cancelar</button>
+                            <a class="btn btn-dark" href="{{route('admin.admins')}}">Cancelar</a>
                         </div>
                         <div class="col">
                           <x-password-generator/>
-                        </div>      
+                        </div>
+                    </div>
                     </form>
                 </div>
               </div>
@@ -91,3 +92,4 @@
   </div>
 </div>
 @endsection
+

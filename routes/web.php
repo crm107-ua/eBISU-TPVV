@@ -7,30 +7,6 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-Route::get('/admin-form', function () {
-    return view('dashboard.forms.admin');
-})->middleware(['auth', 'verified'])->name('admin-form');
-
-Route::get('/tecnico-form', function () {
-    return view('dashboard.forms.tecnico');
-})->middleware(['auth', 'verified'])->name('tecnico-form');
-
-Route::get('/listado-admins', function () {
-    return view('dashboard.pages.admins');
-})->middleware(['auth', 'verified'])->name('admins');
-
-Route::get('/listado-tecnicos', function () {
-    return view('dashboard.pages.tecnicos');
-})->middleware(['auth', 'verified'])->name('tecnicos');
-
-Route::get('/listado-incidencias', function () {
-    return view('dashboard.pages.incidencias');
-})->middleware(['auth', 'verified'])->name('incidencias');
-
-Route::get('/detalles-incidencia', function () {
-    return view('dashboard.pages.detalles-incidencia');
-})->middleware(['auth', 'verified'])->name('detalles-incidencia');
-
 Route::get('/tokens-admin', function () {
     return view('dashboard.pages.tokens');
 })->middleware(['auth', 'verified'])->name('tokens-admin');

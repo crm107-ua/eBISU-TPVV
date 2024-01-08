@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BusinessController;
+use App\Http\Controllers\Admin\TechnicianController;
+use App\Http\Controllers\Admin\TicketController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified','admin'])->group(function () {
@@ -39,4 +42,30 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::post('/admin/business/{id}/edit',
         [BusinessController::class, 'editBusiness'])
         ->name('admin.business.edit.post');
+
+    Route::get('admin/admins',
+        [AdminController::class, 'showAdmins'])
+        ->name('admin.admins');
+
+    Route::get('admin/admins/create',
+        [AdminController::class, 'showAdminCreateForm'])
+        ->name('admin.admins.create');
+
+
+    Route::get('/admin/technicians',
+        [TechnicianController::class, 'showTechnicians'])
+        ->name('admin.technicians');
+
+    Route::get('/admin/technicians/create',
+        [TechnicianController::class, 'showTechnicianCreateForm'])
+        ->name('admin.technicians.create');
+
+
+    Route::get('/admin/tickets',
+        [TicketController::class, 'showTickets'])
+        ->name('admin.tickets');
+
+    Route::get('/admin/tickets/{id}',
+        [TicketController::class, 'showTicketDetail'])
+        ->name('admin.tickets.details');
 });
