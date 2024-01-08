@@ -21,7 +21,8 @@ class BusinessController extends Controller
         'phone' => 'regex:/^[\+0-9]*$/',
         'address' => 'required|string',
         'country' => 'required|exists:countries,code',
-        'town' => 'required|exists:poblations,name',
+        'town-select' => 'exists:poblations,name',
+        'town-input' => 'string',
         'cp' => 'required|size:5|regex:/^[0-9]*$/',
     ];
 
@@ -45,6 +46,14 @@ class BusinessController extends Controller
 
     public function createBusiness(Request $request)
     {
+        $request->validate([
+            'town' => function ($attribute, $value, $fail) use ($request) {
+                if (is_null($request->input('town-select')) && is_null($request->input('town-input'))) {
+                    $fail('El campo de ciudad o pueblo es requerido.');
+                }
+            },
+        ]);
+        session(['country' => $request->country]);
         $validatedData = request()->validate($this->businessRules);
         try {
             $this->businessService->createBusiness($validatedData);

@@ -193,7 +193,6 @@
       </div>
     </div>
   </div>
-
   @push('scripts')
     <script defer>
       document.addEventListener('DOMContentLoaded', (event) => {

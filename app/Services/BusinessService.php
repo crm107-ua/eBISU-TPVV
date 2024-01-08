@@ -7,7 +7,6 @@ use App\Models\Business;
 use App\Models\Country;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use function Symfony\Component\String\b;
 
 class BusinessService
 {
@@ -23,7 +22,11 @@ class BusinessService
         $user->role = UserRole::Business;
         $user->direction_direction = $data['address'];
         $user->direction_postal_code = $data['cp'];
-        $user->direction_poblation = $data['town'];
+        if ($data['town-select'] != null) {
+            $user->direction_poblation = $data['town-select'];
+        } else {
+            $user->direction_poblation = $data['town-input'];
+        }
         $user->country()->associate(Country::where('code', $data['country'])->firstOrFail());
         $user->save();
 

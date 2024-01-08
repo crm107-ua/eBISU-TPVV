@@ -21,6 +21,7 @@
                     <div class="d-flex justify-content-end">
                       <a type="button" href="{{ route('admin.business.create') }}" class="btn btn-success mb-2 mt-2">Crear
                         comercio</a>
+                      <!--
                       <div class="dropdown me-2">
                         <button class="btn btn-secondary dropdown-toggle ms-3 m-2" type="button" id="sortButton"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,10 +30,9 @@
                         <div class="dropdown-menu">
                           <h6 class="dropdown-header">Tipo de exportación:</h6>
                           <a class="dropdown-item" href="#">Opcion 1</a>
-                          <a class="dropdown-item" href="#">Opcion 2</a>
-                          <a class="dropdown-item" href="#">Opcion 3</a>
                         </div>
                       </div>
+                      -->
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle ms-1 m-2" type="button" id="sortButton"
                                 data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -41,8 +41,6 @@
                         <div class="dropdown-menu" aria-labelledby="sortButton">
                           <h6 class="dropdown-header">Tipo de ordenación:</h6>
                           <a class="dropdown-item option" href="#">Opcion 1</a>
-                          <a class="dropdown-item option" href="#">Opcion 2</a>
-                          <a class="dropdown-item option" href="#">Opcion 3</a>
                         </div>
                       </div>
                     </div>
@@ -81,18 +79,18 @@
                                 <a class="dropdown-item" href="{{route('admin.business.edit', $business->id)}}">Editar</a>
                                 @if($business->discharge_date == null)
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                   data-bs-target="#confirmModal"
+                                   data-bs-target="#confirmModal{{$business->id}}"
                                    onclick="storeUrl('{{route('admin.business.discharge', $business->id)}}')">
                                   Dar de baja</a>
                                 @else
                                   <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                     data-bs-target="#confirmModal"
+                                     data-bs-target="#confirmModal{{$business->id}}"
                                      onclick="storeUrl('{{route('admin.business.activate', $business->id)}}')">
                                     Activar comercio</a>
                                 @endif
                               </div>
                               <!-- Modal -->
-                              <div class="modal fade" id="confirmModal" tabindex="-1"
+                              <div class="modal fade" id="confirmModal{{$business->id}}" tabindex="-1"
                                    aria-labelledby="confirmModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
@@ -102,6 +100,8 @@
                                               aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
+                                      <p>Comercio: {{$business->user->name}}</p>
+                                      <p>{{$business->discharge_date}}</p>
                                       @if($business->discharge_date == null)
                                         ¿Estás seguro de que quieres dar de baja este comercio?
                                       @else

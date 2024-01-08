@@ -136,23 +136,43 @@
                             <select id="country"
                                     name="country" style="width:100%"
                                     required>
-                              <option value="">Selecciona un país</option>
                               @foreach($countries as $country)
                                 <option value="{{ $country->code }}"
-                                  {{ $country->name == 'Spain' ? 'selected' : '' }}>
-                                  {{ $country->name }}</option>
+                                  {{ old('country') == $country->code || (old('country')=='' && $country->code == 'ES') ? 'selected' : '' }}>
+                                  {{ $country->name }}
+                                </option>
                               @endforeach
                             </select>
                           </div>
                           <div class="col-sm-6 form-group">
-                            <label for="city">Población</label>
-                            <select id="town"
-                                    name="town" style="width:100%">
+                            <label for="town">Población</label>
+                            @if($errors->has('town-select'))
+                              @foreach($errors->get('town-select') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
+                            @endif
+                            @if($errors->has('town-input'))
+                              @foreach($errors->get('town-input') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
+                            @endif
+                            <div>
+                            <select id="town-select"
+                                    name="town-select" style="width:100%; display: inline">
                               @foreach($poblations as $poblation)
                                 <option
                                   value="{{ $poblation->name }}">{{ $poblation->name }}</option>
                               @endforeach
                             </select>
+                            <input type="text" class="form-control" id="town-input"
+                                  name="town-input" style="color: white; display: none"
+                                  placeholder="Ciudad o pueblo"
+                                  value="{{old('town-input')}}">
+                            </div>
                           </div>
                         </div>
                         <div class="form-group">
@@ -193,16 +213,30 @@
   </div>
 
   @push('scripts')
-    <script defer>
+    <script>
       document.addEventListener('DOMContentLoaded', (event) => {
         const countrySelect = document.getElementById('country');
-        const poblacionSelect = document.getElementById('town');
+        const poblacionSelect = document.getElementById('town-select');
+        const poblacionInput = document.getElementById('town-input')
+
+        const countrySessionValue = "{{ session('country', 'ES') }}";
+        console.log(countrySessionValue);
+
+        if (countrySessionValue !== 'ES') {
+          poblacionSelect.style.display = 'none';
+          poblacionInput.style.display = 'inline';
+        } else {
+          poblacionSelect.style.display = 'inline';
+          poblacionInput.style.display = 'none';
+        }
 
         countrySelect.addEventListener('change', (event) => {
-          if (event.target.value !== 'ES') { // Assuming 'ES' is the value for Spain
-            poblacionSelect.setAttribute('disabled', '');
+          if (event.target.value === 'ES') {
+            poblacionSelect.style.display = 'inline';
+            poblacionInput.style.display = 'none';
           } else {
-            poblacionSelect.removeAttribute('disabled');
+            poblacionSelect.style.display = 'none';
+            poblacionInput.style.display = 'inline';
           }
         });
       });
