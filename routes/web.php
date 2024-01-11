@@ -83,9 +83,9 @@ Route::get('/generar-token', function () {
 })->middleware(['auth', 'verified'])->name('generar-token');
 
 Route::get('/payments', [BusinessController::class, 'showPayments'])
-    ->middleware(['auth', 'verified'])->name('payments');
+    ->middleware(['auth', 'verified', 'business'])->name('payments');
 
-Route::get('/payment/{id}', [BusinessController::class, 'showPayment'])->middleware(['auth', 'verified'])->name('payment');
+Route::get('/payment/{id}', [BusinessController::class, 'showPayment'])->middleware(['auth', 'verified', 'business'])->name('payment');
 
 Route::get('/crear-incidencia', function () {
     return view('home.forms.incidencia');
