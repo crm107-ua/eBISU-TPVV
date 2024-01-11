@@ -58,7 +58,10 @@
                                                         {{$valoration->valoration_comment}}
                                                 </div>
                                             @endforeach
+                                            <div style="display: flex; justify-content: center; margin-top: 30px;">
+
                                             {!! $valorations->links() !!}
+                                            </div>
                                         </section>
                                     </div>
                                 </div>
