@@ -20,7 +20,7 @@
                     <h3 class="card-title mb-0">Incidencias</h3>
                         <div class="d-flex justify-content-end">
                             <div class="col-sm-9">
-                                <input class="form-control m-1" placeholder="Fecha de creación: dd/mm/yyyy" />
+                                <input type="date" id="dateFilterInput" class="form-control m-1" />
                             </div>
                             <div class="dropdown me-2">
                                 <button class="btn btn-secondary dropdown-toggle ms-4 m-2" type="button" id="sortButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,7 +28,9 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="sortButton">
                                     <h6 class="dropdown-header">Estado actual:</h6>
-                                    <a class="dropdown-item option" href="#">Opcion 1</a>
+                                    <a class="dropdown-item option" href="{{request()->fullUrlWithQuery(['state'=>'open'])}}">Open</a>
+                                    <a class="dropdown-item option" href="{{request()->fullUrlWithQuery(['state'=>'resolving'])}}">Resolving</a>
+                                    <a class="dropdown-item option" href="{{request()->fullUrlWithQuery(['state'=>'closed'])}}">Closed</a>
                                 </div>
                             </div>
                             <div class="dropdown">
@@ -37,9 +39,13 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="sortButton">
                                     <h6 class="dropdown-header">Persona asignada:</h6>
-                                    <a class="dropdown-item option" href="#">Opcion 1</a>
+                                    @foreach($technitians as $tech)
+                                    <a class="dropdown-item option" href="{{request()->fullUrlWithQuery(['technitian'=> $tech->id])}}">{{$tech->user->name}}</a>
+                                  @endforeach
                                 </div>
                             </div>
+
+                            <a class="btn btn-secondary ms-4 m-2" href="{{route('admin.tickets')}}">Reset</a>
                         </div>
                     </div>
                   </div>
@@ -101,4 +107,9 @@
       </div>
     </div>
   </div>
+  <script>
+    document.getElementById('dateFilterInput').addEventListener('change', function() {
+      window.location.href = "{{ route('admin.tickets') }}" + "?date=" + this.value;
+    });
+  </script>
 @endsection

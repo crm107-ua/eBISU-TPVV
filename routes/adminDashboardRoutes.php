@@ -68,4 +68,12 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::get('/admin/tickets/{id}',
         [TicketController::class, 'showTicketDetail'])
         ->name('admin.tickets.details');
+
+    Route::get('admin/tickets/{id}/attachment',
+        [TicketController::class, 'downloadAttachment'])
+        ->name('admin.tickets.download.attachment');
+
+    Route::post('/admin/tickets/{id}/assign',
+        [TicketController::class, 'assignTechnician'])
+        ->name('admin.tickets.assign');
 });
