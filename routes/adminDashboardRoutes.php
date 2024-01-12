@@ -51,6 +51,9 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
         [AdminController::class, 'showAdminCreateForm'])
         ->name('admin.admins.create');
 
+    Route::get('admin/admins/{id}',
+        [AdminController::class, 'showAdminDetail'])
+        ->name('admin.admins.details');
 
     Route::get('/admin/technicians',
         [TechnicianController::class, 'showTechnicians'])
@@ -59,6 +62,10 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::get('/admin/technicians/create',
         [TechnicianController::class, 'showTechnicianCreateForm'])
         ->name('admin.technicians.create');
+
+    Route::get('/admin/technicians/{id}',
+        [TechnicianController::class, 'showTechnicianDetail'])
+        ->name('admin.technicians.details');
 
 
     Route::get('/admin/tickets',

@@ -25,4 +25,10 @@ class TechnicianController extends Controller
     {
         return view('dashboard.forms.crearTecnico');
     }
+
+    public function showTechnicianDetail($id)
+    {
+        $technician = $this->adminTechnicianService->getTechnician($id);
+        return view('dashboard.pages.technicianDetail', ['technician' => $technician]);
+    }
 }

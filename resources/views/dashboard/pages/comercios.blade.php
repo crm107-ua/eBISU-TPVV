@@ -77,7 +77,7 @@
                               <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <a class="dropdown-item" href="{{route('admin.business.details', $business->id)}}">Detalles</a>
                                 <a class="dropdown-item" href="{{route('admin.business.edit', $business->id)}}">Editar</a>
-                                @if($business->discharge_date == null)
+                                @if($business->user->discharge_date == null)
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal"
                                    data-bs-target="#confirmModal{{$business->id}}"
                                    onclick="storeUrl('{{route('admin.business.discharge', $business->id)}}')">
@@ -101,8 +101,8 @@
                                     </div>
                                     <div class="modal-body">
                                       <p>Comercio: {{$business->user->name}}</p>
-                                      <p>{{$business->discharge_date}}</p>
-                                      @if($business->discharge_date == null)
+                                      <p>{{$business->user->discharge_date}}</p>
+                                      @if($business->user->discharge_date == null)
                                         ¿Estás seguro de que quieres dar de baja este comercio?
                                       @else
                                         ¿Estás seguro de que quieres activar este comercio?
@@ -112,7 +112,7 @@
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
                                       </button>
                                       <button type="button" class="btn btn-primary" id="confirmYes">
-                                        @if($business->discharge_date == null)
+                                        @if($business->user->discharge_date == null)
                                           Sí, dar de baja
                                         @else
                                           Sí, activar comercio

@@ -12,7 +12,6 @@ class Business extends Model
     protected $fillable = [
         'cif',
         'registration_date',
-        'discharge_date',
         'balance',
         'contact_info_name',
         'contact_info_phone_number',

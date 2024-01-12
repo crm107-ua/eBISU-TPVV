@@ -25,4 +25,10 @@ class AdminController extends Controller
     {
         return view('dashboard.forms.crearAdmin');
     }
+
+    public function showAdminDetail($id)
+    {
+        $admin = $this->adminTechnicianService->getAdmin($id);
+        return view('dashboard.pages.adminDetail', ['admin' => $admin]);
+    }
 }

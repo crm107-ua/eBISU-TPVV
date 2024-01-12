@@ -25,6 +25,7 @@ class User extends Authenticatable
         'direction_direction',
         'direction_postal_code',
         'direction_poblation',
+        'discharge_date',
     ];
 
     /**

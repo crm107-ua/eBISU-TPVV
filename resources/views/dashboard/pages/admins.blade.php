@@ -50,7 +50,7 @@
                                   Acción
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <a class="dropdown-item" href="#">Detalles</a>
+                                  <a class="dropdown-item" href="{{route('admin.admins.details', $admin->id)}}">Detalles</a>
                                   <a class="dropdown-item" href="#">Editar</a>
                                   <a class="dropdown-item" href="#">Borrar</a>
                                 </div>
@@ -58,7 +58,6 @@
                             </td>
                           </tr>
                         @endforeach
-
                       </tbody>
                     </table>
                     {{ $admins->links('components.pagination', ['paginator'=>$admins]) }}

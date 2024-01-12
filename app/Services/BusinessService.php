@@ -47,14 +47,16 @@ class BusinessService
 
     public function dischargeBusiness($id) {
         $business = Business::findOrFail($id);
-        $business->discharge_date = now();
-        $business->save();
+        $user = $business->user;
+        $user->discharge_date = now();
+        $user->save();
     }
 
     public function activateBusinessAccount($id) {
         $business = Business::findOrFail($id);
-        $business->discharge_date = null;
-        $business->save();
+        $user = $business->user;
+        $user->discharge_date = null;
+        $user->save();
     }
 
     public function editBusiness($data, $id) {

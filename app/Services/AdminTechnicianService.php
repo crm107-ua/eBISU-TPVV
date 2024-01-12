@@ -19,4 +19,16 @@ class AdminTechnicianService
         return $users;
     }
 
+    public function getAdmin($id)
+    {
+        $user = User::where('id', $id)->where('role', UserRole::Admin)->first();
+        return $user;
+    }
+
+    public function getTechnician($id)
+    {
+        $user = User::where('id', $id)->where('role', UserRole::Technician)->first();
+        return $user;
+    }
+
 }
