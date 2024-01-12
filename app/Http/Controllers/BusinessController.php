@@ -31,29 +31,7 @@ class BusinessController extends Controller
         ]);
     }
 
-    public function showTickets(Request $request)
-    {
-        //obtener tickets donde el id del negocio de la transaccion sea el mismo que el id del usuario
-        $tickets = Ticket::whereHas('transaction', function ($query) {
-            $query->where('business_id', Auth::id());
-        });
 
-        $tickets = $this->filterTickets($request, $tickets);
-        $tickets = $tickets->paginate(10);
-
-        if ($request->has('state') && $request->input('state') != null && $request->input('state') != '') {
-            $tickets->appends(['state' => $request->input('state')]);
-        }
-        if ($request->has('transaction') && $request->input('transaction') != null && $request->input('transaction') != '') {
-            $tickets->appends(['transaction' => $request->input('transaction')]);
-        }
-
-        $request->flash();
-
-        return view('home.business-views.incidencias', [
-            'tickets' => $tickets,
-        ]);
-    }
 
 
     public function showPayment(Request $request, $id)
@@ -86,18 +64,4 @@ class BusinessController extends Controller
         return $payments;
     }
 
-    private function filterTickets(Request $request, $tickets)
-{
-    if ($request->has('state') && $request->input('state') != null && $request->input('state') != '') {
-        $tickets = $tickets->where('state', $request->input('state'));
-    }
-    if ($request->has('transaction') && $request->input('transaction') != null && $request->input('transaction') != '') {
-        $transactionNumber = $request->input('transaction');
-        $tickets = $tickets->whereHas('transaction', function ($query) use ($transactionNumber) {
-            $query->where('receipt_number', $transactionNumber);
-        });
-    }
-
-    return $tickets;
-}
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TechnicianController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
 
@@ -70,12 +71,11 @@ Route::get('/incidencia', function () { //TODO añadir enlace a esta pagina en l
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
-Route::get('/tickets', [BusinessController::class, 'showTickets'])
+Route::get('/tickets', [TicketController::class, 'showTickets'])
     ->middleware(['auth', 'verified', 'business'])->name('tickets');
 
-Route::get('/ticket/{id}', function () {
-    return view('home.business-views.incidencia');
-})->middleware(['auth', 'verified', 'business'])->name('ticket');
+Route::get('/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'showTicket'])->middleware(['auth', 'verified', 'business'])->name('ticket');
+Route::post('/ticket/{id}/valorate', [\App\Http\Controllers\TicketController::class, 'valorateTicket'])->middleware(['auth', 'verified', 'business'])->name('valorateTicket');
 
 Route::get('/generar-token', function () {
     return view('home.business-views.token');
