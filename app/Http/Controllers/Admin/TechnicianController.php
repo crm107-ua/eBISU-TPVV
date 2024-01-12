@@ -31,4 +31,17 @@ class TechnicianController extends Controller
         $technician = $this->adminTechnicianService->getTechnician($id);
         return view('dashboard.pages.technicianDetail', ['technician' => $technician]);
     }
+
+    public function dischargeTechnician($id)
+    {
+        $this->adminTechnicianService->dischargeTechnician($id);
+        return redirect()->route('admin.technicians')->with(['success' => 'Técnico dado de baja correctamente']);
+    }
+
+    public function activateTechnicianAccount($id)
+    {
+        $this->adminTechnicianService->activateTechnician($id);
+        return redirect()->route('admin.technicians')->with(['success' => 'Técnico activado correctamente']);
+    }
+    
 }

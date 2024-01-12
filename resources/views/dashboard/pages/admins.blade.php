@@ -52,7 +52,11 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <a class="dropdown-item" href="{{route('admin.admins.details', $admin->id)}}">Detalles</a>
                                   <a class="dropdown-item" href="#">Editar</a>
-                                  <a class="dropdown-item" href="#">Borrar</a>
+                                  @if($admin->discharge_date == null)
+                                    <a class="dropdown-item" href="{{route('admin.admins.discharge', $admin->id)}}">Dar de baja</a>
+                                  @else
+                                    <a class="dropdown-item" href="{{route('admin.admins.activate', $admin->id)}}">Dar de alta</a>
+                                  @endif
                                 </div>
                               </div>
                             </td>
@@ -68,11 +72,9 @@
                         </div>
                       @endif
 
-                      @if ($errors->any())
+                      @if (session('error'))
                         <div class="alert alert-danger">
-                          @foreach ($errors->all() as $error)
-                            {{ $error }}
-                          @endforeach
+                          {{ session('error') }}
                         </div>
                       @endif
                     </div>

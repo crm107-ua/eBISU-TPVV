@@ -31,4 +31,16 @@ class AdminController extends Controller
         $admin = $this->adminTechnicianService->getAdmin($id);
         return view('dashboard.pages.adminDetail', ['admin' => $admin]);
     }
+
+    public function dischargeAdmin($id)
+    {
+        $this->adminTechnicianService->dischargeAdmin($id);
+        return redirect()->route('admin.admins')->with(['success' => 'Administrador dado de baja correctamente']);
+    }
+
+    public function activateAdminAccount($id)
+    {
+        $this->adminTechnicianService->activateAdmin($id);
+        return redirect()->route('admin.admins')->with(['success' => 'Administrador activado correctamente']);
+    }
 }

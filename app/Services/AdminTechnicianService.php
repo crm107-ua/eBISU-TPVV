@@ -31,4 +31,31 @@ class AdminTechnicianService
         return $user;
     }
 
+    public function dischargeAdmin($id)
+    {
+        $user = User::where('id', $id)->where('role', UserRole::Admin)->first();
+        $user->discharge_date = now();
+        $user->save();
+    }
+
+    public function dischargeTechnician($id)
+    {
+        $user = User::where('id', $id)->where('role', UserRole::Technician)->first();
+        $user->discharge_date = now();
+        $user->save();
+    }
+
+    public function activateAdmin($id)
+    {
+        $user = User::where('id', $id)->where('role', UserRole::Admin)->first();
+        $user->discharge_date = null;
+        $user->save();
+    }
+
+    public function activateTechnician($id)
+    {
+        $user = User::where('id', $id)->where('role', UserRole::Technician)->first();
+        $user->discharge_date = null;
+        $user->save();
+    }
 }

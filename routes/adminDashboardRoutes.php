@@ -55,6 +55,14 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
         [AdminController::class, 'showAdminDetail'])
         ->name('admin.admins.details');
 
+    Route::get('admin/admins/{id}/discharge',
+        [AdminController::class, 'dischargeAdmin'])
+        ->name('admin.admins.discharge');
+
+    Route::get('admin/admins/{id}/activate',
+        [AdminController::class, 'activateAdminAccount'])
+        ->name('admin.admins.activate');
+
     Route::get('/admin/technicians',
         [TechnicianController::class, 'showTechnicians'])
         ->name('admin.technicians');
@@ -67,6 +75,13 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
         [TechnicianController::class, 'showTechnicianDetail'])
         ->name('admin.technicians.details');
 
+    Route::get('/admin/technicians/{id}/discharge',
+        [TechnicianController::class, 'dischargeTechnician'])
+        ->name('admin.technicians.discharge');
+
+    Route::get('/admin/technicians/{id}/activate',
+        [TechnicianController::class, 'activateTechnicianAccount'])
+        ->name('admin.technicians.activate');
 
     Route::get('/admin/tickets',
         [TicketController::class, 'showTickets'])
