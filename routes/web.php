@@ -86,9 +86,8 @@ Route::get('/payments', [BusinessController::class, 'showPayments'])
 
 Route::get('/payment/{id}', [BusinessController::class, 'showPayment'])->middleware(['auth', 'verified', 'business'])->name('payment');
 
-Route::get('/crear-incidencia', function () {
-    return view('home.forms.incidencia');
-})->middleware(['auth', 'verified'])->name('crear-incidencia');
+Route::get('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'showCreateTicket'])->middleware(['auth', 'verified', 'business'])->name('report');
+Route::post('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'createTicket'])->middleware(['auth', 'verified', 'business'])->name('createReport');
 
 Route::get('/terminos-condiciones', function () {
     return view('home.general-views.terminos');

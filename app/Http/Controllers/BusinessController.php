@@ -39,8 +39,7 @@ class BusinessController extends Controller
         });
 
         $tickets = $this->filterTickets($request, $tickets);
-
-        $tickets = $tickets->paginate(2);
+        $tickets = $tickets->paginate(10);
 
         if ($request->has('state') && $request->input('state') != null && $request->input('state') != '') {
             $tickets->appends(['state' => $request->input('state')]);
@@ -55,6 +54,7 @@ class BusinessController extends Controller
             'tickets' => $tickets,
         ]);
     }
+
 
     public function showPayment(Request $request, $id)
     {
