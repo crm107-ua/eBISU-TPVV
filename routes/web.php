@@ -70,13 +70,12 @@ Route::get('/incidencia', function () { //TODO añadir enlace a esta pagina en l
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
-Route::get('/mis-incidencias', function () {
-    return view('home.business-views.incidencias');
-})->middleware(['auth', 'verified'])->name('mis-incidencias');
+Route::get('/tickets', [BusinessController::class, 'showTickets'])
+    ->middleware(['auth', 'verified', 'business'])->name('tickets');
 
-Route::get('/mi-incidencia', function () {
+Route::get('/ticket/{id}', function () {
     return view('home.business-views.incidencia');
-})->middleware(['auth', 'verified'])->name('mi-incidencia');
+})->middleware(['auth', 'verified', 'business'])->name('ticket');
 
 Route::get('/generar-token', function () {
     return view('home.business-views.token');
