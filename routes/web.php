@@ -3,6 +3,7 @@
 use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TechnicianController;
+use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
 
@@ -70,13 +71,11 @@ Route::get('/incidencia', function () { //TODO añadir enlace a esta pagina en l
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
-Route::get('/mis-incidencias', function () {
-    return view('home.business-views.incidencias');
-})->middleware(['auth', 'verified'])->name('mis-incidencias');
+Route::get('/tickets', [TicketController::class, 'showTickets'])
+    ->middleware(['auth', 'verified', 'business'])->name('tickets');
 
-Route::get('/mi-incidencia', function () {
-    return view('home.business-views.incidencia');
-})->middleware(['auth', 'verified'])->name('mi-incidencia');
+Route::get('/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'showTicket'])->middleware(['auth', 'verified', 'business'])->name('ticket');
+Route::post('/ticket/{id}/valorate', [\App\Http\Controllers\TicketController::class, 'valorateTicket'])->middleware(['auth', 'verified', 'business'])->name('valorateTicket');
 
 Route::get('/generar-token', function () {
     return view('home.business-views.token');
@@ -87,9 +86,8 @@ Route::get('/payments', [BusinessController::class, 'showPayments'])
 
 Route::get('/payment/{id}', [BusinessController::class, 'showPayment'])->middleware(['auth', 'verified', 'business'])->name('payment');
 
-Route::get('/crear-incidencia', function () {
-    return view('home.forms.incidencia');
-})->middleware(['auth', 'verified'])->name('crear-incidencia');
+Route::get('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'showCreateTicket'])->middleware(['auth', 'verified', 'business'])->name('report');
+Route::post('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'createTicket'])->middleware(['auth', 'verified', 'business'])->name('createReport');
 
 Route::get('/terminos-condiciones', function () {
     return view('home.general-views.terminos');

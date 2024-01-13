@@ -21,7 +21,7 @@
                                             <div style="position: relative; margin-bottom: 20px;margin-top: 40px;">
                                                 <h2 style="text-align:center; color:white; padding-bottom: 20px; ">
                                                     Detalles de pago</h2>
-                                                <a href="{{ route('crear-incidencia') }}"
+                                                <a href="{{ route('report', $payment->id) }}"
                                                    style="all: unset; background-color: #FFFFFF; color: #0f302d; padding: 15px 20px 15px 20px ;
                                                border-radius: 8px; position: absolute; right: 0; top: -15%; cursor: pointer">
                                                     Crear incidencia

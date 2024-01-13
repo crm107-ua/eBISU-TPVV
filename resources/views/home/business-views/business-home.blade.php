@@ -87,7 +87,7 @@
 												</div>
 												<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-066b9f6"
 													data-id="066b9f6" data-element_type="column">
-													<a href="/mis-incidencias" style="all: unset">
+													<a href="/tickets" style="all: unset">
 														<div
 															class="elementor-widget-wrap elementor-element-populated">
 															<div data-ep-wrapper-link="{&quot;url&quot;:&quot;#&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}"
