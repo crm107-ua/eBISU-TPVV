@@ -21,6 +21,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::middleware(['api.token'])->group(function () {
-    Route::post('/transactions', [ApiController::class, 'store']);
+    Route::post('/transactions', [ApiController::class, 'createNewTransaction']);
+    Route::get('/transactions', [ApiController::class, 'getPaginatedTransactionList']);
+    Route::post('/transactions/{id}', [ApiController::class, 'fulfillPendingTransaction']);
+    Route::get('/transactions/{id}', [ApiController::class, 'getTransactionDetails']);
+    Route::post('/transactions/{id}/refound', [ApiController::class, 'refoundTransaction']);
 });
 

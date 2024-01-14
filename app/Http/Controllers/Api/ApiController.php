@@ -24,6 +24,18 @@ class ApiController extends Controller
 
     }
 
+    public function fulfillPendingTransaction(Request $request, $id) {
+
+    }
+
+    public function getTransactionDetails(Request $request, $id) {
+
+    }
+
+    public function refoundTransaction(Request $request, $id) {
+
+    }
+
     /**
      * Store a newly created resource in storage.
      */
