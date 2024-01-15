@@ -46,8 +46,8 @@
           <span class="menu-title">Listado de incidencias</span>
         </a>
       </li>
-      <li class="nav-item menu-items {{ request()->is('tokens-admin') ? 'active' : '' }}">
-        <a class="nav-link" href="/tokens-admin">
+      <li class="nav-item menu-items {{ request()->is('admin/tokens') ? 'active' : '' }}">
+        <a class="nav-link" href="{{route('admin.tokens')}}">
           <span class="menu-icon">
             <i class="mdi mdi-key-change"></i>
           </span>

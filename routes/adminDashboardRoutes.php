@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BusinessController;
 use App\Http\Controllers\Admin\TechnicianController;
 use App\Http\Controllers\Admin\TicketController;
+use App\Http\Controllers\Admin\TokensController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified','admin'])->group(function () {
@@ -98,4 +99,12 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::post('/admin/tickets/{id}/assign',
         [TicketController::class, 'assignTechnician'])
         ->name('admin.tickets.assign');
+
+    Route::get('/admin/tokens',
+        [TokensController::class, 'showTokens'])
+        ->name('admin.tokens');
+
+    Route::get('/admin/tokens/{id}/invalidate',
+        [TokensController::class, 'invalidateToken'])
+        ->name('admin.tokens.invalidate');
 });
