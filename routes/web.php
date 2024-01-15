@@ -95,8 +95,8 @@ Route::get('/terminos-condiciones', function () {
 
 // Route::middleware('auth')->group(function () {
 // });
-
-
+Route::get('downloadFile/{id}', [TicketController::class, 'downloadFile'])
+    ->middleware(['auth', 'verified', 'attachmentOfUser'])->name('downloadFile');
 Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
 require __DIR__.'/auth.php';

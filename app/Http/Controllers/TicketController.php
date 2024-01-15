@@ -57,9 +57,10 @@ class TicketController extends Controller
     public function showTicket(Request $request, $id)
     {
         $ticket = Ticket::find($id);
+        $comments = $ticket->comments()->orderBy('sent_date', 'desc')->get();
 
         return view('home.business-views.incidencia',
-            ['ticket' => $ticket]);
+            ['ticket' => $ticket, 'comments' => $comments]);
     }
 
     public function valorateTicket(Request $request, $id)
@@ -120,5 +121,12 @@ class TicketController extends Controller
         }
 
         return $tickets;
+    }
+
+    public function downloadFile(Request $request, $id)
+    {
+        $attachment = Attachment::find($id);
+        $path = storage_path('app/attachments/' . $attachment->filename);
+        return response()->download($path);
     }
 }
