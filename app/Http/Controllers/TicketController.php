@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Enums\TicketStateType;
 use App\Models\Attachment;
 use App\Models\Business;
+use App\Models\Comment;
 use App\Models\Ticket;
 use App\Models\Transaction;
+use http\Exception\InvalidArgumentException;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
@@ -57,7 +59,7 @@ class TicketController extends Controller
     public function showTicket(Request $request, $id)
     {
         $ticket = Ticket::find($id);
-        $comments = $ticket->comments()->orderBy('sent_date', 'desc')->get();
+        $comments = $ticket->comments()->orderBy('sent_date', 'asc')->get();
 
         return view('home.business-views.incidencia',
             ['ticket' => $ticket, 'comments' => $comments]);
@@ -70,6 +72,12 @@ class TicketController extends Controller
         ]);
 
         $ticket = Ticket::find($id);
+        if($ticket->state != TicketStateType::Closed->value){
+            return redirect()->route('ticket', $ticket->id);
+        }
+        if($ticket->valoration_valoration != 0){
+            return redirect()->route('ticket', $ticket->id);
+        }
         $ticket->valoration_valoration = $request->valoration;
         if ($request->has('comment') && $request->comment != null) {
             $request->validate([
@@ -128,5 +136,43 @@ class TicketController extends Controller
         $attachment = Attachment::find($id);
         $path = storage_path('app/attachments/' . $attachment->filename);
         return response()->download($path);
+    }
+
+    public function addComment(Request $request, $id){
+        $ticket = Ticket::find($id);
+        if ($ticket->state == TicketStateType::Closed->value){
+            return redirect()->route('ticket', $id);
+        }
+        $request->validate([
+            'message' => 'required|string',
+        ]);
+        if ($request->hasFile('attachment')) {
+            $request->validate([
+                'attachment' => 'file|max:1024|mimes:pdf,jpg,jpeg,png,webp,zip,rar,tar.gz',
+            ]);
+        }
+        $comment = new Comment();
+        $comment->message = $request->message;
+        $comment->sent_date = now();
+        $comment->author()->associate(Auth::user());
+        $comment->ticket()->associate($ticket);
+        $comment->save();
+        if ($request->hasFile('attachment')) {
+
+            $file = $request->file('attachment');
+            $extension = $file->getClientOriginalExtension();
+            $filename = $ticket->id .'_'.$comment->id. '_ticket_comment_'. round(microtime(true)) . '.' . $extension;
+            $file->storeAs('attachments', $filename);
+
+            $attachment = new Attachment();
+            $attachment->filename = $filename;
+            $attachment->upload_date = now();
+            $attachment->save();
+
+            $comment->attachment()->associate($attachment);
+            $comment->save();
+        }
+
+        return redirect()->route('ticket', $id);
     }
 }

@@ -61,21 +61,23 @@ Route::get('/business-home', function () {
 })->middleware(['auth', 'verified'])->name('business-home');
 
 Route::get('/technician/reviews', [TechnicianController::class, 'showTechnicianValorations'])
-    ->middleware(['auth', 'verified','technician'])->name('technician.reviews');
+    ->middleware(['auth', 'verified', 'technician'])->name('technician.reviews');
 
 Route::get('/incidencias', function () {
     return view('home.technical-views.incidencias');
 })->middleware(['auth', 'verified'])->name('incidencias');
 
-Route::get('/incidencia', function () { //TODO añadir enlace a esta pagina en la vista de valoraciones
+Route::get('/incidencia', function () {
     return view('home.technical-views.incidencia');
 })->middleware(['auth', 'verified'])->name('incidencia');
 
 Route::get('/tickets', [TicketController::class, 'showTickets'])
     ->middleware(['auth', 'verified', 'business'])->name('tickets');
 
-Route::get('/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'showTicket'])->middleware(['auth', 'verified', 'business'])->name('ticket');
-Route::post('/ticket/{id}/valorate', [\App\Http\Controllers\TicketController::class, 'valorateTicket'])->middleware(['auth', 'verified', 'business'])->name('valorateTicket');
+Route::get('/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'showTicket'])
+    ->middleware(['auth', 'verified', 'ticketAccess'])->name('ticket');
+Route::post('/ticket/{id}/valorate', [\App\Http\Controllers\TicketController::class, 'valorateTicket'])
+    ->middleware(['auth', 'verified', 'ticketAccess'])->name('valorateTicket');
 
 Route::get('/generar-token', function () {
     return view('home.business-views.token');
@@ -84,10 +86,13 @@ Route::get('/generar-token', function () {
 Route::get('/payments', [BusinessController::class, 'showPayments'])
     ->middleware(['auth', 'verified', 'business'])->name('payments');
 
-Route::get('/payment/{id}', [BusinessController::class, 'showPayment'])->middleware(['auth', 'verified', 'business'])->name('payment');
+Route::get('/payment/{id}', [BusinessController::class, 'showPayment'])
+    ->middleware(['auth', 'verified', 'paymentAccess'])->name('payment');
 
-Route::get('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'showCreateTicket'])->middleware(['auth', 'verified', 'business'])->name('report');
-Route::post('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'createTicket'])->middleware(['auth', 'verified', 'business'])->name('createReport');
+Route::get('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'showCreateTicket'])
+    ->middleware(['auth', 'verified', 'paymentAccess'])->name('report');
+Route::post('/payment/{id}/report', [\App\Http\Controllers\TicketController::class, 'createTicket'])
+    ->middleware(['auth', 'verified', 'paymentAccess'])->name('createReport');
 
 Route::get('/terminos-condiciones', function () {
     return view('home.general-views.terminos');
@@ -95,8 +100,10 @@ Route::get('/terminos-condiciones', function () {
 
 // Route::middleware('auth')->group(function () {
 // });
-Route::get('downloadFile/{id}', [TicketController::class, 'downloadFile'])
-    ->middleware(['auth', 'verified', 'attachmentOfUser'])->name('downloadFile');
+Route::get('/downloadFile/{id}', [TicketController::class, 'downloadFile'])
+    ->middleware(['auth', 'verified', 'attachmentAccess'])->name('downloadFile');
 Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
-require __DIR__.'/auth.php';
+Route::post('/ticket/{id}/comment', [\App\Http\Controllers\TicketController::class, 'addComment'])
+    ->middleware(['auth', 'verified', 'ticketAccess'])->name('addComment');
+require __DIR__ . '/auth.php';

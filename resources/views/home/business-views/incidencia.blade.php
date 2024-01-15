@@ -92,7 +92,7 @@
                                                                     class="fas fa-paperclip"></i></a>
                                                         @endif
                                                     </p>
-                                                    <p style="color: black;">
+                                                    <p style="color: black">
                                                         {{$comment->message}}
                                                     </p>
 
@@ -103,16 +103,33 @@
                                             @endforeach
 
                                             @if($ticket->state != \App\Enums\TicketStateType::Closed->value)
-                                                <div style="margin-top: 20px;">
-                                                    <label for="new-comment"
-                                                           style="display: block; color: white;"><strong>Mensaje</strong></label>
-                                                    <textarea id="new-comment" rows="2"
-                                                              style="padding: 20px; border-radius: 8px; margin-top: 10px; width: 100%;"
-                                                              placeholder="Escribe un comentario aqui"></textarea>
-                                                    <button type="button"
-                                                            style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%;">
-                                                        Añadir comentario
-                                                    </button>
+                                                <div style="margin-top: 60px;">
+                                                    @if ($errors->any())
+                                                        <div class="alert alert-danger">
+                                                            <ul>
+                                                                @foreach ($errors->all() as $error)
+                                                                    <li>{{ $error }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
+                                                    <form method="post" action="{{route('addComment', $ticket->id)}}" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <label for="message"
+                                                               style="display: block; color: white;"><strong>Mensaje*</strong></label>
+                                                        <textarea id="message" rows="2" name="message"
+                                                                  style="padding: 20px; border-radius: 8px; margin-top: 10px; width: 100%;"
+                                                                  placeholder="Escribe un comentario aqui"></textarea>
+                                                        <div style="margin-bottom: 20px; margin-top: 20px">
+                                                            <label for="attachment" style="font-weight: bold; display: block; margin-bottom: 10px; color: white">Subir archivo</label>
+                                                            <input type="file" id="attachment" name="attachment" style="padding: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: whitesmoke; width: 50%">
+                                                        </div>
+                                                        <span style="color: white;margin-top: 30px; display: block">*campo requerido</span>
+                                                        <button type="submit"
+                                                                style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%;font-size: 1.2em !important;">
+                                                            Añadir comentario
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             @elseif($ticket->valoration_valoration == 0)
                                                 <div style="margin-top: 80px;">
@@ -154,7 +171,7 @@
 
                                                         <span style="color: white;margin-top: 30px; display: block">*campo requerido</span>
                                                         <button type="submit"
-                                                                style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%; font-size: 1.4em !important;">
+                                                                style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%; font-size: 1.2em !important;">
                                                             Valorar
                                                         </button>
                                                     </form>
