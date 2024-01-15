@@ -59,7 +59,7 @@ class TicketController extends Controller
         if (!$attachment) {
             return back()->with('error', 'File not found.');
         }
-        $attachmentPath = storage_path('app/' . $attachment->filepath);
+        $attachmentPath = storage_path('app/attachments/' . $attachment->filename);
 
         if (file_exists($attachmentPath)) {
             return response()->download($attachmentPath, $attachment->filename);
