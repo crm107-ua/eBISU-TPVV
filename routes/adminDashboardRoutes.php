@@ -52,6 +52,18 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
         [AdminController::class, 'showAdminCreateForm'])
         ->name('admin.admins.create');
 
+    Route::post('admin/admins/create',
+        [AdminController::class, 'createAdmin'])
+        ->name('admin.admins.create.post');
+
+    Route::get('admin/admins/{id}/edit',
+        [AdminController::class, 'showAdminEditForm'])
+        ->name('admin.admins.edit');
+
+    Route::post('admin/admins/{id}/edit',
+        [AdminController::class, 'editAdmin'])
+        ->name('admin.admins.edit.post');
+
     Route::get('admin/admins/{id}',
         [AdminController::class, 'showAdminDetail'])
         ->name('admin.admins.details');
@@ -71,6 +83,18 @@ Route::middleware(['auth', 'verified','admin'])->group(function () {
     Route::get('/admin/technicians/create',
         [TechnicianController::class, 'showTechnicianCreateForm'])
         ->name('admin.technicians.create');
+
+    Route::post('/admin/technicians/create',
+        [TechnicianController::class, 'createTechnician'])
+        ->name('admin.technicians.create.post');
+
+    Route::get('/admin/technicians/{id}/edit',
+        [TechnicianController::class, 'showEditTechnicianForm'])
+        ->name('admin.technicians.edit');
+
+    Route::post('/admin/technicians/{id}/edit',
+        [TechnicianController::class, 'editTechnician'])
+        ->name('admin.technicians.edit.post');
 
     Route::get('/admin/technicians/{id}',
         [TechnicianController::class, 'showTechnicianDetail'])

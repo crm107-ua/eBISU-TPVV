@@ -17,58 +17,134 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title mt-2 mb-5">Agrega un administrador</h4>
-                  <form class="forms-sample">
+                  <form class="forms-sample" action="{{route('admin.admins.create.post')}}" method="POST">
+                    @csrf
                     <div class="row">
-
-                      <!-- Columna 1 -->
                       <div class="col-md-6">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nombre</label>
-                            <input type="email" class="form-control" id="name" name="name" style="color: white;" placeholder="Nombre">
+                          <label for="name">Nombre</label>
+                          @if($errors->has('name'))
+                            @foreach($errors->get('name') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
+                          @endif
+                          <input type="text" class="form-control" id="name" name="name"
+                                 style="color: white;" placeholder="Nombre"
+                                 value="{{old('name')}}">
                         </div>
+
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Correo de contacto</label>
-                            <input type="email" class="form-control" id="email" name="email" style="color: white;" placeholder="Correo de contacto">
+                          <label for="email">Correo de contacto</label>
+                          @if($errors->has('email'))
+                            @foreach($errors->get('email') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
+                          @endif
+                          <input type="email" class="form-control" id="email" name="email"
+                                 style="color: white;" placeholder="Correo de contacto" required
+                                 value="{{old('email')}}">
                         </div>
+
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="password" style="color: white;" placeholder="Contraseña">
+                          <label for="password">Contraseña</label>
+                          @if($errors->has('password'))
+                            @foreach($errors->get('password') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
+                          @endif
+                          <input type="password" class="form-control" id="password"
+                                 name="password" style="color: white;" required
+                                 value="{{old('password')}}"
+                                 placeholder="Contraseña">
                         </div>
                       </div>
 
                       <!-- Columna 3 -->
                       <div class="col-md-6">
                         <div class="form-group">
-                          <label for="exampleInputUsername1">Dirección:</label>
-                          <input type="text" class="form-control" id="address" name="address" style="color: white;" placeholder="Dirección">
+                          <label for="exampleInputUsername1">Dirección</label>
+                          @if($errors->has('address'))
+                            @foreach($errors->get('address') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
+                          @endif
+                          <input type="text" class="form-control" id="address" name="address"
+                                 style="color: white;" placeholder="Dirección"
+                                 value="{{old('address')}}" required>
                         </div>
                         <div class="row">
                           <div class="col-sm-6 form-group">
-                            <label for="country">País:</label>
-                            <select class="js-example-basic-single" id="country" name="country" style="width:100%">
-                              <option value="">Selecciona un país</option>
-                              <option value="country1">País 1</option>
-                              <option value="country2">País 2</option>
-                              <option value="country3">País 3</option>
-                              <option value="country4">País 4</option>
-                              <option value="country5">País 5</option>
+                            <label for="country">País</label>
+                            @if($errors->has('country'))
+                              @foreach($errors->get('country') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
+                            @endif
+                            <select id="country"
+                                    name="country" style="width:100%"
+                                    required>
+                              @foreach($countries as $country)
+                                <option value="{{ $country->code }}"
+                                  {{ old('country') == $country->code || (old('country')=='' && $country->code == 'ES') ? 'selected' : '' }}>
+                                  {{ $country->name }}
+                                </option>
+                              @endforeach
                             </select>
                           </div>
+
                           <div class="col-sm-6 form-group">
-                            <label for="city">Población:</label>
-                            <select class="js-example-basic-single" id="poblacion" name="poblacion" style="width:100%">
-                                <option value="">Selecciona un población</option>
-                                <option value="AL">Alabama</option>
-                                <option value="WY">Wyoming</option>
-                                <option value="AM">America</option>
-                                <option value="CA">Canada</option>
-                                <option value="RU">Russia</option>
+                            <label for="town">Población</label>
+                            @if($errors->has('town-select'))
+                              @foreach($errors->get('town-select') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
+                            @endif
+                            @if($errors->has('town-input'))
+                              @foreach($errors->get('town-input') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
+                            @endif
+                            <div>
+                              <select id="town-select"
+                                      name="town-select" style="width:100%; display: inline">
+                                @foreach($poblations as $poblation)
+                                  <option
+                                    value="{{ $poblation->name }}">{{ $poblation->name }}</option>
+                                @endforeach
                               </select>
+                              <input type="text" class="form-control" id="town-input"
+                                     name="town-input" style="color: white; display: none"
+                                     placeholder="Ciudad o pueblo"
+                                     value="{{old('town-input')}}">
+                            </div>
                           </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Código postal</label>
-                            <input type="text" class="form-control" id="cp" name="cp" style="color: white;" placeholder="Código postal">
+                          <label for="cp">Código postal</label>
+                          @if($errors->has('cp'))
+                            @foreach($errors->get('cp') as $error)
+                              <div class="alert alert-danger mt-2">
+                                {{ $error }}
+                              </div>
+                            @endforeach
+                          @endif
+                          <input type="text" class="form-control" id="cp" name="cp"
+                                 style="color: white;" placeholder="Código postal"
+                                 value="{{old('cp')}}" required>
                         </div>
                       </div>
                     </div>

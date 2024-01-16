@@ -50,7 +50,7 @@
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <a class="dropdown-item" href="{{route('admin.technicians.details', $technician->id)}}">Detalles</a>
-                                  <a class="dropdown-item" href="#">Editar</a>
+                                  <a class="dropdown-item" href="{{route('admin.technicians.edit', $technician->id)}}">Editar</a>
                                   @if($technician->discharge_date == null)
                                     <a class="dropdown-item" href="{{route('admin.technicians.discharge', $technician->id)}}">Dar de baja</a>
                                   @else

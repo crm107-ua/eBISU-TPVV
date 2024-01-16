@@ -3,7 +3,9 @@
 namespace App\Services;
 
 use App\Enums\UserRole;
+use App\Models\Country;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class AdminTechnicianService
 {
@@ -58,4 +60,24 @@ class AdminTechnicianService
         $user->discharge_date = null;
         $user->save();
     }
+
+    public function createUser($data, $rol)
+    {
+        $user = new User();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->password = Hash::make($data['password']);
+        $user->role = $rol;
+        $user->direction_direction = $data['address'];
+        $user->direction_postal_code = $data['cp'];
+        if ($data['town-select'] != null) {
+            $user->direction_poblation = $data['town-select'];
+        } else {
+            $user->direction_poblation = $data['town-input'];
+        }
+        $user->country()->associate(Country::where('code', $data['country'])->firstOrFail());
+        $user->save();
+    }
+
+
 }

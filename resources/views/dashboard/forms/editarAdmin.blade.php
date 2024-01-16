@@ -1,5 +1,5 @@
 @extends('dashboard.partials.master')
-@section('title', 'eBISU Dashboard - Agregar técnico')
+@section('title', 'eBISU Dashboard - Agregar administrador')
 @section('content')
 
 <div class="container-scroller">
@@ -16,8 +16,8 @@
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title mt-2 mb-5">Registro de técnicos</h4>
-                  <form class="forms-sample" action="{{route('admin.technicians.create.post')}}" method="POST">
+                  <h4 class="card-title mt-2 mb-5">Editar un administrador</h4>
+                  <form class="forms-sample" action="{{route('admin.admins.edit.post', $admin->id)}}" method="POST">
                     @csrf
                     <div class="row">
                       <div class="col-md-6">
@@ -32,7 +32,7 @@
                           @endif
                           <input type="text" class="form-control" id="name" name="name"
                                  style="color: white;" placeholder="Nombre"
-                                 value="{{old('name')}}">
+                                 value="{{old('name', $admin->name)}}">
                         </div>
 
                         <div class="form-group">
@@ -46,7 +46,7 @@
                           @endif
                           <input type="email" class="form-control" id="email" name="email"
                                  style="color: white;" placeholder="Correo de contacto" required
-                                 value="{{old('email')}}">
+                                 value="{{old('email', $admin->email)}}">
                         </div>
 
                         <div class="form-group">
@@ -60,7 +60,7 @@
                           @endif
                           <input type="password" class="form-control" id="password"
                                  name="password" style="color: white;" required
-                                 value="{{old('password')}}"
+                                 value="{{old('password', $admin->password)}}"
                                  placeholder="Contraseña">
                         </div>
                       </div>
@@ -78,7 +78,7 @@
                           @endif
                           <input type="text" class="form-control" id="address" name="address"
                                  style="color: white;" placeholder="Dirección"
-                                 value="{{old('address')}}" required>
+                                 value="{{old('address', $admin->direction_direction)}}" required>
                         </div>
                         <div class="row">
                           <div class="col-sm-6 form-group">
@@ -144,22 +144,21 @@
                           @endif
                           <input type="text" class="form-control" id="cp" name="cp"
                                  style="color: white;" placeholder="Código postal"
-                                 value="{{old('cp')}}" required>
+                                 value="{{old('cp', $admin->direction_postal_code)}}" required>
                         </div>
                       </div>
                     </div>
                     <br>
                     <div class="row align-items-center">
-                      <div class="col-auto">
-                        <button type="submit" class="btn btn-success me-2">Registrar</button>
-                        <a class="btn btn-dark" href="{{route('admin.admins')}}">Cancelar</a>
-                      </div>
-                      <div class="col">
-                        <x-password-generator/>
-                      </div>
+                        <div class="col-auto">
+                            <button type="submit" class="btn btn-success me-2">Registrar</button>
+                            <a class="btn btn-dark" href="{{route('admin.admins')}}">Cancelar</a>
+                        </div>
+                        <div class="col">
+                          <x-password-generator/>
+                        </div>
                     </div>
-                  </form>
-
+                    </form>
                 </div>
               </div>
             </div>
@@ -169,3 +168,4 @@
   </div>
 </div>
 @endsection
+
