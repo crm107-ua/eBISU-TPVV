@@ -28,14 +28,17 @@ class ApiController extends Controller
 
     public function createNewTransaction(Request $request)
     {
+        return response('Not yet implemented', 400);
     }
 
     public function getPaginatedTransactionList(Request $request)
     {
+        return response('Not yet implemented', 400);
     }
 
     public function fulfillPendingTransaction(Request $request, $id)
     {
+        return response('Not yet implemented', 400);
     }
 
     public function getTransactionDetails(Request $request, $transactionId)
@@ -78,6 +81,7 @@ class ApiController extends Controller
 
     public function refoundTransaction(Request $request, $id)
     {
+        return response('Not yet implemented', 400);
     }
 
     /**

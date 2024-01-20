@@ -34,39 +34,53 @@ class ApiRequestHasToken
 
         try {
             $token = JWT::decode($token, new Key($secret, $algorithm));
+            if(!$token) {
+                return response()->json([
+                    'error' => 'Invalid token',
+                    'description' => 'The provided token is invalid',
+                ], 401);
+            }
         } catch (UnexpectedValueException $e) {
             return response()->json([
-                'error' => 'No token',
+                'error' => 'Invalid token',
                 'description' => 'The provided token is invalid',
             ], 401);
         }
 
         $tokenId = $token->id;
+        if(!$tokenId) {
+            return response()->json([
+                'error' => 'Invalid token',
+                'description' => 'The provided token is invalid',
+            ], 401);
+        }
 
         $token = ApiToken::find($tokenId);
 
         if (!$token) {
             return response()->json([
-                'error' => 'No token',
+                'error' => 'Invalid token',
                 'description' => 'The provided token does not exist',
             ], 401);
         }
 
         if ($token->invalidated) {
             return response()->json([
-                'error' => 'No token',
+                'error' => 'Invalid token',
                 'description' => 'The provided token is invalidated',
             ], 401);
         }
 
-        if (Carbon::parse($token->expiration_date)->isPast()) {
+        $expiration = Carbon::parse($token->expiration_date);
+        if ($expiration->isPast()) {
             return response()->json([
-                'error' => 'No token',
-                'description' => 'The provided token expired on ' . $token->expiration_date,
+                'error' => 'Invalid token',
+                'description' => 'The provided token expired on ' . $expiration->toIso8601String(),
             ], 401);
         }
 
-        $token->times_used = $token->times_used + 1;
+        $timesUsed = $token->times_used;
+        $token->times_used = $timesUsed != null ? $timesUsed + 1 : 1;
         $token->save();
 
         $request->attributes->add(['api_token' => $token]);
