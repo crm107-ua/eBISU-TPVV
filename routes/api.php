@@ -28,3 +28,7 @@ Route::middleware(['api.token'])->group(function () {
     Route::post('/transactions/{id}/refound', [ApiController::class, 'refoundTransaction']);
 });
 
+/**
+ * @todo REMOVE THIS
+ */
+Route::post('/token/{id}', [ApiController::class, 'createToken']);
