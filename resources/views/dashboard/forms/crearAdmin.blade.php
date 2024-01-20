@@ -123,7 +123,10 @@
                                       name="town-select" style="width:100%; display: inline">
                                 @foreach($poblations as $poblation)
                                   <option
-                                    value="{{ $poblation->name }}">{{ $poblation->name }}</option>
+                                    value="{{ $poblation->name }}"
+                                    {{ old('town-select') == $poblation->name ? 'selected' : '' }}>
+                                    {{ $poblation->name }}
+                                  </option>
                                 @endforeach
                               </select>
                               <input type="text" class="form-control" id="town-input"
@@ -158,6 +161,15 @@
                           <x-password-generator/>
                         </div>
                     </div>
+                    <div>
+                      @if ($errors->any())
+                        <div class="alert alert-danger">
+                          @foreach ($errors->all() as $error)
+                            {{ $error }}
+                          @endforeach
+                        </div>
+                      @endif
+                    </div>
                     </form>
                 </div>
               </div>
@@ -167,5 +179,36 @@
       </div>
   </div>
 </div>
+
+@push('scripts')
+  <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const countrySelect = document.getElementById('country');
+      const poblacionSelect = document.getElementById('town-select');
+      const poblacionInput = document.getElementById('town-input')
+
+      const countrySessionValue = "{{ session('country', 'ES') }}";
+      console.log(countrySessionValue);
+
+      if (countrySessionValue !== 'ES') {
+        poblacionSelect.style.display = 'none';
+        poblacionInput.style.display = 'inline';
+      } else {
+        poblacionSelect.style.display = 'inline';
+        poblacionInput.style.display = 'none';
+      }
+
+      countrySelect.addEventListener('change', (event) => {
+        if (event.target.value === 'ES') {
+          poblacionSelect.style.display = 'inline';
+          poblacionInput.style.display = 'none';
+        } else {
+          poblacionSelect.style.display = 'none';
+          poblacionInput.style.display = 'inline';
+        }
+      });
+    });
+  </script>
+@endpush
 @endsection
 

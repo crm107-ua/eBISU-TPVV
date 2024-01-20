@@ -11,13 +11,13 @@ class AdminTechnicianService
 {
     public function getAdmins()
     {
-        $users = User::where('role', UserRole::Admin)->paginate(1);
+        $users = User::where('role', UserRole::Admin)->paginate(5);
         return $users;
     }
 
     public function getTechnicians()
     {
-        $users = User::where('role', UserRole::Technician)->paginate(1);
+        $users = User::where('role', UserRole::Technician)->paginate(5);
         return $users;
     }
 
@@ -70,7 +70,7 @@ class AdminTechnicianService
         $user->role = $rol;
         $user->direction_direction = $data['address'];
         $user->direction_postal_code = $data['cp'];
-        if ($data['town-select'] != null) {
+        if ($data['country'] == 'ES') {
             $user->direction_poblation = $data['town-select'];
         } else {
             $user->direction_poblation = $data['town-input'];
@@ -79,5 +79,19 @@ class AdminTechnicianService
         $user->save();
     }
 
-
+    public function editUser($data, $id)
+    {
+        $user = User::where('id', $id)->first();
+        $user->name = $data['name'];
+        $user->email = $data['email'];
+        $user->direction_direction = $data['address'];
+        $user->direction_postal_code = $data['cp'];
+        if ($data['country'] == 'ES') {
+            $user->direction_poblation = $data['town-select'];
+        } else {
+            $user->direction_poblation = $data['town-input'];
+        }
+        $user->country()->associate(Country::where('code', $data['country'])->firstOrFail());
+        $user->save();
+    }
 }

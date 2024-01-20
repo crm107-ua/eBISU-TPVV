@@ -58,8 +58,8 @@
                             @endforeach
                           @endif
                           <input type="password" class="form-control" id="password"
-                                 name="password" style="color: white;" required
-                                 value="{{old('password', $business->user->password)}}"
+                                 name="password" style="color: white;"
+                                 value="{{old('password')}}"
                                  placeholder="Contraseña">
                         </div>
                       </div>
@@ -146,15 +146,35 @@
                           </div>
                           <div class="col-sm-6 form-group">
                             <label for="town">Población</label>
+                            @if($errors->has('town-select'))
+                              @foreach($errors->get('town-select') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
+                            @endif
+                            @if($errors->has('town-input'))
+                              @foreach($errors->get('town-input') as $error)
+                                <div class="alert alert-danger mt-2">
+                                  {{ $error }}
+                                </div>
+                              @endforeach
+                            @endif
                             <p>{{$business->user->direction_poblation}}</p>
-                            <select id="town" name="town" style="width:100%">
+                            <select id="town-select"
+                                    name="town-select" style="width:100%; display: inline">
                               @foreach($poblations as $poblation)
-                                <option value="{{ $poblation->name }}"
-                                  {{ old('town', $business->user->direction_poblation) == $poblation->name ? 'selected' : '' }}>
+                                <option
+                                  value="{{ $poblation->name }}"
+                                  {{ old('town-select') == $poblation->name ? 'selected' : '' }}>
                                   {{ $poblation->name }}
                                 </option>
                               @endforeach
                             </select>
+                            <input type="text" class="form-control" id="town-input"
+                                   name="town-input" style="color: white; display: none"
+                                   placeholder="Ciudad o pueblo"
+                                   value="{{old('town-input', $business->user->direction_poblation)}}">
                           </div>
                         </div>
                         <div class="form-group">
@@ -176,13 +196,22 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <button type="submit" class="btn btn-success me-2">
-                          Dar de alta
+                          Modificar
                         </button>
                         <a href="{{route('admin.business')}}" class="btn btn-dark">Cancelar</a>
                       </div>
                       <div class="col">
                         <x-password-generator/>
                       </div>
+                    </div>
+                    <div>
+                      @if ($errors->any())
+                        <div class="alert alert-danger">
+                          @foreach ($errors->all() as $error)
+                            {{ $error }}
+                          @endforeach
+                        </div>
+                      @endif
                     </div>
                   </form>
                 </div>
@@ -197,13 +226,27 @@
     <script defer>
       document.addEventListener('DOMContentLoaded', (event) => {
         const countrySelect = document.getElementById('country');
-        const poblacionSelect = document.getElementById('town');
+        const poblacionSelect = document.getElementById('town-select');
+        const poblacionInput = document.getElementById('town-input')
+
+        const countrySessionValue = "{{ session('country', 'ES') }}";
+        console.log(countrySessionValue);
+
+        if (countrySessionValue !== 'ES') {
+          poblacionSelect.style.display = 'none';
+          poblacionInput.style.display = 'inline';
+        } else {
+          poblacionSelect.style.display = 'inline';
+          poblacionInput.style.display = 'none';
+        }
 
         countrySelect.addEventListener('change', (event) => {
-          if (event.target.value !== 'ES') {
-            poblacionSelect.setAttribute('disabled', '');
+          if (event.target.value === 'ES') {
+            poblacionSelect.style.display = 'inline';
+            poblacionInput.style.display = 'none';
           } else {
-            poblacionSelect.removeAttribute('disabled');
+            poblacionSelect.style.display = 'none';
+            poblacionInput.style.display = 'inline';
           }
         });
       });

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class BusinessService
 {
     public function getBusinessPaginatedList() {
-        return Business::paginate(2);
+        return Business::paginate(5);
     }
 
     public function createBusiness($data) {
@@ -22,7 +22,7 @@ class BusinessService
         $user->role = UserRole::Business;
         $user->direction_direction = $data['address'];
         $user->direction_postal_code = $data['cp'];
-        if ($data['town-select'] != null) {
+        if ($data['country'] == 'ES') {
             $user->direction_poblation = $data['town-select'];
         } else {
             $user->direction_poblation = $data['town-input'];
@@ -60,6 +60,29 @@ class BusinessService
     }
 
     public function editBusiness($data, $id) {
+        $business = Business::findOrFail($id);
+        $user = $business->user;
+        $user->name = $data['business-name'];
+        $user->email = $data['email'];
+        $user->direction_direction = $data['address'];
+        $user->direction_postal_code = $data['cp'];
 
+        if (array_key_exists( 'password', $data )) {
+            $user->password = Hash::make($data['password']);
+        }
+
+        if ($data['country'] == 'ES') {
+            $user->direction_poblation = $data['town-select'];
+        } else {
+            $user->direction_poblation = $data['town-input'];
+        }
+        $user->country()->associate(Country::where('code', $data['country'])->firstOrFail());
+        $user->save();
+
+        $business->cif = $data['cif'];
+        $business->contact_info_name = $data['contact-name'];
+        $business->contact_info_phone_number = $data['phone'];
+        $business->contact_info_email = $data['email'];
+        $business->save();
     }
 }

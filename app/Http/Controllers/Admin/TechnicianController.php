@@ -18,8 +18,14 @@ class TechnicianController extends Controller
         'email' => 'required|email|unique:users,email',
         'address' => 'required|string',
         'country' => 'required|exists:countries,code',
-        'town-select' => 'exists:poblations,name',
-        'town-input' => 'string',
+        'cp' => 'required|size:5|regex:/^[0-9]*$/',
+    ];
+
+    private $editRules = [
+        'name' => 'required|string',
+        'email' => 'required|email',
+        'address' => 'required|string',
+        'country' => 'required|exists:countries,code',
         'cp' => 'required|size:5|regex:/^[0-9]*$/',
     ];
     public function __construct()
@@ -49,20 +55,18 @@ class TechnicianController extends Controller
 
     public function createTechnician(Request $request)
     {
-        $request->validate([
-            'town' => function ($attribute, $value, $fail) use ($request) {
-                if (is_null($request->input('town-select')) && is_null($request->input('town-input'))) {
-                    $fail('El campo de ciudad o pueblo es requerido.');
-                }
-            },
-        ]);
         session(['country' => $request->country]);
         $validatedData = request()->validate($this->rules);
+        if($validatedData['country'] == 'ES') {
+            $validatedData['town-select'] =  $request->validate(['town-select' => 'required|exists:poblations,name'])['town-select'];
+        } else {
+            $validatedData['town-input'] =  $request->validate(['town-input' => 'required|string|min:1|max:255'])['town-input'];
+        }
         try {
             $this->adminTechnicianService->createUser($validatedData, UserRole::Technician);
-            return redirect()->route('admin.technicians')->with(['success' => 'Técnico creado correctamente']);
+            return redirect()->route('admin.technicians')->with(['success' => 'Usuario técnico creado correctamente']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.technicians')->with(['error' => 'Error al crear el técnico']);
+            return redirect()->route('admin.technicians')->with(['error' => 'Error al crear el usuario técnico']);
         }
     }
 
@@ -77,7 +81,23 @@ class TechnicianController extends Controller
 
     public function editTechnician(Request $request, $id)
     {
-
+        session(['country' => $request->country]);
+        $validatedData = request()->validate($this->editRules);
+        if($validatedData['country'] == 'ES') {
+            $validatedData['town-select'] =  $request->validate(['town-select' => 'required|exists:poblations,name'])['town-select'];
+        } else {
+            $validatedData['town-input'] =  $request->validate(['town-input' => 'required|string|min:1|max:255'])['town-input'];
+        }
+        if ($request->input('password') != null) {
+            $validatedData['password'] = $request->validate(
+                ['password' => 'min:16|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/'])['password'];
+        }
+        try {
+            $this->adminTechnicianService->editUser($validatedData, $id);
+            return redirect()->route('admin.technicians')->with(['success' => 'Usuario técnico editado correctamente']);
+        } catch (\Exception $e) {
+            return redirect()->back()->with(['error' => 'Error al editar el usuario técnico']);
+        }
     }
 
     public function dischargeTechnician($id)

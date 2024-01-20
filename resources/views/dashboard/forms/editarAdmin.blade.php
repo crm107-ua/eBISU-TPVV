@@ -93,15 +93,14 @@
                             <select id="country"
                                     name="country" style="width:100%"
                                     required>
+                              <option value="">Selecciona un país</option>
                               @foreach($countries as $country)
                                 <option value="{{ $country->code }}"
-                                  {{ old('country') == $country->code || (old('country')=='' && $country->code == 'ES') ? 'selected' : '' }}>
-                                  {{ $country->name }}
-                                </option>
+                                  {{ old('country', $admin->country->code) == $country->code ? 'selected' : '' }}>
+                                  {{ $country->name }}</option>
                               @endforeach
                             </select>
                           </div>
-
                           <div class="col-sm-6 form-group">
                             <label for="town">Población</label>
                             @if($errors->has('town-select'))
@@ -118,19 +117,21 @@
                                 </div>
                               @endforeach
                             @endif
-                            <div>
-                              <select id="town-select"
-                                      name="town-select" style="width:100%; display: inline">
-                                @foreach($poblations as $poblation)
-                                  <option
-                                    value="{{ $poblation->name }}">{{ $poblation->name }}</option>
-                                @endforeach
-                              </select>
-                              <input type="text" class="form-control" id="town-input"
-                                     name="town-input" style="color: white; display: none"
-                                     placeholder="Ciudad o pueblo"
-                                     value="{{old('town-input')}}">
-                            </div>
+                            <p>{{$admin->direction_poblation}}</p>
+                            <select id="town-select"
+                                    name="town-select" style="width:100%; display: inline">
+                              @foreach($poblations as $poblation)
+                                <option
+                                  value="{{ $poblation->name }}"
+                                  {{ old('town-select') == $poblation->name ? 'selected' : '' }}>
+                                  {{ $poblation->name }}
+                                </option>
+                              @endforeach
+                            </select>
+                            <input type="text" class="form-control" id="town-input"
+                                   name="town-input" style="color: white; display: none"
+                                   placeholder="Ciudad o pueblo"
+                                   value="{{old('town-input', $admin->direction_poblation)}}">
                           </div>
                         </div>
                         <div class="form-group">
@@ -151,7 +152,7 @@
                     <br>
                     <div class="row align-items-center">
                         <div class="col-auto">
-                            <button type="submit" class="btn btn-success me-2">Registrar</button>
+                            <button type="submit" class="btn btn-success me-2">Modificar</button>
                             <a class="btn btn-dark" href="{{route('admin.admins')}}">Cancelar</a>
                         </div>
                         <div class="col">
@@ -167,5 +168,35 @@
       </div>
   </div>
 </div>
+@push('scripts')
+  <script defer>
+    document.addEventListener('DOMContentLoaded', (event) => {
+      const countrySelect = document.getElementById('country');
+      const poblacionSelect = document.getElementById('town-select');
+      const poblacionInput = document.getElementById('town-input')
+
+      const countrySessionValue = "{{ session('country', 'ES') }}";
+      console.log(countrySessionValue);
+
+      if (countrySessionValue !== 'ES') {
+        poblacionSelect.style.display = 'none';
+        poblacionInput.style.display = 'inline';
+      } else {
+        poblacionSelect.style.display = 'inline';
+        poblacionInput.style.display = 'none';
+      }
+
+      countrySelect.addEventListener('change', (event) => {
+        if (event.target.value === 'ES') {
+          poblacionSelect.style.display = 'inline';
+          poblacionInput.style.display = 'none';
+        } else {
+          poblacionSelect.style.display = 'none';
+          poblacionInput.style.display = 'inline';
+        }
+      });
+    });
+  </script>
+@endpush
 @endsection
 

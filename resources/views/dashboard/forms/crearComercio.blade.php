@@ -165,7 +165,10 @@
                                     name="town-select" style="width:100%; display: inline">
                               @foreach($poblations as $poblation)
                                 <option
-                                  value="{{ $poblation->name }}">{{ $poblation->name }}</option>
+                                  value="{{ $poblation->name }}"
+                                  {{ old('town-select') == $poblation->name ? 'selected' : '' }}>
+                                  {{ $poblation->name }}
+                                </option>
                               @endforeach
                             </select>
                             <input type="text" class="form-control" id="town-input"

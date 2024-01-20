@@ -21,8 +21,17 @@ class BusinessController extends Controller
         'phone' => 'regex:/^[\+0-9]*$/',
         'address' => 'required|string',
         'country' => 'required|exists:countries,code',
-        'town-select' => 'exists:poblations,name',
-        'town-input' => 'string',
+        'cp' => 'required|size:5|regex:/^[0-9]*$/',
+    ];
+
+    private $editRules = [
+        'cif' => 'required|size:9|regex:/^[A-Z][0-9]{8}$/',
+        'contact-name' => 'string',
+        'business-name' => 'required|string',
+        'email' => 'required|email',
+        'phone' => 'regex:/^[\+0-9]*$/',
+        'address' => 'required|string',
+        'country' => 'required|exists:countries,code',
         'cp' => 'required|size:5|regex:/^[0-9]*$/',
     ];
 
@@ -46,20 +55,18 @@ class BusinessController extends Controller
 
     public function createBusiness(Request $request)
     {
-        $request->validate([
-            'town' => function ($attribute, $value, $fail) use ($request) {
-                if (is_null($request->input('town-select')) && is_null($request->input('town-input'))) {
-                    $fail('El campo de ciudad o pueblo es requerido.');
-                }
-            },
-        ]);
         session(['country' => $request->country]);
         $validatedData = request()->validate($this->businessRules);
+        if($validatedData['country'] == 'ES') {
+           $validatedData['town-select'] =  $request->validate(['town-select' => 'required|exists:poblations,name'])['town-select'];
+        } else {
+            $validatedData['town-input'] =  $request->validate(['town-input' => 'required|string|min:1|max:255'])['town-input'];
+        }
         try {
             $this->businessService->createBusiness($validatedData);
             return redirect()->route('admin.business')->with(['success' => 'Comercio creado correctamente']);
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Error al crear el comercio']);
+            return redirect()->back()->with(['error' => 'Error al crear el comercio']);
         }
     }
 
@@ -92,12 +99,22 @@ class BusinessController extends Controller
 
     public function editBusiness(Request $request, $id)
     {
-        $validatedData = request()->validate($this->businessRules);
+        session(['country' => $request->country]);
+        $validatedData = request()->validate($this->editRules);
+        if($validatedData['country'] == 'ES') {
+            $validatedData['town-select'] =  $request->validate(['town-select' => 'required|exists:poblations,name'])['town-select'];
+        } else {
+            $validatedData['town-input'] =  $request->validate(['town-input' => 'required|string|min:1|max:255'])['town-input'];
+        }
+        if ($request->input('password') != null) {
+            $validatedData['password'] = $request->validate(
+                ['password' => 'min:16|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/'])['password'];
+        }
         try {
-            $this->businessService->editBusiness($id, $validatedData);
+            $this->businessService->editBusiness( $validatedData, $id);
             return redirect()->route('admin.business')->with(['success' => 'Comercio editado correctamente']);
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'Error al editar el comercio']);
+            return redirect()->back()->with(['error' => 'Error al editar el comercio']);
         }
     }
 
