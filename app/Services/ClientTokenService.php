@@ -8,9 +8,10 @@ use Carbon\Carbon;
 
 class ClientTokenService
 {
-    public function createNewToken($businessId, $issuer = "client token service", $withExpiration = true): ?ApiToken {
+    public function createNewToken($businessId, $issuer = "client token service", $withExpiration = true): ?ApiToken
+    {
         $business = Business::find($businessId);
-        if(!$business) return null;
+        if (!$business) return null;
 
         $this->invalidateBusinessToken($businessId);
 
@@ -23,12 +24,19 @@ class ClientTokenService
         return $business->apiTokens()->save($token);
     }
 
-    public function invalidateBusinessToken($businessId): bool {
-        $activeToken = ApiToken::where('business_id', $businessId)
-            ->where('invalidated', false)
-            ->first();
-        if(!$activeToken) return false;
+    public function invalidateBusinessToken($businessId): bool
+    {
+        $activeToken = $this->getActiveToken($businessId);
+        if (!$activeToken) return false;
         $activeToken->invalidated = true;
         return $activeToken->save();
+    }
+
+    public function getActiveToken($businessId): ?ApiToken
+    {
+        return ApiToken::where('business_id', $businessId)
+            ->where('invalidated', false)
+            ->where('expiration_date', '>', now())
+            ->first();
     }
 }
