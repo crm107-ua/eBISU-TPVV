@@ -89,6 +89,13 @@ class ApiTokenService
             ->first();
     }
 
+    public function getLatestToken($businessId): ?ApiToken
+    {
+        return ApiToken::where('business_id', $businessId)
+            ->orderBy('expiration_date', 'desc')
+            ->first();
+    }
+
     private function formatDate($date)
     {
         return Carbon::parse($date)->toIso8601String();
