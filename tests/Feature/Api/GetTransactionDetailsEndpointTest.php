@@ -152,7 +152,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             'state' => TransactionStateType::Waiting,
             'emision_date' => $emission,
             'business_id' => $this->business->id,
-            'payment_id' => Payment::factory()->create()->id,
         ]);
         $transaction->save();
 
