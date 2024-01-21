@@ -6,7 +6,6 @@ use App\Services\ApiPaymentService;
 use App\Services\ApiTokenService;
 use App\Http\Controllers\Controller;
 use App\Models\ApiToken;
-use App\Models\Business;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 
@@ -52,10 +51,10 @@ class ApiController extends Controller
         }
         $includeRefound = $includeRefound == 'true';
 
-        if (!$transactionId) {
+        if (!is_numeric($transactionId)) {
             return response()->json([
                 'error' => 'Invalid request',
-                'description' => 'Missing the transaction id',
+                'description' => 'The id must be an integer',
             ], 400);
         }
 

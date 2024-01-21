@@ -19,7 +19,7 @@ class ApiTokenService
 
         $json = [
             'id' => $transaction->id,
-            'amount' => $transaction->amount,
+            'amount' => (int) $transaction->amount,
             'state' => TransactionStateType::from($transaction->state)->getApiName(),
             'emision_date' => $this->formatDate($transaction->emision_date),
         ];
@@ -30,7 +30,7 @@ class ApiTokenService
         if ($transaction->receipt_number)
             $json['concept'] = $transaction->receipt_number;
 
-        if ($transaction->state != TransactionStateType::Waiting) {
+        if ($transaction->state != TransactionStateType::Waiting->value) {
             $json['finalized_date'] = $this->formatDate($transaction->finished_date);
             $json['finalized_reason'] = FinalizeReason::from($transaction->finalize_reason)->getApiMessage();
         }
@@ -91,6 +91,6 @@ class ApiTokenService
 
     private function formatDate($date)
     {
-        return Carbon::parse($date)->toIso8601String();
+        return is_string($date) ? Carbon::parse($date)->toIso8601String() : $date->toIso8601String();
     }
 }
