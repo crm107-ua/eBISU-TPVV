@@ -79,9 +79,8 @@ Route::get('/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'show
 Route::post('/ticket/{id}/valorate', [\App\Http\Controllers\TicketController::class, 'valorateTicket'])
     ->middleware(['auth', 'verified', 'ticketAccess'])->name('valorateTicket');
 
-Route::get('/generar-token', function () {
-    return view('home.business-views.token');
-})->middleware(['auth', 'verified'])->name('generar-token');
+Route::get('/generar-token', [BusinessController::class, 'showTokenDetails'])->middleware(['auth', 'verified', 'business'])->name('generar-token');
+Route::post('/generar-token', [BusinessController::class, 'createNewToken'])->middleware(['auth', 'verified', 'business'])->name('crear-generar-token');
 
 Route::get('/payments', [BusinessController::class, 'showPayments'])
     ->middleware(['auth', 'verified', 'business'])->name('payments');
