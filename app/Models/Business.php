@@ -19,6 +19,12 @@ class Business extends Model
         'contact_info_email',
     ];
 
+    protected $casts = [
+        'registration_date' => 'datetime',
+        'discharge_date' => 'datetime',
+        'balance' => 'decimal:2',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id');
