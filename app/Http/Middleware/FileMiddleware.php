@@ -4,11 +4,9 @@ namespace App\Http\Middleware;
 
 use App\Enums\UserRole;
 use App\Models\Attachment;
-use App\Models\User;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class FileMiddleware
@@ -19,7 +17,7 @@ class FileMiddleware
         $id = $request->route('id');
         $attachment = Attachment::find($id);
         if ($attachment != null) {
-            if (Auth::user()->role == UserRole::Admin->value) {
+            if (Auth::user()->role == UserRole::Admin) {
                 return $next($request);
             }
             $tickets = $attachment->tickets()->get();

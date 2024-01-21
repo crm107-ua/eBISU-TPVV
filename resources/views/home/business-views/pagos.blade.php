@@ -82,7 +82,7 @@
                                                     <tr>
                                                         <td style="padding: 10px 0; color:white;">{{$payment->concept}}</td>
                                                         <td style="padding: 10px 0; color:white;">{{$payment->amount}} €</td>
-                                                        <td style="padding: 10px 0; color:white;">{{strtoupper($payment->state)}}</td>
+                                                        <td style="padding: 10px 0; color:white;">{{strtoupper($payment->state->value)}}</td>
                                                         <td style="padding: 10px 0; color:white;">{{$payment->receipt_number}}</td>
                                                         <td style="padding: 10px 0; color:white;">{{$payment->emision_date}}</td>
                                                         <td style="padding: 10px 0; color:white;">{{$payment->finished_date}}</td>

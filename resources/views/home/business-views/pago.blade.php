@@ -42,7 +42,7 @@
                                                     </div>
                                                 </div>
                                                 <p style="color:white;">Razón de
-                                                    finalización: {{str_replace('_', ' ', \App\Enums\FinalizeReason::from($payment->finalize_reason)->name)}}</p>
+                                                    finalización: {{str_replace('_', ' ', $payment->finalize_reason->name)}}</p>
                                             </div>
                                         </div>
                                     </div>
