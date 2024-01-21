@@ -39,8 +39,8 @@
                           Ordenar por:
                         </button>
                         <div class="dropdown-menu" aria-labelledby="sortButton">
-                          <h6 class="dropdown-header">Tipo de ordenación:</h6>
-                          <a class="dropdown-item option" href="#">Opcion 1</a>
+                          <a class="dropdown-item option" href="{{request()->fullUrlWithQuery(['order'=>'register_date'])}}">Fecha de registro</a>
+                          <a class="dropdown-item option" href="{{request()->fullUrlWithQuery(['order'=>'balance'])}}">Saldo</a>
                         </div>
                       </div>
                     </div>

@@ -86,6 +86,11 @@ class AdminTechnicianService
         $user->email = $data['email'];
         $user->direction_direction = $data['address'];
         $user->direction_postal_code = $data['cp'];
+
+        if (array_key_exists( 'password', $data )) {
+            $user->password = Hash::make($data['password']);
+        }
+
         if ($data['country'] == 'ES') {
             $user->direction_poblation = $data['town-select'];
         } else {

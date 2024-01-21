@@ -60,7 +60,7 @@
                           @endif
                           <input type="password" class="form-control" id="password"
                                  name="password" style="color: white;" required
-                                 value="{{old('password', $admin->password)}}"
+                                 value="{{old('password')}}"
                                  placeholder="Contraseña">
                         </div>
                       </div>
@@ -117,13 +117,12 @@
                                 </div>
                               @endforeach
                             @endif
-                            <p>{{$admin->direction_poblation}}</p>
                             <select id="town-select"
                                     name="town-select" style="width:100%; display: inline">
                               @foreach($poblations as $poblation)
                                 <option
                                   value="{{ $poblation->name }}"
-                                  {{ old('town-select') == $poblation->name ? 'selected' : '' }}>
+                                  {{ old('town-select', $admin->direction_poblation) == $poblation->name ? 'selected' : '' }}>
                                   {{ $poblation->name }}
                                 </option>
                               @endforeach

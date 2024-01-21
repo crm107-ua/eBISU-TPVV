@@ -2,7 +2,7 @@
 @section('title', 'eBISU Dashboard - Agregar técnico')
 @section('content')
 
-<div class="container-scroller">
+  <div class="container-scroller">
     <!-- partial:layouts/nav-lateral.html -->
     @include('dashboard.layouts.nav-lateral')
     <!-- partial -->
@@ -17,7 +17,8 @@
               <div class="card">
                 <div class="card-body">
                   <h4 class="card-title mt-2 mb-5">Edicción de técnicos</h4>
-                  <form class="forms-sample" action="{{route('admin.technicians.edit.post', $technician->id)}}" method="POST">
+                  <form class="forms-sample" action="{{route('admin.technicians.edit.post', $technician->id)}}"
+                        method="POST">
                     @csrf
                     <div class="row">
                       <div class="col-md-6">
@@ -60,7 +61,7 @@
                           @endif
                           <input type="password" class="form-control" id="password"
                                  name="password" style="color: white;" required
-                                 value="{{old('password', $technician->password)}}"
+                                 value="{{old('password')}}"
                                  placeholder="Contraseña">
                         </div>
                       </div>
@@ -118,13 +119,12 @@
                                 </div>
                               @endforeach
                             @endif
-                            <p>{{$technician->direction_poblation}}</p>
                             <select id="town-select"
                                     name="town-select" style="width:100%; display: inline">
                               @foreach($poblations as $poblation)
                                 <option
                                   value="{{ $poblation->name }}"
-                                  {{ old('town-select') == $poblation->name ? 'selected' : '' }}>
+                                  {{ old('town-select', $technician->direction_poblation) == $poblation->name ? 'selected' : '' }}>
                                   {{ $poblation->name }}
                                 </option>
                               @endforeach
@@ -133,7 +133,6 @@
                                    name="town-input" style="color: white; display: none"
                                    placeholder="Ciudad o pueblo"
                                    value="{{old('town-input', $technician->direction_poblation)}}">
-                          </div>
                           </div>
                         </div>
                         <div class="form-group">
@@ -151,54 +150,54 @@
                         </div>
                       </div>
                     </div>
-                    <br>
-                    <div class="row align-items-center">
-                      <div class="col-auto">
-                        <button type="submit" class="btn btn-success me-2">Modificar</button>
-                        <a class="btn btn-dark" href="{{route('admin.admins')}}">Cancelar</a>
-                      </div>
-                      <div class="col">
-                        <x-password-generator/>
-                      </div>
-                    </div>
-                  </form>
-
+                  </div>
+                <br>
+                <div class="row align-items-center">
+                  <div class="col-auto">
+                    <button type="submit" class="btn btn-success me-2">Modificar</button>
+                    <a class="btn btn-dark" href="{{route('admin.admins')}}">Cancelar</a>
+                  </div>
+                  <div class="col">
+                    <x-password-generator/>
+                  </div>
                 </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   </div>
-</div>
-@push('scripts')
-  <script defer>
-    document.addEventListener('DOMContentLoaded', (event) => {
-      const countrySelect = document.getElementById('country');
-      const poblacionSelect = document.getElementById('town-select');
-      const poblacionInput = document.getElementById('town-input')
+  </div>
+  @push('scripts')
+    <script defer>
+      document.addEventListener('DOMContentLoaded', (event) => {
+        const countrySelect = document.getElementById('country');
+        const poblacionSelect = document.getElementById('town-select');
+        const poblacionInput = document.getElementById('town-input')
 
-      const countrySessionValue = "{{ session('country', 'ES') }}";
-      console.log(countrySessionValue);
+        const countrySessionValue = "{{ session('country', 'ES') }}";
+        console.log(countrySessionValue);
 
-      if (countrySessionValue !== 'ES') {
-        poblacionSelect.style.display = 'none';
-        poblacionInput.style.display = 'inline';
-      } else {
-        poblacionSelect.style.display = 'inline';
-        poblacionInput.style.display = 'none';
-      }
-
-      countrySelect.addEventListener('change', (event) => {
-        if (event.target.value === 'ES') {
-          poblacionSelect.style.display = 'inline';
-          poblacionInput.style.display = 'none';
-        } else {
+        if (countrySessionValue !== 'ES') {
           poblacionSelect.style.display = 'none';
           poblacionInput.style.display = 'inline';
+        } else {
+          poblacionSelect.style.display = 'inline';
+          poblacionInput.style.display = 'none';
         }
+
+        countrySelect.addEventListener('change', (event) => {
+          if (event.target.value === 'ES') {
+            poblacionSelect.style.display = 'inline';
+            poblacionInput.style.display = 'none';
+          } else {
+            poblacionSelect.style.display = 'none';
+            poblacionInput.style.display = 'inline';
+          }
+        });
       });
-    });
-  </script>
-@endpush
+    </script>
+  @endpush
 @endsection

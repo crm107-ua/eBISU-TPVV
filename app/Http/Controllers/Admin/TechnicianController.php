@@ -75,6 +75,7 @@ class TechnicianController extends Controller
         $technician = $this->adminTechnicianService->getTechnician($id);
         $countries = Country::all();
         $poblations = Poblation::all();
+        session(['country' => Country::where('code', $technician->country->code)->first()->code]);
         return view('dashboard.forms.editarTecnico',
             ['technician' => $technician, 'countries' => $countries, 'poblations' => $poblations]);
     }

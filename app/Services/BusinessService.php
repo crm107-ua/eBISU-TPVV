@@ -14,6 +14,10 @@ class BusinessService
         return Business::paginate(5);
     }
 
+    public function getBusinessList() {
+        return Business::query();
+    }
+
     public function createBusiness($data) {
         $user = new User();
         $user->name = $data['business-name'];

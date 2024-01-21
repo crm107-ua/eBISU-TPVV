@@ -160,13 +160,12 @@
                                 </div>
                               @endforeach
                             @endif
-                            <p>{{$business->user->direction_poblation}}</p>
                             <select id="town-select"
                                     name="town-select" style="width:100%; display: inline">
                               @foreach($poblations as $poblation)
                                 <option
                                   value="{{ $poblation->name }}"
-                                  {{ old('town-select') == $poblation->name ? 'selected' : '' }}>
+                                  {{ old('town-select', $business->user->direction_poblation) == $poblation->name ? 'selected' : '' }}>
                                   {{ $poblation->name }}
                                 </option>
                               @endforeach

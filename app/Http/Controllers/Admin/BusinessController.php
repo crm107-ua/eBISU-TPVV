@@ -41,8 +41,24 @@ class BusinessController extends Controller
     }
     public function showBusinessList(Request $request)
     {
-        $businessList = $this->businessService->getBusinessPaginatedList();
+        $businessList = $this->businessService->getBusinessList();
+
+        $order = $request->query('order');
+        if ($order) {
+            $businessList = $this->order($businessList, $order);
+        }
+        $businessList = $businessList->paginate(5)->withQueryString();
         return view('dashboard.pages.comercios', ['businessList' => $businessList]);
+    }
+
+    public function order($list, $order)
+    {
+        if ($order == 'register_date') {
+            $list = $list->orderBy('registration_date', 'desc');
+        } else if ($order == 'balance') {
+            $list = $list->orderBy('balance', 'desc');
+        }
+        return $list;
     }
 
     public function showBusinessCreateForm(Request $request)
@@ -93,6 +109,7 @@ class BusinessController extends Controller
         $business = $this->businessService->getBusinessById($id);
         $countries = Country::all();
         $poblations = Poblation::all();
+        session(['country' => Country::where('code', $business->user->country->code)->first()->code]);
         return view('dashboard.forms.editarComercio',
             ['business' => $business, 'countries' => $countries, 'poblations' => $poblations]);
     }

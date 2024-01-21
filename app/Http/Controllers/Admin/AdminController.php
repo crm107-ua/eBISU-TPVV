@@ -68,6 +68,7 @@ class AdminController extends Controller
         $admin = $this->adminTechnicianService->getAdmin($id);
         $countries = Country::all();
         $poblations = Poblation::all();
+        session(['country' => Country::where('code', $admin->country->code)->first()->code]);
         return view('dashboard.forms.editarAdmin',
             ['admin' => $admin, 'countries' => $countries, 'poblations' => $poblations]);
     }
