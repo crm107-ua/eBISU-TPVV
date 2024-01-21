@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class ApiRequestHasTokenMiddlewareTest extends TestCase
+class RequestHasTokenMiddlewareTest extends TestCase
 {
 
     use RefreshDatabase;
@@ -253,31 +253,9 @@ class ApiRequestHasTokenMiddlewareTest extends TestCase
 
     private function createValidToken()
     {
-        $user = new User();
-        $user->name = 'Test user';
-        $user->email = 'test@gmail.com';
-        $user->password = bcrypt('password');
-        $user->role = UserRole::Business;
-        $user->direction_direction = 'Calle de la testeada';
-        $user->direction_postal_code = '12345';
-        $user->direction_poblation = 'Madrid';
-        $user->country()->associate(Country::find(1));
-        $this->assertTrue($user->save());
-
-        $business = new Business();
-        $business->cif = 'A12345678';
-        $business->registration_date = now();
-        $business->balance = 1000;
-        $business->contact_info_email = 'test@gmail.com';
-        $business->user()->associate($user);
-        $this->assertTrue($business->save());
-
-        $apiToken = new ApiToken();
-        $apiToken->issuer = 'Test Issuer';
-        $apiToken->expiration_date = now()->addDays(10);
-        $apiToken->business()->associate($business);
-        $this->assertTrue($apiToken->save());
-
+        $user = User::factory()->create();
+        $business = Business::factory()->for($user)->create();
+        $apiToken = ApiToken::factory()->for($business)->create();
         return $apiToken;
     }
 }
