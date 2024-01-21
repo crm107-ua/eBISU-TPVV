@@ -22,7 +22,7 @@ class Business extends Model
     protected $casts = [
         'registration_date' => 'datetime',
         'discharge_date' => 'datetime',
-        'balance' => 'decimal:2',
+        'balance' => 'double',
     ];
 
     public function user()

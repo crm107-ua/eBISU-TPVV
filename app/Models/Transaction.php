@@ -30,7 +30,7 @@ class Transaction extends Model
         'finished_date' => 'datetime',
         'state' => TransactionStateType::class,
         'finalize_reason' => FinalizeReason::class,
-        'amount' => 'decimal:2'
+        'amount' => 'double'
     ];
 
     public function payment() {
