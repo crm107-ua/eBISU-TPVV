@@ -12,11 +12,11 @@
                             data-id="38fe679" data-element_type="section" id="Nosotros"
                             data-settings="{&quot;background_background&quot;:&quot;gradient&quot;}">
                             <div class="elementor-container elementor-column-gap-no">
-                                <div class="elementor-container elementor-column-gap-no">
+                                <div class="elementor-container elementor-column-gap-no" style="width: 100%">
                                     <div
                                         class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fb5deb5"
-                                        data-id="fb5deb5" data-element_type="column">
-                                        <div class="elementor-element-populated">
+                                        data-id="fb5deb5" data-element_type="column" style="width: 100%">
+                                        <div class="elementor-element-populated" style="width: 100%">
                                             <div
                                                 class="elementor-element-populated d-flex justify-content-between align-items-center">
                                                 <h2 style="color: white;"
@@ -36,7 +36,13 @@
                                                 <i>{{strtoupper($ticket->state)}}</i></p>
                                             <p style="color: white;" class="mt-2"><strong>Descripción</strong></p>
                                             <p style="color: white;" class="mt-2"><i>{{$ticket->description}}</i></p>
-
+                                            @if($ticket->attachment != null)
+                                                <p style="color: white;" class="mt-2"><strong>Archivos adjuntos</strong>
+                                                    <a style="margin-left: 8px"
+                                                       href="{{route('downloadFile', $ticket->attachment_id)}}"><i
+                                                            class="fas fa-paperclip"></i></a></p>
+                                                </p>
+                                            @endif
                                             @if($ticket->state == \App\Enums\TicketStateType::Closed->value && $ticket->valoration_valoration != 0)
 
                                                 <label
@@ -60,39 +66,70 @@
                                                 @endif
                                             @endif
                                             <hr style="border-bottom: 1px white solid; margin-top: 20px; margin-bottom: 40px;">
-                                            <div
-                                                style="background-color: #f0f0f0; padding: 20px; border-radius: 8px; margin-top: 20px; position: relative;">
-                                                <p style="color: black;"><strong>Alejandro - Técnico</strong></p>
-                                                <p style="color: black;">Hola Sofía, soy Alejandro, el técnico encargado
-                                                    del soporte. Por supuesto, estaré encantado de ayudarte. ¿Puedes
-                                                    proporcionarme más detalles sobre el problema que estás
-                                                    experimentando?</p>
-                                                <span
-                                                    style="position: absolute; bottom: 10px; right: 20px; color: black;">10:30 horas</span>
-                                            </div>
-                                            <div
-                                                style="background-color: #f0f0f0; padding: 20px; border-radius: 8px; margin-top: 20px; position: relative;">
-                                                <p style="color: black;"><strong>Sofía - (Yo)</strong></p>
-                                                <p style="color: black;">Claro, estamos recibiendo informes de que
-                                                    algunos clientes no pueden completar sus pagos a través de nuestra
-                                                    plataforma. No estamos seguros de cuál podría ser el problema, pero
-                                                    necesitamos resolverlo lo antes posible. Te adjunto una imagen del
-                                                    error que se muestra.</p>
-                                                <span
-                                                    style="position: absolute; bottom: 10px; right: 20px; color: black;">18:30 horas</span>
-                                            </div>
+                                            @foreach($comments as $comment)
+                                                <div
+                                                    style="background-color: #f0f0f0; padding: 20px; border-radius: 8px; margin-top: 20px; position: relative;">
+                                                    <p style="color: black;"><strong>
+                                                            @if($comment->author instanceof \App\Models\Business)
+                                                                {{$comment->author->contact_info_name}}
+                                                            @else
+                                                                {{$comment->author->name}}
+                                                            @endif
+                                                            -
+                                                            @if($comment->author_id == Auth::id())
+                                                                (Yo)
+                                                            @elseif($comment->author->role == \App\Enums\UserRole::Technician->value)
+                                                                Técnico
+                                                            @elseif($comment->author->role == \App\Enums\UserRole::Admin->value)
+                                                                Admin
+                                                            @else
+                                                                Empresa
+                                                            @endif
+                                                        </strong>
+                                                        @if($comment->attachment != null)
+                                                            <a style="margin-left: 8px"
+                                                               href="{{route('downloadFile', $comment->attachment_id)}}"><i
+                                                                    class="fas fa-paperclip"></i></a>
+                                                        @endif
+                                                    </p>
+                                                    <p style="color: black">
+                                                        {{$comment->message}}
+                                                    </p>
+
+                                                    <span
+                                                        style="position: absolute; bottom: 10px; right: 20px; color: black;">
+                                                        {{ date('d-m-Y H:i', strtotime($comment->sent_date)) }}
+                                                    </span></div>
+                                            @endforeach
 
                                             @if($ticket->state != \App\Enums\TicketStateType::Closed->value)
-                                                <div style="margin-top: 20px;">
-                                                    <label for="new-comment"
-                                                           style="display: block; color: white;"><strong>Mensaje</strong></label>
-                                                    <textarea id="new-comment" rows="2"
-                                                              style="padding: 20px; border-radius: 8px; margin-top: 10px; width: 100%;"
-                                                              placeholder="Escribe un comentario aqui"></textarea>
-                                                    <button type="button"
-                                                            style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%;">
-                                                        Añadir comentario
-                                                    </button>
+                                                <div style="margin-top: 60px;">
+                                                    @if ($errors->any())
+                                                        <div class="alert alert-danger">
+                                                            <ul>
+                                                                @foreach ($errors->all() as $error)
+                                                                    <li>{{ $error }}</li>
+                                                                @endforeach
+                                                            </ul>
+                                                        </div>
+                                                    @endif
+                                                    <form method="post" action="{{route('addComment', $ticket->id)}}" enctype="multipart/form-data">
+                                                        @csrf
+                                                        <label for="message"
+                                                               style="display: block; color: white;"><strong>Mensaje*</strong></label>
+                                                        <textarea id="message" rows="2" name="message"
+                                                                  style="padding: 20px; border-radius: 8px; margin-top: 10px; width: 100%;"
+                                                                  placeholder="Escribe un comentario aqui"></textarea>
+                                                        <div style="margin-bottom: 20px; margin-top: 20px">
+                                                            <label for="attachment" style="font-weight: bold; display: block; margin-bottom: 10px; color: white">Subir archivo</label>
+                                                            <input type="file" id="attachment" name="attachment" style="padding: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: whitesmoke; width: 50%">
+                                                        </div>
+                                                        <span style="color: white;margin-top: 30px; display: block">*campo requerido</span>
+                                                        <button type="submit"
+                                                                style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%;font-size: 1.2em !important;">
+                                                            Añadir comentario
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             @elseif($ticket->valoration_valoration == 0)
                                                 <div style="margin-top: 80px;">
@@ -134,7 +171,7 @@
 
                                                         <span style="color: white;margin-top: 30px; display: block">*campo requerido</span>
                                                         <button type="submit"
-                                                                style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%; font-size: 1.4em !important;">
+                                                                style="padding: 10px; border-radius: 8px; margin-top: 10px; width: 100%; font-size: 1.2em !important;">
                                                             Valorar
                                                         </button>
                                                     </form>
