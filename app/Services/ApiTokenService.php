@@ -19,7 +19,7 @@ class ApiTokenService
 
         $json = [
             'id' => $transaction->id,
-            'amount' => (int) $transaction->amount,
+            'amount' => $transaction->amount,
             'state' => $transaction->state->getApiName(),
             'emision_date' => $this->formatDate($transaction->emision_date),
         ];
