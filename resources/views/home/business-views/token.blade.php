@@ -18,13 +18,16 @@
                                         <h3 style="margin-bottom: 20px; text-align: left;">Token de eBISU API</h3>
                                         <div style="background-color: white; padding: 20px; border-radius: 8px;">
                                             <p><strong>Mi token:</strong></p>
-                                            <input type="text" value="a442fgewwqvx56GPDP345eerrgetgerwewnm_&1" readonly style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
-                                            <p>Fecha de expiración: 12/12/2023</p>
-                                            <p>Nº de usos: 6573</p>
-                                            <p>Nº de usos totales: 16522</p>
-                                            <div style="text-align: right; padding-top: 20px;">
-                                                <button style="border: none; padding: 10px 20px; background-color: #333; color: white; border-radius: 4px; cursor: pointer;">Generar nuevo</button>
-                                            </div>
+                                            <input type="text" value="{{ $encodedToken }}" readonly style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
+                                            <p>Fecha de expiración: {{ $token->expiration_date }}</p>
+                                            <p>Nº de usos: {{ $token->times_used }}</p>
+                                            <p>Nº de usos totales: {{ $totalUses }}</p>
+                                            <form action="{{ route('crear-generar-token') }}" method="POST">
+                                                @csrf
+                                                <div style="text-align: right; padding-top: 20px;">
+                                                    <button style="border: none; padding: 10px 20px; background-color: #333; color: white; border-radius: 4px; cursor: pointer;">Generar nuevo</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
