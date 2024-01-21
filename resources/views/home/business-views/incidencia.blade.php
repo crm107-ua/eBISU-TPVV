@@ -78,9 +78,9 @@
                                                             -
                                                             @if($comment->author_id == Auth::id())
                                                                 (Yo)
-                                                            @elseif($comment->author->role == \App\Enums\UserRole::Technician->value)
+                                                            @elseif($comment->author->role == \App\Enums\UserRole::Technician)
                                                                 Técnico
-                                                            @elseif($comment->author->role == \App\Enums\UserRole::Admin->value)
+                                                            @elseif($comment->author->role == \App\Enums\UserRole::Admin)
                                                                 Admin
                                                             @else
                                                                 Empresa
