@@ -84,7 +84,7 @@ class ApiController extends Controller
     {
         $transaction = $this->getRequestTransaction($request);
 
-        if($transaction->state !== TransactionStateType::Waiting) {
+        if ($transaction->state !== TransactionStateType::Waiting) {
             return response()->json([
                 'error' => 'Already finished',
                 'description' => 'This transaction has already been finished',
@@ -126,6 +126,42 @@ class ApiController extends Controller
 
     public function refoundTransaction(Request $request)
     {
+        $transaction = self::getRequestTransaction($request);
+        $includeRefound = self::getIncludeRefounded($request);
+        if ($transaction->state !== TransactionStateType::Accepted) {
+            return response()->json([
+                'error' => 'Transaction not accepted',
+                'description' => 'Only accepted transactions can be refounded',
+            ], 400);
+        }
+        if ($transaction->isRefound())
+            return response()->json([
+                'error' => 'Transaction is refound',
+                'description' => 'Only non refound transactions can be refounded',
+            ], 400);
+        $existsRefound = Transaction::where('refounds_id', $transaction->id)->first();
+        if($existsRefound) {
+            return response()->json([
+                'error' => 'Transaction already refunded',
+                'description' => 'This transaction already has a refound: ' . $existsRefound->id,
+            ], 400);
+        }
+
+        $concept = $request->json('concept');
+        $receiptNumber = $request->json('receipt_number');
+
+        DB::beginTransaction();
+        $refound = $this->paymentService->createRefoundTransaction($transaction->id, $concept, $receiptNumber);
+        if (!$refound) {
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Server error',
+                'description' => 'Could not create refound',
+            ], 500);
+        }
+
+        DB::commit();
+        return response()->json($this->apiTokenService->jsonify($refound, $includeRefound));
     }
 
     /**

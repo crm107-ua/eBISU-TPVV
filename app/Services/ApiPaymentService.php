@@ -101,6 +101,54 @@ class ApiPaymentService
 
         if (!$transaction->save())
             return false;
+
+        if ($transaction->state === TransactionStateType::Accepted) {
+            $business = $transaction->business;
+            $business->balance = $business->balance + $transaction->amount;
+            if (!$business->save())
+                return false;
+        }
+
         return true;
+    }
+
+    public function createRefoundTransaction($toBeRefoundedId, $concept, $receiptNumber): ?Transaction
+    {
+        if (!$toBeRefoundedId)
+            return null;
+        if (Transaction::where('refounds_id', $toBeRefoundedId)->exists())
+            return null;
+        $toBeRefounded = Transaction::find($toBeRefoundedId);
+        if (!$toBeRefounded)
+            return null;
+        if ($toBeRefounded->state !== TransactionStateType::Accepted)
+            return null;
+        if ($toBeRefounded->isRefound())
+            return null;
+
+        $business = $toBeRefounded->business;
+
+        // if($toBeRefounded->amount > $business->balance)
+
+        $refound = new Transaction([
+            'concept' => $concept,
+            'receipt_number' => $receiptNumber,
+            'amount' => $toBeRefounded->amount, // negativo?
+            'state' => TransactionStateType::Accepted,
+            'emision_date' => Carbon::now(),
+            'finished_date' => Carbon::now(),
+            'finalize_reason' => FinalizeReason::OK,
+            'refounds_id' => $toBeRefounded->id,
+            'business_id' => $business->id,
+            'payment_id' => $toBeRefounded->payment_id,
+        ]);
+        if (!$refound->save())
+            return null;
+
+        $business->balance = $business->balance - $refound->amount;
+        if (!$business->save())
+            return null;
+
+        return $refound;
     }
 }
