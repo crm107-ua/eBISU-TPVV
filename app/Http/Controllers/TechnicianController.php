@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TicketStateType;
 use App\Models\Technician;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ class TechnicianController extends Controller
         }
 
         $request->flash();
+
         return view('home.technical-views.incidencias',
             ['tickets' => $tickets]);
     }
@@ -69,6 +71,14 @@ class TechnicianController extends Controller
         }
 
         return $tickets;
+    }
+
+    public function changeTicketState(Request $request, $id)
+    {
+        $ticket = Ticket::findOrFail($id);
+        $ticket->state = $request->state;
+        $ticket->save();
+        return back();
     }
 
 }

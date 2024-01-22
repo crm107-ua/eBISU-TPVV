@@ -60,9 +60,10 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find($id);
         $comments = $ticket->comments()->orderBy('sent_date', 'asc')->get();
+        $states = TicketStateType::getValues();
 
         return view('home.business-views.incidencia',
-            ['ticket' => $ticket, 'comments' => $comments]);
+            ['ticket' => $ticket, 'comments' => $comments, 'states' => $states]);
     }
 
     public function valorateTicket(Request $request, $id)
