@@ -8,7 +8,12 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Tests\TestCase;
 
-class ValidateRequestTransactionCreationRequest extends TestCase
+/**
+ * @group api
+ * @group validation
+ * @group request_transaction_creation
+ */
+class ValidateRequestTransactionCreationRequestTest extends TestCase
 {
     private $url = '/test/validation/requesttransactioncreation';
 
@@ -33,7 +38,13 @@ class ValidateRequestTransactionCreationRequest extends TestCase
         });
     }
 
-
+    public function test_valid_transaction_creation_with_just_amount_is_ok()
+    {
+        $this->postJson($this->url, [
+            'amount' => 150,
+        ])
+            ->assertStatus(299);
+    }
 
     private static function joinErrorMessages(MessageBag $errors): string
     {

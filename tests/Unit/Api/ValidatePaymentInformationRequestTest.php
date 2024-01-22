@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Tests\TestCase;
 
+/**
+ * @group api
+ * @group validation
+ * @group paypal
+ */
 class ValidatePaymentInformationRequestTest extends TestCase
 {
     private $url = '/test/validation/paymentinformation';
@@ -33,7 +38,16 @@ class ValidatePaymentInformationRequestTest extends TestCase
         });
     }
 
-
+    public function test_valid_paypal_request_is_ok()
+    {
+        $this->postJson($this->url, [
+            'type' => 'paypal',
+            'values' => [
+                'paypal_user' => 'test',
+            ]
+        ])
+            ->assertStatus(299);
+    }
 
     private static function joinErrorMessages(MessageBag $errors): string
     {

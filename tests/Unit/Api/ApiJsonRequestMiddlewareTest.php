@@ -5,6 +5,11 @@ namespace Tests\Unit;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
+/**
+ * @group api
+ * @group middleware
+ * @group json_body
+ */
 class ApiJsonRequestMiddlewareTest extends TestCase
 {
     private $url = '/test/middleware/apijsonrequest';
@@ -20,11 +25,6 @@ class ApiJsonRequestMiddlewareTest extends TestCase
         });
     }
 
-    /**
-     * @group api
-     * @group middleware
-     * @group json_body
-     */
     public function test_valid_request_passes_the_middleware()
     {
         $this->postJson($this->url, [
@@ -36,11 +36,6 @@ class ApiJsonRequestMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     * @group json_body
-     */
     public function test_empty_request_fails_the_middleware()
     {
         $this->postJson($this->url, [])

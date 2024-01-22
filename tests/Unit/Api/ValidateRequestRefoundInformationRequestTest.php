@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Tests\TestCase;
 
+/**
+ * @group api
+ * @group validation
+ * @group request_refound_information
+ */
 class ValidateRequestRefoundInformationRequestTest extends TestCase
 {
     private $url = '/test/validation/requestrefoundinformation';
@@ -33,7 +38,14 @@ class ValidateRequestRefoundInformationRequestTest extends TestCase
         });
     }
 
-
+    public function test_valid_refound_information_with_all_values_is_ok()
+    {
+        $this->postJson($this->url, [
+            'concept' => 'concept',
+            'receipt_number' => 'AAA',
+        ])
+            ->assertStatus(299);
+    }
 
     private static function joinErrorMessages(MessageBag $errors): string
     {

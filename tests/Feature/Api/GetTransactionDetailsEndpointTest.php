@@ -14,6 +14,11 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
+/**
+ * @group api
+ * @group endpoint
+ * @group transaction_details
+ */
 class GetTransactionDetailsEndpointTest extends TestCase
 {
     use RefreshDatabase;
@@ -50,11 +55,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
         ];
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_invalid_includeRefound_fails(): void
     {
         $this->getJson($this->url . '1?includeRefound=', $this->headers)
@@ -71,11 +71,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_transaction_id_invalid_fails(): void
     {
         $this->getJson($this->url . 'a', $this->headers)
@@ -92,11 +87,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_transaction_does_not_exist(): void
     {
         $this->getJson($this->url . '1', $this->headers)
@@ -113,11 +103,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_transaction_requested_does_not_belong_to_business_rejects(): void
     {
         $user = User::factory()->create();
@@ -139,11 +124,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_waiting_transaction_requested_ok(): void
     {
         $emission = now();
@@ -165,11 +145,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_acepted_transaction_requested_ok(): void
     {
         $emission = now()->subDay();
@@ -197,11 +172,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_rejected_transaction_requested_ok(): void
     {
         $emission = now()->subDay();
@@ -230,11 +200,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_acepted_transaction_with_refound_no_embeded_requested_ok(): void
     {
         $emission = now()->subDay();
@@ -277,11 +242,6 @@ class GetTransactionDetailsEndpointTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group endpoint
-     * @group transaction_details
-     */
     public function test_acepted_transaction_with_refound_embeded_requested_ok(): void
     {
         $emission = now()->subDay();
