@@ -132,12 +132,17 @@ class TicketController extends Controller
         return $tickets;
     }
 
-    public function downloadFile(Request $request, $id)
-    {
-        $attachment = Attachment::find($id);
-        $path = storage_path('app/attachments/' . $attachment->filename);
-        return response()->download($path);
+public function downloadFile(Request $request, $id)
+{
+    $attachment = Attachment::find($id);
+    $path = storage_path('app/attachments/' . $attachment->filename);
+
+    if (!file_exists($path)) {
+        return redirect()->route('404');
     }
+
+    return response()->download($path);
+}
 
     public function addComment(Request $request, $id){
         $ticket = Ticket::find($id);
