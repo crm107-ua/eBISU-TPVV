@@ -2,8 +2,6 @@
 
 namespace Tests\Unit\api;
 
-use App\Services\ApiRequestValidationService;
-use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Tests\TestCase;
@@ -17,21 +15,12 @@ class ValidateRequestTransactionCreationRequestTest extends TestCase
 {
     private $url = '/test/validation/requesttransactioncreation';
 
-    /**
-     * @var ApiRequestValidationService
-     */
-    private $apiRequestValidationService;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->apiRequestValidationService = new ApiRequestValidationService();
-
-        Route::any($this->url, function (Request $request) {
-            $errors = $this->apiRequestValidationService->validateRequestTransactionCreation($request->json()->all());
-            if ($errors->isNotEmpty())
-                return response()->json(self::jsonForInvalidPayload($errors), 400);
+        Route::middleware(['api.json', 'api.validation.requesttransactioncreation'])->any($this->url, function (Request $request) {
             return response()->json([
                 'message' => 'Validation successfull',
             ], 299);
@@ -44,18 +33,5 @@ class ValidateRequestTransactionCreationRequestTest extends TestCase
             'amount' => 150,
         ])
             ->assertStatus(299);
-    }
-
-    private static function joinErrorMessages(MessageBag $errors): string
-    {
-        return implode(' ', $errors->all());
-    }
-
-    private static function jsonForInvalidPayload(MessageBag $errors): array
-    {
-        return [
-            'error' => 'Invalid payload',
-            'description' => self::joinErrorMessages($errors),
-        ];
     }
 }

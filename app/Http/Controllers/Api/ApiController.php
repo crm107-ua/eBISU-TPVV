@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Models\ApiToken;
 use App\Models\Transaction;
 use App\Services\ApiRequestValidationService;
-use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -31,65 +30,85 @@ class ApiController extends Controller
 
     public function createNewTransaction(Request $request)
     {
-        $errors = $this->apiRequestValidationService->validateRequestTransactionCreation(self::getRequestBody($request));
-        if ($errors->isNotEmpty())
-            return response()->json(self::jsonForInvalidPayload($errors), 400);
+        $businessId = $this->getRequestToken($request)->business_id;
+        $amount = $request->json('amount');
+        $concept = $request->json('concept');
+        $receiptNumber = $request->json('receipt_number');
+
+        $transaction = $this->paymentService->createNewTransaction($businessId, $amount, $concept, $receiptNumber);
+        if (!$transaction) {
+            return response()->json([
+                'error' => 'Server error',
+                'description' => 'Could not register your transaction',
+            ], 500);
+        }
+
+        if (!$request->json('payment')) {
+            /**
+             * @todo VIEW TO PROVIDE PAYMENT METHOD
+             */
+            return response("To do...", 200);
+        }
+
+        $payment = $this->paymentService->savePaymentMethod($request->json('payment'));
+        if (!$payment) {
+            return response()->json([
+                'error' => 'Server error',
+                'description' => "Could not register the payment method. The transaction was created with id $transaction->id, try fulfilling it",
+            ], 500);
+        }
+
+        $finalized = $this->paymentService->finalizePendingTransaction($transaction->id, $payment->id);
+        if (!$finalized) {
+            return response()->json([
+                'error' => 'Server error',
+                'description' => "Could not finalize the transaction. The transaction was created with id $transaction->id, try fulfilling it",
+            ], 500);
+        }
+
+        $transaction->refresh();
+        return response()->json($this->apiTokenService->jsonify($transaction, false), 201);
     }
 
     public function getPaginatedTransactionList(Request $request)
     {
     }
 
-    public function fulfillPendingTransaction(Request $request, $id)
+    public function fulfillPendingTransaction(Request $request)
     {
-        $errors = $this->apiRequestValidationService->validatePaymentInformation(self::getRequestBody($request));
-        if ($errors->isNotEmpty())
-            return response()->json(self::jsonForInvalidPayload($errors), 400);
+        $includeRefound = $this->getIncludeRefounded($request);
+        $transaction = $this->getRequestTransaction($request);
+
+        $payment = $this->paymentService->savePaymentMethod(self::getRequestBody($request));
+        if (!$payment) {
+            return response()->json([
+                'error' => 'Server error',
+                'description' => "Could not register the payment method",
+            ], 500);
+        }
+
+        $finalized = $this->paymentService->finalizePendingTransaction($transaction->id, $payment->id);
+        if (!$finalized) {
+            return response()->json([
+                'error' => 'Server error',
+                'description' => "Could not finalize the transaction",
+            ], 500);
+        }
+
+        $transaction->refresh();
+        return response()->json($this->apiTokenService->jsonify($transaction, $includeRefound), 200);
     }
 
-    public function getTransactionDetails(Request $request, $transactionId)
+    public function getTransactionDetails(Request $request)
     {
-        $includeRefound = $request->input('includeRefound', 'false');
-        if ($includeRefound != 'true' && $includeRefound != 'false') {
-            return response()->json([
-                'error' => 'Invalid request',
-                'description' => "'includeRefound' must be true or false, but '$includeRefound' was provided",
-            ], 400);
-        }
-        $includeRefound = $includeRefound == 'true';
-
-        if (!is_numeric($transactionId)) {
-            return response()->json([
-                'error' => 'Invalid request',
-                'description' => 'The id must be an integer',
-            ], 400);
-        }
-
-        $transaction = Transaction::find($transactionId);
-        if (!$transaction) {
-            return response()->json([
-                'error' => 'Transaction not found',
-                'description' => 'The requested transaction does not exist',
-            ], 404);
-        }
-
-        $token = ApiController::getRequestToken($request);
-
-        if ($token->business_id != $transaction->business_id) {
-            return response()->json([
-                'error' => 'Not allowed',
-                'description' => 'You can not get transactions from other business',
-            ], 403);
-        }
+        $includeRefound = $this->getIncludeRefounded($request);
+        $transaction = $this->getRequestTransaction($request);
 
         return response()->json($this->apiTokenService->jsonify($transaction, $includeRefound), 200);
     }
 
-    public function refoundTransaction(Request $request, $id)
+    public function refoundTransaction(Request $request)
     {
-        $errors = $this->apiRequestValidationService->validateRequestRefoundInformation(self::getRequestBody($request));
-        if ($errors->isNotEmpty())
-            return response()->json(self::jsonForInvalidPayload($errors), 400);
     }
 
     /**
@@ -102,26 +121,23 @@ class ApiController extends Controller
         return response($token, 201);
     }
 
-    private static function getRequestToken(Request $request): ApiToken
+    public static function getRequestToken(Request $request): ApiToken
     {
         return $request->attributes->get('api_token');
     }
 
-    private static function getRequestBody(Request $request): array
+    public static function getRequestBody(Request $request): array
     {
         return $request->attributes->get('json_body');
     }
 
-    private static function joinErrorMessages(MessageBag $errors): string
+    public static function getRequestTransaction(Request $request): Transaction
     {
-        return implode(' ', $errors->all());
+        return $request->attributes->get('url_transaction');
     }
 
-    private static function jsonForInvalidPayload(MessageBag $errors): array
+    public static function getIncludeRefounded(Request $request): bool
     {
-        return [
-            'error' => 'Invalid payload',
-            'description' => self::joinErrorMessages($errors),
-        ];
+        return $request->attributes->get('include_refounded');
     }
 }

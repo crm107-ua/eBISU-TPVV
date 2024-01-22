@@ -9,28 +9,30 @@ use Tests\TestCase;
 /**
  * @group api
  * @group validation
- * @group request_refound_information
+ * @group paypal
  */
-class ValidateRequestRefoundInformationRequestTest extends TestCase
+class ValidatePaymentInformationTest extends TestCase
 {
-    private $url = '/test/validation/requestrefoundinformation';
+    private $url = '/test/validation/paymentinformation';
 
     public function setUp(): void
     {
         parent::setUp();
 
-        Route::middleware(['api.json', 'api.validation.requestrefoundinformation'])->any($this->url, function (Request $request) {
+        Route::middleware(['api.json', 'api.validation.paymentinformation'])->any($this->url, function (Request $request) {
             return response()->json([
                 'message' => 'Validation successfull',
             ], 299);
         });
     }
 
-    public function test_valid_refound_information_with_all_values_is_ok()
+    public function test_valid_paypal_request_is_ok()
     {
         $this->postJson($this->url, [
-            'concept' => 'concept',
-            'receipt_number' => 'AAA',
+            'type' => 'paypal',
+            'values' => [
+                'paypal_user' => 'test',
+            ]
         ])
             ->assertStatus(299);
     }

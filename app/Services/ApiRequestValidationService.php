@@ -7,7 +7,7 @@ use Illuminate\Support\MessageBag;
 
 class ApiRequestValidationService
 {
-    public function validateRequestTransactionCreation(array $requestTransactionCreation): MessageBag
+    public static function validateRequestTransactionCreation(array $requestTransactionCreation): MessageBag
     {
         $errors = Validator::make($requestTransactionCreation, [
             'concept' => 'nullable|string|max:255',
@@ -28,12 +28,12 @@ class ApiRequestValidationService
             $payment = $requestTransactionCreation['payment'];
             if (!is_array($payment))
                 return $errors;
-            $errors->merge($this->validatePaymentInformation($payment));
+            $errors->merge(self::validatePaymentInformation($payment));
         }
         return $errors;
     }
 
-    public function validatePaymentInformation(array $paymentInformation): MessageBag
+    public static function validatePaymentInformation(array $paymentInformation): MessageBag
     {
         $validator = Validator::make($paymentInformation, [
             'type' => 'required|in:paypal,credit_card',
@@ -75,7 +75,7 @@ class ApiRequestValidationService
         }
     }
 
-    public function validateRequestRefoundInformation(array $requestRefoundInformation): MessageBag
+    public static function validateRequestRefoundInformation(array $requestRefoundInformation): MessageBag
     {
         return Validator::make($requestRefoundInformation, [
             'concept' => 'nullable|string|max:255',
