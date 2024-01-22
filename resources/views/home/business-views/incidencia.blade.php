@@ -21,9 +21,12 @@
                                                 class="elementor-element-populated d-flex justify-content-between align-items-center">
                                                 <h2 style="color: white;"
                                                     class="mt-5 flex-grow-1">{{$ticket->title}}</h2>
-                                                @if($ticket->technitian_id != null)
+                                                @if(Auth::user()->role==\App\Enums\UserRole::Business && $ticket->technitian_id != null)
                                                     <h5 style="color: white" class="mt-5 flex-shrink-1">Te
                                                         atiende: {{$ticket->technitian->user->name}}</h5>
+                                                @elseif(Auth::user()->role==\App\Enums\UserRole::Technician)
+                                                    <h5 style="color: white" class="mt-5 flex-shrink-1">Incidencia de:
+                                                         {{$ticket->transaction->business->contact_info_name}} ({{$ticket->transaction->business->user->name}}) </h5>
                                                 @endif
                                             </div>
                                             <p style="color: white;" class="mt-2"><strong>Concepto de pago
@@ -34,6 +37,20 @@
                                             <p style="color: white;" class="mt-2">
                                                 <strong>Estado: </strong>
                                                 <i>{{strtoupper($ticket->state)}}</i></p>
+                                            @if(Auth::user()->role == \App\Enums\UserRole::Technician)
+                                                <form method="post" action="{{route('technician.changeTicketState', $ticket->id)}}">
+                                                    @csrf
+                                                    <label for="state" style="display: block; color: white;"><strong>Cambiar estado</strong></label>
+                                                    <select id="state" name="state" onchange="this.form.submit()" style="color:white">
+                                                        @foreach($states as $state)
+                                                            <option value="{{$state}}" {{$ticket->state == $state ? 'selected' : ''}}
+                                                                style="color:black">
+                                                                {{strtoupper($state)}}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </form>
+                                            @endif
                                             <p style="color: white;" class="mt-2"><strong>Descripción</strong></p>
                                             <p style="color: white;" class="mt-2"><i>{{$ticket->description}}</i></p>
                                             @if($ticket->attachment != null)

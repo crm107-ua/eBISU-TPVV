@@ -20,64 +20,68 @@
                                         data-settings="{&quot;_animation&quot;:&quot;fadeInUp&quot;,&quot;_animation_delay&quot;:300}"
                                         data-widget_type="text-editor.default">
                                         <div class="elementor-widget-container mt-5">
-                                            <h2 style="text-align:center; color:white;" class="mb-4">Incidencias activas</h2>
-                                            <table style="width:100%; margin-top:20px; text-align:center; border-collapse: collapse;">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="border-bottom: 2px solid #000; padding: 10px 0; color:white;">Título</th>
-                                                        <th style="border-bottom: 2px solid #000; padding: 10px 0; color:white;">Estado</th>
-                                                        <th style="border-bottom: 2px solid #000; padding: 10px 0; color:white;">Cliente</th>
-                                                        <th style="border-bottom: 2px solid #000; padding: 10px 0; color:white;">Acciones</th>
-                                                    </tr>
+                                            <div class="elementor-widget-container mt-5"
+                                                 style="display: flex; justify-content: space-between; align-items: center;">
+                                            <h2 style="text-align:center; color:white;" class="mb-4">Incidencias de técnico</h2>
+                                            <form method="GET" action="{{ route('technician.tickets') }}">
+                                                <div style="display: flex; gap: 20px;">
+                                                    <select name="state"
+                                                            style="padding-right: 55px; padding-left: 25px; height: 40px; background-color: white; color: black; border-radius: 8px;">
+                                                        <option
+                                                            value="" {{ old('state') == '' ? 'selected' : '' }}>
+                                                            ESTADO
+                                                        </option>
+                                                        @foreach(\App\Enums\TicketStateType::cases() as $value)
+                                                            <option
+                                                                value="{{ $value }}" {{ old('state') == $value->value ? 'selected' : '' }}>
+                                                                {{ strtoupper($value->value) }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                    <input name="transaction"
+                                                           style=" height: 40px; border-radius: 8px;"
+                                                           placeholder="Nº factura" value="{{old('transaction') }}">
+                                                    <button type="submit" style="padding: 10px 30px 10px 30px;">
+                                                        Filtrar
+                                                    </button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                            <table
+                                                style="width:100%; margin-top:20px; text-align:center; border-collapse: collapse;">
+                                                <thead style=" border-bottom: #ffffff 1px solid;">
+                                                <tr>
+                                                    <th style=" padding: 10px 0; color:white;">
+                                                        Titulo
+                                                    </th>
+                                                    <th style=" padding: 10px 0; color:white;">
+                                                        Nº Factura
+                                                    </th>
+                                                    <th style=" padding: 10px 0; color:white;">
+                                                        Estado
+                                                    </th>
+                                                    <th style=" padding: 10px 0; color:white;">
+                                                        Acciones
+                                                    </th>
+                                                </tr>
                                                 </thead>
                                                 <tbody>
+                                                @foreach($tickets as $ticket)
                                                     <tr>
-                                                        <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 0</td>
-                                                        <td style="padding: 10px 0; color:white;">PENDIENTE</td>
-                                                        <td style="padding: 10px 0; color:white;">Atlas S.A</td>
-                                                        <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
+                                                        <td style="padding: 10px 0; color:white;">{{$ticket->title}}</td>
+                                                        <td style="padding: 10px 0; color:white;">{{$ticket->transaction->receipt_number}}</td>
+                                                        <td style="padding: 10px 0; color:white;">{{strtoupper($ticket->state)}}</td>
+                                                        <td style="padding: 10px 0; color:white;">
+                                                            <a href="{{  route('ticket', $ticket->id) }}"
+                                                               style="all: unset; cursor: pointer">Ver más</a>
+                                                        </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 1</td>
-                                                        <td style="padding: 10px 0; color:white;">PENDIENTE</td>
-                                                        <td style="padding: 10px 0; color:white;">Buerguer King S.A</td>
-                                                        <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 2</td>
-                                                        <td style="padding: 10px 0; color:white;">PENDIENTE</td>
-                                                        <td style="padding: 10px 0; color:white;">Atlas S.A</td>
-                                                        <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 3</td>
-                                                        <td style="padding: 10px 0; color:white;">PENDIENTE</td>
-                                                        <td style="padding: 10px 0; color:white;">Ayuntamiento INC</td>
-                                                        <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 4</td>
-                                                        <td style="padding: 10px 0; color:white;">PENDIENTE</td>
-                                                        <td style="padding: 10px 0; color:white;">Atlas S.A</td>
-                                                        <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="padding: 10px 0; color:white;">Problema con la Transacción de Pago 5</td>
-                                                        <td style="padding: 10px 0; color:white;">PENDIENTE</td>
-                                                        <td style="padding: 10px 0; color:white;">Cremas S.A</td>
-                                                        <td style="padding: 10px 0; color:white;"><a href="/incidencia" style="all: unset">Resolver</a></td>
-                                                    </tr>
+                                                @endforeach
                                                 </tbody>
                                             </table>
-                                            <nav class="mt-5 reviews-pagination d-flex justify-content-center" style="margin-bottom: 20%">
-                                                <ul class="pagination">
-                                                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">«</a></li>
-                                                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                    <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                                </ul>
-                                            </nav>                                                    
+                                            <div style="display: flex; justify-content: center; margin-top: 30px;">
+                                                {{ $tickets->links() }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
