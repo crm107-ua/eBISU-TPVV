@@ -92,6 +92,6 @@ class BusinessController extends Controller
     public function createNewToken(Request $request)
     {
         $this->apiTokenService->createNewToken(Auth::id());
-        return redirect()->route('generar-token');
+        return redirect()->route('business-token');
     }
 }
