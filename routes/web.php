@@ -63,13 +63,8 @@ Route::get('/business-home', function () {
 Route::get('/technician/reviews', [TechnicianController::class, 'showTechnicianValorations'])
     ->middleware(['auth', 'verified', 'technician'])->name('technician.reviews');
 
-Route::get('/incidencias', function () {
-    return view('home.technical-views.incidencias');
-})->middleware(['auth', 'verified'])->name('incidencias');
-
-Route::get('/incidencia', function () {
-    return view('home.technical-views.incidencia');
-})->middleware(['auth', 'verified'])->name('incidencia');
+Route::get('/technician/tickets', [TechnicianController::class, 'showTechnicianTickets'])
+    ->middleware(['auth', 'verified', 'technician'])->name('technician.tickets');
 
 Route::get('/tickets', [TicketController::class, 'showTickets'])
     ->middleware(['auth', 'verified', 'business'])->name('tickets');
