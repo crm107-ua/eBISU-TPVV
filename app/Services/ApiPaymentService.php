@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Enums\FinalizeReason;
 use App\Enums\PaymentType;
 use App\Enums\TransactionStateType;
+use App\Jobs\TimeoutTransactionFulfillment;
 use App\Models\Payment;
 use App\Models\Transaction;
 use Carbon\Carbon;
@@ -22,12 +23,14 @@ class ApiPaymentService
             'emision_date' => Carbon::now(),
             'state' => TransactionStateType::Waiting,
         ]);
+
         if (!$transaction->save())
             return null;
 
-        /**
-         * @todo START TIMER
-         */
+        $timeoutJob = new TimeoutTransactionFulfillment($transaction->id);
+        $dispatchTime = Carbon::now()->addSeconds((int) env('TRANSACTION_TIMEOUT'));
+        dispatch($timeoutJob)->delay($dispatchTime);
+
         return $transaction;
     }
 

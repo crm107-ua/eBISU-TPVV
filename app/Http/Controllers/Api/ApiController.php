@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\TransactionStateType;
 use App\Services\ApiPaymentService;
 use App\Services\ApiTokenService;
 use App\Http\Controllers\Controller;
 use App\Models\ApiToken;
 use App\Models\Transaction;
-use App\Services\ApiRequestValidationService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -49,7 +49,7 @@ class ApiController extends Controller
             /**
              * @todo VIEW TO PROVIDE PAYMENT METHOD
              */
-            return response("To do...", 200);
+            return response('To do... ' . $transaction->id, 200);
         }
 
         $payment = $this->paymentService->savePaymentMethod($request->json('payment'));
@@ -82,8 +82,14 @@ class ApiController extends Controller
 
     public function fulfillPendingTransaction(Request $request)
     {
-        $includeRefound = $this->getIncludeRefounded($request);
         $transaction = $this->getRequestTransaction($request);
+
+        if($transaction->state !== TransactionStateType::Waiting) {
+            return response()->json([
+                'error' => 'Already finished',
+                'description' => 'This transaction has already been finished',
+            ], 400);
+        }
 
         DB::beginTransaction();
         $payment = $this->paymentService->savePaymentMethod(self::getRequestBody($request));
@@ -91,7 +97,7 @@ class ApiController extends Controller
             DB::rollBack();
             return response()->json([
                 'error' => 'Server error',
-                'description' => "Could not register the payment method",
+                'description' => 'Could not register the payment method',
             ], 500);
         }
 
@@ -100,14 +106,14 @@ class ApiController extends Controller
             DB::rollBack();
             return response()->json([
                 'error' => 'Server error',
-                'description' => "Could not finalize the transaction",
+                'description' => 'Could not finalize the transaction',
             ], 500);
         }
 
         DB::commit();
 
         $transaction->refresh();
-        return response()->json($this->apiTokenService->jsonify($transaction, $includeRefound), 200);
+        return response()->json($this->apiTokenService->jsonify($transaction, false), 200);
     }
 
     public function getTransactionDetails(Request $request)
