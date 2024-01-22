@@ -15,10 +15,8 @@ class ApiJsonRequestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->isJson()) {
-            $request->attributes->add(['json_body' => $request->json()->all()]);
+        if ($request->isJson())
             return $next($request);
-        }
         return response()->json([
             'error' => 'Invalid payload',
             'description' => 'The payload must be json',

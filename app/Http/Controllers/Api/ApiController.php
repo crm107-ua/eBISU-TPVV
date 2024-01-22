@@ -7,6 +7,7 @@ use App\Services\ApiTokenService;
 use App\Http\Controllers\Controller;
 use App\Models\ApiToken;
 use App\Models\Transaction;
+use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
@@ -27,7 +28,10 @@ class ApiController extends Controller
 
     public function createNewTransaction(Request $request)
     {
-        return response('Not yet implemented', 400);
+        $errors = $this->paymentService->validateRequestTransactionCreation(self::getRequestBody($request));
+        if ($errors->isNotEmpty())
+            return response()->json(self::jsonForInvalidPayload($errors), 400);
+        return response();
     }
 
     public function getPaginatedTransactionList(Request $request)
@@ -96,5 +100,23 @@ class ApiController extends Controller
     private static function getRequestToken(Request $request): ApiToken
     {
         return $request->attributes->get('api_token');
+    }
+
+    private static function getRequestBody(Request $request): array
+    {
+        return $request->json()->all();
+    }
+
+    private static function joinErrorMessages(MessageBag $errors): string
+    {
+        return implode(' ', $errors->all());
+    }
+
+    private static function jsonForInvalidPayload(MessageBag $errors): array
+    {
+        return [
+            'error' => 'Invalid payload',
+            'description' => self::joinErrorMessages($errors),
+        ];
     }
 }
