@@ -59,15 +59,15 @@ class GetTransactionDetailsEndpointTest extends TestCase
     {
         $this->getJson($this->url . '1?includeRefound=', $this->headers)
             ->assertStatus(Response::HTTP_BAD_REQUEST);
-        $this->getJson($this->url . '?includeRefound=1', $this->headers)
+        $this->getJson($this->url . '1?includeRefound=1', $this->headers)
             ->assertStatus(Response::HTTP_BAD_REQUEST);
-        $this->getJson($this->url . '?includeRefound=0', $this->headers)
+        $this->getJson($this->url . '1?includeRefound=0', $this->headers)
             ->assertStatus(Response::HTTP_BAD_REQUEST);
-        $this->getJson($this->url . '?includeRefound=TRUE', $this->headers)
+        $this->getJson($this->url . '1?includeRefound=TRUE', $this->headers)
             ->assertStatus(Response::HTTP_BAD_REQUEST);
-        $this->getJson($this->url . '?includeRefound=FALSE', $this->headers)
+        $this->getJson($this->url . '1?includeRefound=FALSE', $this->headers)
             ->assertStatus(Response::HTTP_BAD_REQUEST);
-        $this->getJson($this->url . '?includeRefound=aaa', $this->headers)
+        $this->getJson($this->url . '1?includeRefound=aaa', $this->headers)
             ->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 

@@ -7,6 +7,7 @@ use App\Services\ApiTokenService;
 use App\Http\Controllers\Controller;
 use App\Models\ApiToken;
 use App\Models\Transaction;
+use App\Services\ApiRequestValidationService;
 use Illuminate\Contracts\Support\MessageBag;
 use Illuminate\Http\Request;
 
@@ -19,31 +20,31 @@ class ApiController extends Controller
 
     private $paymentService;
     private $apiTokenService;
+    private $apiRequestValidationService;
 
     public function __construct()
     {
         $this->paymentService = new ApiPaymentService();
         $this->apiTokenService = new ApiTokenService();
+        $this->apiRequestValidationService = new ApiRequestValidationService();
     }
 
     public function createNewTransaction(Request $request)
     {
-        $errors = $this->paymentService->validateRequestTransactionCreation(self::getRequestBody($request));
+        $errors = $this->apiRequestValidationService->validateRequestTransactionCreation(self::getRequestBody($request));
         if ($errors->isNotEmpty())
             return response()->json(self::jsonForInvalidPayload($errors), 400);
     }
 
     public function getPaginatedTransactionList(Request $request)
     {
-        return response('Not yet implemented', 400);
     }
 
     public function fulfillPendingTransaction(Request $request, $id)
     {
-        $errors = $this->paymentService->validatePaymentInformation(self::getRequestBody($request));
+        $errors = $this->apiRequestValidationService->validatePaymentInformation(self::getRequestBody($request));
         if ($errors->isNotEmpty())
             return response()->json(self::jsonForInvalidPayload($errors), 400);
-        return response('Not yet implemented', 400);
     }
 
     public function getTransactionDetails(Request $request, $transactionId)
@@ -86,10 +87,9 @@ class ApiController extends Controller
 
     public function refoundTransaction(Request $request, $id)
     {
-        $errors = $this->paymentService->validateRequestRefoundInformation(self::getRequestBody($request));
+        $errors = $this->apiRequestValidationService->validateRequestRefoundInformation(self::getRequestBody($request));
         if ($errors->isNotEmpty())
             return response()->json(self::jsonForInvalidPayload($errors), 400);
-        return response('Not yet implemented', 400);
     }
 
     /**

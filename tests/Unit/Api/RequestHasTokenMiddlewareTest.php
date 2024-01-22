@@ -21,16 +21,11 @@ class RequestHasTokenMiddlewareTest extends TestCase
     private $url = '/test/middleware/apiqequesthastoken';
     private $apiTokenService;
 
-    public function __construct($name)
-    {
-        parent::__construct($name);
-        $this->apiTokenService = new ApiTokenService();
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
 
+        $this->apiTokenService = new ApiTokenService();
         Route::middleware('api.token')->any($this->url, function () {
             return response()->json([
                 'message' => 'Middleware let the request pass',
