@@ -49,10 +49,6 @@ class BusinessController extends Controller
         if ($payment == null) {
             return redirect()->route('payments');
         }
-        //TODO a menos que haya una mejor idea, si la id->business_id no es la misma que la del usuario, redirigir a la lista de pagos
-        if ($payment->business_id != Auth::id()) {
-            return redirect()->route('payments');
-        }
 
         return view('home.business-views.pago', [
             'payment' => $payment,

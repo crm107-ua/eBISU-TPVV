@@ -21,7 +21,7 @@ class PaymentAccessMiddleware
                     return $next($request);
                 }
             } else if (Auth::user()->role == UserRole::Technician) {
-                if ($payment->tickets->where('technician_id', Auth::id())->count() > 0)
+                if ($payment->tickets->where('technitian_id', Auth::id())->count() > 0)
                     return $next($request);
             } else if (Auth::user()->role == UserRole::Admin) {
                 return $next($request);
