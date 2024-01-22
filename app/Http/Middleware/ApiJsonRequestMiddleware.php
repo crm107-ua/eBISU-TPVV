@@ -15,11 +15,19 @@ class ApiJsonRequestMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->isJson())
-            return $next($request);
-        return response()->json([
-            'error' => 'Invalid payload',
-            'description' => 'The payload must be json',
-        ], 400);
+        if (!$request->isJson())
+            return response()->json([
+                'error' => 'Invalid payload',
+                'description' => 'The payload must be json',
+            ], 400);
+        $json = $request->json()->all();
+        if (count($json) == 0) {
+            return response()->json([
+                'error' => 'Invalid payload',
+                'description' => 'The payload is empty',
+            ], 400);
+        }
+        $request->attributes->add(['json_body' => $json]);
+        return $next($request);
     }
 }

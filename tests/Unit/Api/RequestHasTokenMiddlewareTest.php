@@ -2,10 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Enums\UserRole;
 use App\Models\ApiToken;
 use App\Models\Business;
-use App\Models\Country;
 use App\Models\User;
 use App\Services\ApiTokenService;
 use Carbon\Carbon;
@@ -43,6 +41,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_valid_request_passes_the_middleware(): void
     {
@@ -62,6 +61,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_valid_request_passes_the_middleware_and_increments_counter(): void
     {
@@ -85,6 +85,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_without_header_rejected(): void
     {
@@ -101,6 +102,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_empty_header_rejected(): void
     {
@@ -119,6 +121,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_header_but_no_bearer_rejected(): void
     {
@@ -137,6 +140,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_header_but_bearer_has_no_token_rejected(): void
     {
@@ -155,6 +159,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_header_but_bearer_is_not_token_rejected(): void
     {
@@ -173,6 +178,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_header_but_bearer_token_has_wrong_secret_rejected(): void
     {
@@ -191,6 +197,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_header_but_bearer_token_non_existing_id_rejected(): void
     {
@@ -209,6 +216,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_header_but_bearer_is_expired_rejected(): void
     {
@@ -232,6 +240,7 @@ class RequestHasTokenMiddlewareTest extends TestCase
     /**
      * @group api
      * @group middleware
+     * @group has_token
      */
     public function test_request_with_header_but_bearer_is_invalidated_rejected(): void
     {

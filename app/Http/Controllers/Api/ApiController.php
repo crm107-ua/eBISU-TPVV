@@ -40,6 +40,9 @@ class ApiController extends Controller
 
     public function fulfillPendingTransaction(Request $request, $id)
     {
+        $errors = $this->paymentService->validatePaymentInformation(self::getRequestBody($request));
+        if ($errors->isNotEmpty())
+            return response()->json(self::jsonForInvalidPayload($errors), 400);
         return response('Not yet implemented', 400);
     }
 
@@ -83,6 +86,9 @@ class ApiController extends Controller
 
     public function refoundTransaction(Request $request, $id)
     {
+        $errors = $this->paymentService->validateRequestRefoundInformation(self::getRequestBody($request));
+        if ($errors->isNotEmpty())
+            return response()->json(self::jsonForInvalidPayload($errors), 400);
         return response('Not yet implemented', 400);
     }
 
@@ -103,7 +109,7 @@ class ApiController extends Controller
 
     private static function getRequestBody(Request $request): array
     {
-        return $request->json()->all();
+        return $request->attributes->get('json_body');
     }
 
     private static function joinErrorMessages(MessageBag $errors): string
