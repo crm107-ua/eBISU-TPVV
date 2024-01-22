@@ -9,6 +9,7 @@ use App\Models\ApiToken;
 use App\Models\Transaction;
 use App\Services\ApiRequestValidationService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ApiController extends Controller
 {
@@ -19,13 +20,11 @@ class ApiController extends Controller
 
     private $paymentService;
     private $apiTokenService;
-    private $apiRequestValidationService;
 
     public function __construct()
     {
         $this->paymentService = new ApiPaymentService();
         $this->apiTokenService = new ApiTokenService();
-        $this->apiRequestValidationService = new ApiRequestValidationService();
     }
 
     public function createNewTransaction(Request $request)
@@ -35,8 +34,10 @@ class ApiController extends Controller
         $concept = $request->json('concept');
         $receiptNumber = $request->json('receipt_number');
 
+        DB::beginTransaction();
         $transaction = $this->paymentService->createNewTransaction($businessId, $amount, $concept, $receiptNumber);
         if (!$transaction) {
+            DB::rollBack();
             return response()->json([
                 'error' => 'Server error',
                 'description' => 'Could not register your transaction',
@@ -44,6 +45,7 @@ class ApiController extends Controller
         }
 
         if (!$request->json('payment')) {
+            DB::commit();
             /**
              * @todo VIEW TO PROVIDE PAYMENT METHOD
              */
@@ -52,19 +54,23 @@ class ApiController extends Controller
 
         $payment = $this->paymentService->savePaymentMethod($request->json('payment'));
         if (!$payment) {
+            DB::rollBack();
             return response()->json([
                 'error' => 'Server error',
-                'description' => "Could not register the payment method. The transaction was created with id $transaction->id, try fulfilling it",
+                'description' => 'Could not register payment method',
             ], 500);
         }
 
         $finalized = $this->paymentService->finalizePendingTransaction($transaction->id, $payment->id);
         if (!$finalized) {
+            DB::rollBack();
             return response()->json([
                 'error' => 'Server error',
-                'description' => "Could not finalize the transaction. The transaction was created with id $transaction->id, try fulfilling it",
+                'description' => 'Could not finalice transaction',
             ], 500);
         }
+
+        DB::commit();
 
         $transaction->refresh();
         return response()->json($this->apiTokenService->jsonify($transaction, false), 201);
@@ -79,8 +85,10 @@ class ApiController extends Controller
         $includeRefound = $this->getIncludeRefounded($request);
         $transaction = $this->getRequestTransaction($request);
 
+        DB::beginTransaction();
         $payment = $this->paymentService->savePaymentMethod(self::getRequestBody($request));
         if (!$payment) {
+            DB::rollBack();
             return response()->json([
                 'error' => 'Server error',
                 'description' => "Could not register the payment method",
@@ -89,11 +97,14 @@ class ApiController extends Controller
 
         $finalized = $this->paymentService->finalizePendingTransaction($transaction->id, $payment->id);
         if (!$finalized) {
+            DB::rollBack();
             return response()->json([
                 'error' => 'Server error',
                 'description' => "Could not finalize the transaction",
             ], 500);
         }
+
+        DB::commit();
 
         $transaction->refresh();
         return response()->json($this->apiTokenService->jsonify($transaction, $includeRefound), 200);
