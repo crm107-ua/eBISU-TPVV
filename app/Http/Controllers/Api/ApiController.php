@@ -31,7 +31,6 @@ class ApiController extends Controller
         $errors = $this->paymentService->validateRequestTransactionCreation(self::getRequestBody($request));
         if ($errors->isNotEmpty())
             return response()->json(self::jsonForInvalidPayload($errors), 400);
-        return response();
     }
 
     public function getPaginatedTransactionList(Request $request)
