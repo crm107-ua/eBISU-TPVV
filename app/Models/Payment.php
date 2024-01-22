@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PaymentType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,10 @@ class Payment extends Model
         'credit_card_month_of_expiration',
         'credit_card_year_of_expiration',
         'credit_card_csv',
+    ];
+
+    protected $casts = [
+        'type' => PaymentType::class,
     ];
 
     public function transaction() {

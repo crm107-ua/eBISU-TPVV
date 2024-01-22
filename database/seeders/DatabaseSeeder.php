@@ -15,6 +15,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             BusinessSeeder::class,
             TechnicianSeeder::class,
+            ApiTokenSeeder::class,
+            AttachmentSeeder::class,
+            PaymentSeeder::class,
+            TransactionSeeder::class,
+            TicketSeeder::class,
+            CommentSeeder::class,
         ]);
     }
 }

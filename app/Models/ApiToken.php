@@ -17,6 +17,12 @@ class ApiToken extends Model
         'business_id',
     ];
 
+    protected $casts = [
+        'invalidated' => 'boolean',
+        'expiration_date' => 'datetime',
+        'times_used' => 'integer'
+    ];
+
     public function business()
     {
         return $this->belongsTo(Business::class);
