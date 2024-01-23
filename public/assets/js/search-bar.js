@@ -5,8 +5,11 @@ document.getElementById("searchInput").addEventListener("input", function() {
     var searchOptions = {
         "Dashboard": { url: LaravelRoutes.dashboard, icon: "<i class='mdi mdi-speedometer'></i>" },
         "Listado de comercios": { url: LaravelRoutes.business, icon: "<i class='mdi mdi-store'></i>" },
+        "Agregar comercio": { url: LaravelRoutes.createBusiness, icon: "<i class='mdi mdi-plus'></i>" },
         "Listado de admins": { url: LaravelRoutes.admins, icon: "<i class='mdi mdi-view-list'></i>" },
+        "Agregar administrador": { url: LaravelRoutes.createAdmin, icon: "<i class='mdi mdi-plus'></i>" },
         "Listado de técnicos": { url: LaravelRoutes.technicians, icon: "<i class='mdi mdi-apple-finder'></i>" },
+        "Agregar técnico": { url: LaravelRoutes.createTechnician, icon: "<i class='mdi mdi-plus'></i>" },
         "Listado de incidencias": { url: LaravelRoutes.tickets, icon: "<i class='mdi mdi-alert-outline'></i>" },
         "API Tokens": { url: LaravelRoutes.tokens, icon: "<i class='mdi mdi-key-change'></i>" }
     };

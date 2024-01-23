@@ -76,6 +76,9 @@
       admins: "{{ route('admin.admins') }}",
       technicians: "{{ route('admin.technicians') }}",
       tickets: "{{ route('admin.tickets') }}",
-      tokens: "{{ route('admin.tokens') }}"
+      tokens: "{{ route('admin.tokens') }}",
+      createAdmin: "{{ route('admin.admins.create.post') }}",
+      createBusiness: "{{ route('admin.business.create.post') }}",
+      createTechnician: "{{ route('admin.technicians.create.post') }}"
   };
 </script>
