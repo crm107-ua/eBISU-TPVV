@@ -2,15 +2,16 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BusinessController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\TechnicianController;
 use App\Http\Controllers\Admin\TicketController;
 use App\Http\Controllers\Admin\TokensController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'verified','admin'])->group(function () {
-    Route::get('/admin', function () {
-        return view('dashboard.index');
-    })->name('admin.dashboard');
+    Route::get('/admin',
+        [DashboardController::class, 'index'])
+        ->name('admin.dashboard');
 
     Route::get('/admin/business',
         [BusinessController::class, 'showBusinessList'])
