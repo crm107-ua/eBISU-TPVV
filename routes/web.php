@@ -29,8 +29,6 @@ Route::get('/technician/tickets', [TechnicianController::class, 'showTechnicianT
 Route::post('/technician/tickets/{id}/changeState', [TechnicianController::class, 'changeTicketState'])
     ->middleware(['auth', 'verified', 'technician'])->name('technician.changeTicketState');
 
-
-
 Route::get('/tickets', [TicketController::class, 'showTickets'])
     ->middleware(['auth', 'verified', 'business'])->name('tickets');
 
@@ -67,11 +65,12 @@ Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.em
 
 Route::post('/ticket/{id}/comment', [\App\Http\Controllers\TicketController::class, 'addComment'])
     ->middleware(['auth', 'verified', 'ticketAccess'])->name('addComment');
+require __DIR__ . '/auth.php';
 
 Route::get('404', function () {
     $htmlContent = file_get_contents(resource_path('views/dashboard/template/pages/samples/error-404.html'));
     return response($htmlContent, 404);
 })->name('404');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 require __DIR__.'/adminDashboardRoutes.php';
