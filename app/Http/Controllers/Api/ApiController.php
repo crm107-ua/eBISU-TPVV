@@ -73,11 +73,55 @@ class ApiController extends Controller
         DB::commit();
 
         $transaction->refresh();
-        return response()->json($this->apiTokenService->jsonify($transaction, false), 201);
+        return response()->json($this->paymentService->jsonify($transaction, false), 201);
     }
 
     public function getPaginatedTransactionList(Request $request)
     {
+        $token = $this->getRequestToken($request);
+        $includeRefound = $this->getIncludeRefounded($request);
+        $page = $request->input('page', 1);
+        if (!is_numeric($page))
+            return response()->json([
+                'error' => 'Invalid pagination page',
+                'description' => 'The pagination page must be 1 or more',
+            ], 400);
+        $page = (int) $page;
+        if ($page < 1) {
+            return response()->json([
+                'error' => 'Invalid pagination page',
+                'description' => 'The pagination page must be 1 or more',
+            ], 400);
+        }
+        $limit = $request->input('limit', 10);
+        if (!is_numeric($limit))
+            return response()->json([
+                'error' => 'Invalid pagination limit',
+                'description' => 'The pagination limit must be a positive number',
+            ], 400);
+        $limit = min((int) $limit, 100);
+        if ($limit < 0) {
+            return response()->json([
+                'error' => 'Invalid pagination limit',
+                'description' => 'The pagination limit must be positive',
+            ], 400);
+        }
+
+        $paginated = Transaction::orderBy('id', 'desc')
+            ->where('business_id', $token->business_id)
+            ->paginate($limit, ['*'], 'page', $page);
+        $transactions = collect($paginated->items())->map(function ($transaction) use ($includeRefound) {
+            return $this->paymentService->jsonify($transaction, $includeRefound);
+        })->all();
+
+        return response()->json([
+            'meta' => [
+                'page' => $paginated->currentPage(),
+                'retrieved' => count($transactions),
+                'total' => $paginated->total(),
+            ],
+            'transactions' => $transactions,
+        ], 200);
     }
 
     public function fulfillPendingTransaction(Request $request)
@@ -113,7 +157,7 @@ class ApiController extends Controller
         DB::commit();
 
         $transaction->refresh();
-        return response()->json($this->apiTokenService->jsonify($transaction, false), 200);
+        return response()->json($this->paymentService->jsonify($transaction, false), 200);
     }
 
     public function getTransactionDetails(Request $request)
@@ -121,7 +165,7 @@ class ApiController extends Controller
         $includeRefound = $this->getIncludeRefounded($request);
         $transaction = $this->getRequestTransaction($request);
 
-        return response()->json($this->apiTokenService->jsonify($transaction, $includeRefound), 200);
+        return response()->json($this->paymentService->jsonify($transaction, $includeRefound), 200);
     }
 
     public function refoundTransaction(Request $request)
@@ -140,7 +184,7 @@ class ApiController extends Controller
                 'description' => 'Only non refound transactions can be refounded',
             ], 400);
 
-        if($this->paymentService->transactionHasBeenRefounded($transaction->id)) {
+        if ($this->paymentService->transactionHasBeenRefounded($transaction->id)) {
             return response()->json([
                 'error' => 'Transaction already refunded',
                 'description' => 'This transaction already has been refounded',
@@ -161,7 +205,7 @@ class ApiController extends Controller
         }
 
         DB::commit();
-        return response()->json($this->apiTokenService->jsonify($refound, $includeRefound));
+        return response()->json($this->paymentService->jsonify($refound, $includeRefound));
     }
 
     /**

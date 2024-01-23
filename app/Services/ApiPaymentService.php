@@ -172,4 +172,43 @@ class ApiPaymentService
             ->where('state', TransactionStateType::Accepted)
             ->exists();
     }
+
+    public function jsonify(Transaction $transaction, $includeRefound = false): ?array
+    {
+        if (!$transaction) return null;
+
+        $json = [
+            'id' => $transaction->id,
+            'amount' => $transaction->amount,
+            'state' => $transaction->state->getApiName(),
+            'emision_date' => $this->formatDate($transaction->emision_date),
+        ];
+
+        if ($transaction->concept)
+            $json['concept'] = $transaction->concept;
+
+        if ($transaction->receipt_number)
+            $json['concept'] = $transaction->receipt_number;
+
+        if ($transaction->state != TransactionStateType::Waiting) {
+            $json['finalized_date'] = $this->formatDate($transaction->finished_date);
+            $json['finalized_reason'] = $transaction->finalize_reason->getApiMessage();
+        }
+
+        if ($transaction->refounds_id) {
+            if ($includeRefound) {
+                $refounded = Transaction::find($transaction->refounds_id);
+                $json['refounds'] = $this->jsonify($refounded);
+            } else {
+                $json['refounds'] = $transaction->refounds_id;
+            }
+        }
+
+        return $json;
+    }
+
+    private function formatDate($date)
+    {
+        return Carbon::parse($date)->toIso8601String();
+    }
 }
