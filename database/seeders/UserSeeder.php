@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\UserRole;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,7 +22,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin@ebisu.com',
             'password' => Hash::make('1234'),
-            'role' => 'admin',
+            'role' => UserRole::Admin,
             'direction_direction' => 'Calle 13422',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'San Vicente',
@@ -33,7 +34,7 @@ class UserSeeder extends Seeder
             'name' => 'Technician User',
             'email' => 'technician@ebisu.com',
             'password' => Hash::make('1234'),
-            'role' => 'technician',
+            'role' => UserRole::Technician,
             'direction_direction' => 'Calle 143243',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'Madrid',
@@ -45,7 +46,7 @@ class UserSeeder extends Seeder
             'name' => 'Sport español',
             'email' => 'business@ebisu.com',
             'password' => Hash::make('1234'),
-            'role' => 'business',
+            'role' => UserRole::Business,
             'direction_direction' => 'Calle 123124',
             'direction_postal_code' => '12345',
             'direction_poblation' => 'San Juan',
@@ -57,6 +58,7 @@ class UserSeeder extends Seeder
             'email' => 'business2@ebisu.com',
             'password' => Hash::make('1234'),
             'role' => 'business',
+            'discharge_date' => now(),
             'direction_direction' => 'Calle 123224',
             'direction_postal_code' => '12245',
             'direction_poblation' => 'San Luis',
@@ -79,6 +81,7 @@ class UserSeeder extends Seeder
             'email' => 'business4@ebisu.com',
             'password' => Hash::make('1234'),
             'role' => 'business',
+            'discharge_date' => now(),
             'direction_direction' => 'Calle 123224',
             'direction_postal_code' => '12245',
             'direction_poblation' => 'San Luis',
