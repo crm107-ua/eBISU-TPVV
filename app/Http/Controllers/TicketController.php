@@ -60,9 +60,10 @@ class TicketController extends Controller
     {
         $ticket = Ticket::find($id);
         $comments = $ticket->comments()->orderBy('sent_date', 'asc')->get();
+        $states = TicketStateType::getValues();
 
         return view('home.business-views.incidencia',
-            ['ticket' => $ticket, 'comments' => $comments]);
+            ['ticket' => $ticket, 'comments' => $comments, 'states' => $states]);
     }
 
     public function valorateTicket(Request $request, $id)
@@ -131,12 +132,17 @@ class TicketController extends Controller
         return $tickets;
     }
 
-    public function downloadFile(Request $request, $id)
-    {
-        $attachment = Attachment::find($id);
-        $path = storage_path('app/attachments/' . $attachment->filename);
-        return response()->download($path);
+public function downloadFile(Request $request, $id)
+{
+    $attachment = Attachment::find($id);
+    $path = storage_path('app/attachments/' . $attachment->filename);
+
+    if (!file_exists($path)) {
+        return redirect()->route('404');
     }
+
+    return response()->download($path);
+}
 
     public function addComment(Request $request, $id){
         $ticket = Ticket::find($id);

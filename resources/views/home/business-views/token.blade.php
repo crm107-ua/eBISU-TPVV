@@ -18,16 +18,21 @@
                                         <h3 style="margin-bottom: 20px; text-align: left;">Token de eBISU API</h3>
                                         <div style="background-color: white; padding: 20px; border-radius: 8px;">
                                             <p><strong>Mi token:</strong></p>
-                                            <input type="text" value="{{ $encodedToken }}" readonly style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 4px;">
-                                            <p>Fecha de expiración: {{ $token->expiration_date }}</p>
+                                            <div class="input-group" style="margin-bottom: 20px; ">
+                                                <input type="text" id="input_token" value="{{ $encodedToken }}" readonly style="flex-grow: 1; height: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                                                <button class="btn btn-outline-secondary" type="button" onclick="navigator.clipboard.writeText(input_token.value)">
+                                                    <i class="mdi mdi-content-paste"></i>
+                                                </button>
+                                            </div>
+                                            <p>Fecha de expiración: <span {{ $token->expiration_date->isPast() ? 'style=color:red;' : '' }} >{{ $token->expiration_date }}</span></p>
                                             <p>Nº de usos: {{ $token->times_used }}</p>
                                             <p>Nº de usos totales: {{ $totalUses }}</p>
-                                            <form action="{{ route('crear-generar-token') }}" method="POST">
-                                                @csrf
-                                                <div style="text-align: right; padding-top: 20px;">
-                                                    <button style="border: none; padding: 10px 20px; background-color: #333; color: white; border-radius: 4px; cursor: pointer;">Generar nuevo</button>
-                                                </div>
-                                            </form>
+                                            @if($token->invalidated)
+                                            <p style="color: red;">Invalidado</p>
+                                            @endif
+                                            <div style="text-align: right; padding-top: 20px;">
+                                                <a href="{{ route('business-token-new') }}" style="border: none; padding: 10px 20px; background-color: #333; color: white; border-radius: 4px; cursor: pointer;">Generar nuevo</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
