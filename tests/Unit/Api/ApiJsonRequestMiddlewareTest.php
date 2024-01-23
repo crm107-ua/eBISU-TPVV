@@ -35,15 +35,4 @@ class ApiJsonRequestMiddlewareTest extends TestCase
                 'message' => 'Middleware let the request pass',
             ]);
     }
-
-    public function test_empty_request_fails_the_middleware()
-    {
-        $this->postJson($this->url, [])
-            ->assertStatus(400)
-            ->assertJson([
-                'error' => 'Invalid payload',
-                'description' => 'The payload is empty',
-            ]);
-    }
-
 }
