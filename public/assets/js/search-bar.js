@@ -1,17 +1,14 @@
 document.getElementById("searchInput").addEventListener("input", function() {
     var input = this.value;
     var suggestionsContainer = document.getElementById("suggestions");
-    // Opciones de búsqueda actualizadas con íconos
+
     var searchOptions = {
-        "Dashboard": { url: "/dashboard", icon: "<i class='mdi mdi-speedometer'></i>" },
-        "Añadir comercio": { url: "/comercios-form", icon: "<i class='mdi mdi-basket'></i>" },
-        "Añadir administrador": { url: "/admin-form", icon: "<i class='mdi mdi-account-plus'></i>" },
-        "Añadir técnico": { url: "/tecnico-form", icon: "<i class='mdi mdi-account-plus'></i>" },
-        "Listado de comercios": { url: "/listado-comercios", icon: "<i class='mdi mdi-store'></i>" },
-        "Listado de administradores": { url: "/listado-admins", icon: "<i class='mdi mdi-view-list'></i>" },
-        "Listado de técnicos": { url: "/listado-tecnicos", icon: "<i class='mdi mdi-apple-finder'></i>" },
-        "Listado de incidencias": { url: "/listado-incidencias", icon: "<i class='mdi mdi-alert-outline'></i>" },
-        "API Tokens": { url: "/tokens-admin", icon: "<i class='mdi mdi-key-change'></i>" }
+        "Dashboard": { url: LaravelRoutes.dashboard, icon: "<i class='mdi mdi-speedometer'></i>" },
+        "Listado de comercios": { url: LaravelRoutes.business, icon: "<i class='mdi mdi-store'></i>" },
+        "Listado de admins": { url: LaravelRoutes.admins, icon: "<i class='mdi mdi-view-list'></i>" },
+        "Listado de técnicos": { url: LaravelRoutes.technicians, icon: "<i class='mdi mdi-apple-finder'></i>" },
+        "Listado de incidencias": { url: LaravelRoutes.tickets, icon: "<i class='mdi mdi-alert-outline'></i>" },
+        "API Tokens": { url: LaravelRoutes.tokens, icon: "<i class='mdi mdi-key-change'></i>" }
     };
 
     suggestionsContainer.innerHTML = '';
@@ -23,7 +20,6 @@ document.getElementById("searchInput").addEventListener("input", function() {
                 a.href = searchOptions[option].url;
                 a.classList.add("suggestion-link");
 
-                // Crear un contenedor para el ícono y el texto
                 var iconSpan = document.createElement("span");
                 iconSpan.innerHTML = searchOptions[option].icon;
                 iconSpan.classList.add("icon-container");
