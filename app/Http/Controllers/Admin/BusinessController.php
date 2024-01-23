@@ -118,6 +118,13 @@ class BusinessController extends Controller
     {
         session(['country' => $request->country]);
         $validatedData = request()->validate($this->editRules);
+        $business = $this->businessService->getBusinessById($id);
+        if ($business->user->email != $validatedData['email']) {
+            $validatedData['email'] = $request->validate(['email' => 'required|email|unique:users,email'])['email'];
+        }
+        if ($business->cif != $validatedData['cif']) {
+            $validatedData['cif'] = $request->validate(['cif' => 'required|unique:businesses,cif|size:9|regex:/^[A-Z][0-9]{8}$/'])['cif'];
+        }
         if($validatedData['country'] == 'ES') {
             $validatedData['town-select'] =  $request->validate(['town-select' => 'required|exists:poblations,name'])['town-select'];
         } else {
