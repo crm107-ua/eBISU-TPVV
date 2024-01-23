@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Enums\UserRole;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
@@ -29,12 +30,12 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         // Aquí se maneja la redirección basada en el rol del usuario
-        if (auth()->user()->role == 'admin') {
-            return redirect('/admin');
-        } else if (auth()->user()->role == 'technician') {
-            return redirect('/technical-home');
+        if (Auth::user()->role == UserRole::Admin) {
+            return redirect()->route('admin.dashboard');
+        } else if (auth()->user()->role == UserRole::Technician) {
+            return redirect()->route('technical-home');
         }else{
-            return redirect('/business-home');
+            return redirect()->route('business-home');
         }
     }
 
