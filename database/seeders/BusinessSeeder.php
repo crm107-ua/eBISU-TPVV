@@ -22,7 +22,7 @@ class BusinessSeeder extends Seeder
             'balance' => 10000,
             'contact_info_name' => 'Santiago Feijoo',
             'contact_info_phone_number' => '123456789',
-            'contact_info_email' => 'contact@ebisu.com',
+            'contact_info_email' => 'business@ebisu.com',
         ]);
 
         Business::create([
@@ -32,7 +32,7 @@ class BusinessSeeder extends Seeder
             'balance' => 10000,
             'contact_info_name' => 'Elena Martinez',
             'contact_info_phone_number' => '123456789',
-            'contact_info_email' => 'contact@ebisu.com',
+            'contact_info_email' => 'cbusiness2@ebisu.com',
         ]);
 
         Business::create([
@@ -42,7 +42,7 @@ class BusinessSeeder extends Seeder
             'balance' => 10000,
             'contact_info_name' => 'Vanessa Sanchez',
             'contact_info_phone_number' => '123456789',
-            'contact_info_email' => 'contact@ebisu.com',
+            'contact_info_email' => 'business3@ebisu.com',
         ]);
 
         Business::create([
@@ -52,7 +52,7 @@ class BusinessSeeder extends Seeder
             'balance' => 10000,
             'contact_info_name' => 'Pedro Abascal',
             'contact_info_phone_number' => '123456789',
-            'contact_info_email' => 'contact@ebisu.com',
+            'contact_info_email' => 'business4@ebisu.com',
         ]);
     }
 }
