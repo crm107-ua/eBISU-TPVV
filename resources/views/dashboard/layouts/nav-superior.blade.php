@@ -68,7 +68,7 @@
   @csrf
 </form>
 
-
+<!-- Paso de rutas a js desde blade -->
 <script type="text/javascript">
   var LaravelRoutes = {
       dashboard: "{{ route('admin.dashboard') }}",
