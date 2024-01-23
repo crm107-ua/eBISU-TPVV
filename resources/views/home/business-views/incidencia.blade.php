@@ -41,10 +41,10 @@
                                                 <form method="post" action="{{route('technician.changeTicketState', $ticket->id)}}">
                                                     @csrf
                                                     <label for="state" style="display: block; color: white;"><strong>Cambiar estado</strong></label>
-                                                    <select id="state" name="state" onchange="this.form.submit()" style="color:white">
+                                                    <select id="state" name="state" onchange="this.form.submit()" style="color:white; width: auto">
                                                         @foreach($states as $state)
                                                             <option value="{{$state}}" {{$ticket->state == $state ? 'selected' : ''}}
-                                                                style="color:black">
+                                                                style="color:black; width: auto">
                                                                 {{strtoupper($state)}}
                                                             </option>
                                                         @endforeach
