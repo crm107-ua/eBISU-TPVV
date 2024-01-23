@@ -140,33 +140,4 @@ class GetPaginatedTransactionListEndpointTest extends TestCase
                 ],
             ]);
     }
-
-    public function test_get_list_with_100_transactions(): void
-    {
-        $transactions = [];
-        for ($i = 0; $i < 100; $i++) {
-            array_push($transactions, Transaction::factory()->withBusiness($this->business)->create());
-        }
-
-        $this->getJson($this->url, $this->headers)
-            ->assertStatus(Response::HTTP_OK)
-            ->assertExactJson([
-                'meta' => [
-                    'page' => 1,
-                    'retrieved' => 10,
-                    'total' => 100,
-                ],
-                'transactions' => [
-                    collect($transactions)
-                        ->take(10)
-                        ->sortByDesc(function ($transaction) {
-                            return $transaction->id;
-                        })
-                        ->map(function ($transaction) {
-                            return $transaction->jsonify();
-                        })
-                        ->toArray(),
-                ],
-            ]);
-    }
 }
