@@ -63,15 +63,11 @@ Route::get('/business-home', function () {
 Route::get('/technician/reviews', [TechnicianController::class, 'showTechnicianValorations'])
     ->middleware(['auth', 'verified', 'technician'])->name('technician.reviews');
 
-Route::get('/incidencias', function () {
-    return view('home.technical-views.incidencias');
-})->middleware(['auth', 'verified'])->name('incidencias');
+Route::get('/technician/tickets', [TechnicianController::class, 'showTechnicianTickets'])
+    ->middleware(['auth', 'verified', 'technician'])->name('technician.tickets');
 
-Route::get('/incidencia', function () {
-    return view('home.technical-views.incidencia');
-})->middleware(['auth', 'verified'])->name('incidencia');
-
-
+Route::post('/technician/tickets/{id}/changeState', [TechnicianController::class, 'changeTicketState'])
+    ->middleware(['auth', 'verified', 'technician'])->name('technician.changeTicketState');
 
 Route::get('/tickets', [TicketController::class, 'showTickets'])
     ->middleware(['auth', 'verified', 'business'])->name('tickets');
@@ -81,8 +77,8 @@ Route::get('/ticket/{id}', [\App\Http\Controllers\TicketController::class, 'show
 Route::post('/ticket/{id}/valorate', [\App\Http\Controllers\TicketController::class, 'valorateTicket'])
     ->middleware(['auth', 'verified', 'ticketAccess'])->name('valorateTicket');
 
-Route::get('/generar-token', [BusinessController::class, 'showTokenDetails'])->middleware(['auth', 'verified', 'business'])->name('generar-token');
-Route::post('/generar-token', [BusinessController::class, 'createNewToken'])->middleware(['auth', 'verified', 'business'])->name('crear-generar-token');
+Route::get('/business/token', [BusinessController::class, 'showTokenDetails'])->middleware(['auth', 'verified', 'business'])->name('business-token');
+Route::get('/business/token/new', [BusinessController::class, 'createNewToken'])->middleware(['auth', 'verified', 'business'])->name('business-token-new');
 
 Route::get('/payments', [BusinessController::class, 'showPayments'])
     ->middleware(['auth', 'verified', 'business'])->name('payments');
@@ -99,14 +95,17 @@ Route::get('/terminos-condiciones', function () {
     return view('home.general-views.terminos');
 })->name('terminos-condiciones');
 
-// Route::middleware('auth')->group(function () {
 Route::get('/downloadFile/{id}', [TicketController::class, 'downloadFile'])
     ->middleware(['auth', 'verified', 'attachmentAccess'])->name('downloadFile');
 Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.email');
 
 Route::post('/ticket/{id}/comment', [\App\Http\Controllers\TicketController::class, 'addComment'])
     ->middleware(['auth', 'verified', 'ticketAccess'])->name('addComment');
-require __DIR__ . '/auth.php';
+
+Route::get('404', function () {
+    $htmlContent = file_get_contents(resource_path('views/dashboard/template/pages/samples/error-404.html'));
+    return response($htmlContent, 404);
+})->name('404');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/adminDashboardRoutes.php';

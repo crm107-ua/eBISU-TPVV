@@ -222,6 +222,7 @@
 	<link rel="apple-touch-icon" href="{{ asset('icon.png') }}">
 	<link rel="icon" href="{{ asset('icon.png') }}" type="image/x-icon">
 	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
 </head>
     <body class="home page-template-default page page-id-13 wp-embed-responsive ui-a-dsmm-slide  elementor-default elementor-kit-4 elementor-page elementor-page-13">
 
