@@ -49,6 +49,13 @@
                         </p>
                         <br>
                     </div>
+                    <div>
+                        <h5>Tiempo restante</h5>
+                        <p class="card-text">
+                            La transacción caducará el {{ $timeoutDate }}
+                        </p>
+                        <br>
+                    </div>
                     <p class="card-text">
                         Si considera que ha habido un error, puede ponerse en contacto con dicha empresa en el correo
                         <a href="mailto:"{{ $business->contact_info_email }}>{{ $business->contact_info_email }}</a>.

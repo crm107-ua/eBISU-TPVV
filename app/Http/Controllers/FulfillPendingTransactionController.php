@@ -2,26 +2,93 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Business;
+use App\Enums\PaymentType;
+use App\Enums\TransactionStateType;
 use App\Models\Transaction;
+use App\Services\ApiPaymentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FulfillPendingTransactionController extends Controller
 {
-    public function getPaymentForm(Request $request)
+
+    private $paymentService;
+
+    public function __construct()
     {
+        $this->paymentService = new ApiPaymentService();
+    }
+
+    public function getPaymentForm(Request $request, $transactionId)
+    {
+        $transaction = Transaction::find($transactionId);
+        if (!$transaction) {
+            return view('payment.transactionNotFound');
+        }
+
+        if ($transaction->state !== TransactionStateType::Waiting) {
+            return view('payment.transactionFinished');
+        }
+
         return view('payment.paymentForm', [
-            'business' => Business::find(6),
-            'transaction' => Transaction::find(8),
+            'business' => $transaction->business,
+            'transaction' => $transaction,
+            'timeoutDate' => $transaction->emision_date->addSeconds((int) env('TRANSACTION_TIMEOUT')),
         ]);
     }
 
-    public function postPaymentForm(Request $request)
+    public function postPaymentForm(Request $request, $transactionId)
     {
+        $transaction = Transaction::find($transactionId);
+        if (!$transaction) {
+            return view('payment.transactionNotFound');
+        }
 
+        $paymentValues = [
+            'values' => [],
+        ];
+        if ($request->input('paymentMethod') === 'paypal') {
+            $paymentValues['type'] = PaymentType::Paypal->value;
+            $paymentValues['values']['paypal_user'] = $request->input('paypal_username');
+        } else {
+            $paymentValues['type'] = PaymentType::CreditCard->value;
+            $paymentValues['values']['credit_card_number'] = $request->input('credit_card_number');
+            $paymentValues['values']['credit_card_month_of_expiration'] = $request->input('credit_card_month_of_expiration');
+            $paymentValues['values']['credit_card_year_of_expiration'] = $request->input('credit_card_year_of_expiration');
+            $paymentValues['values']['credit_card_csv'] = $request->input('credit_card_csv');
+        }
+
+        DB::beginTransaction();
+        $payment = $this->paymentService->savePaymentMethod($paymentValues);
+        if (!$payment) {
+            DB::rollBack();
+            return view('payment.serverError', [
+                'transacion' => $transaction,
+            ]);
+        }
+
+        $finalized = $this->paymentService->finalizePendingTransaction($transaction->id, $payment->id);
+        if(!$finalized) {
+            DB::rollBack();
+            return view('payment.serverError', [
+                'transacion' => $transaction,
+            ]);
+        }
+
+        DB::commit();
+        return redirect()->route('payment.get.result', [
+            'id' => $transaction->id,
+        ]);
     }
 
-    public function getResultView(Request $request)
+    public function getResultView(Request $request, $transactionId)
     {
+        $transaction = Transaction::find($transactionId);
+        if (!$transaction) {
+            return view('payment.transactionNotFound');
+        }
+        return view('payment.transactionResult', [
+            'transaction' => $transaction,
+        ]);
     }
 }
