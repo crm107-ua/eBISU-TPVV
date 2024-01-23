@@ -80,6 +80,7 @@ class UserSeeder extends Seeder
             'email' => 'business4@ebisu.com',
             'password' => Hash::make('1234'),
             'role' => 'business',
+            'discharge_date' => now(),
             'direction_direction' => 'Calle 123224',
             'direction_postal_code' => '12245',
             'direction_poblation' => 'San Luis',
