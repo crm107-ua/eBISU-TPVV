@@ -51,5 +51,6 @@
     <script src="{{ asset('assets/js/select2.js') }}"></script>
     <script src="{{ asset('assets/vendors/js/vendor.bundle.base.js') }}"></script>
     <script src="{{ asset('assets/js/advanced.js') }}"></script>
+    <script src="{{ asset('assets/js/search-bar.js') }}"></script>
   </body>
 </html>

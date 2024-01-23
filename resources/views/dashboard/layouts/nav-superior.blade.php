@@ -5,7 +5,7 @@
           <form class="nav-link">
             <input type="text" style="color:white;" class="form-control" id="searchInput" placeholder="Buscar">
             <div id="suggestions" style="black; display: none;">
-                <!-- Las sugerencias aparecerán aquí -->
+                <!-- Las sugerencias aparecen aqui -->
             </div>
         </form>
         </li>
@@ -67,103 +67,3 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
   @csrf
 </form>
-
-<style>
-#suggestions {
-    position: absolute;
-    width: 80%;
-    box-sizing: border-box;
-    z-index: 99;
-}
-
-#suggestions a {
-    padding: 25px;
-    border: 1px solid black;
-    background-color: #38425e;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    color: white;
-    text-decoration: none;
-    display: block; 
-}
-
-.suggestion-link {
-    display: block;
-    padding: 25px; 
-    border: 1px solid black;
-    background-color: #38425e;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-bottom: 5px;
-}
-
-.suggestion-link:hover {
-    background-color: #f0f0f0; 
-    color: black;
-}
-
-.icon-container {
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.text-container {
-    display: inline-block; 
-    vertical-align: middle; 
-    margin-left: 10px;
-}
-
-
-</style>
-
-<script>
-document.getElementById("searchInput").addEventListener("input", function() {
-    var input = this.value;
-    var suggestionsContainer = document.getElementById("suggestions");
-    // Opciones de búsqueda actualizadas con íconos
-    var searchOptions = {
-        "Dashboard": { url: "/dashboard", icon: "<i class='mdi mdi-speedometer'></i>" },
-        "Añadir comercio": { url: "/comercios-form", icon: "<i class='mdi mdi-basket'></i>" },
-        "Añadir administrador": { url: "/admin-form", icon: "<i class='mdi mdi-account-plus'></i>" },
-        "Añadir técnico": { url: "/tecnico-form", icon: "<i class='mdi mdi-account-plus'></i>" },
-        "Listado de comercios": { url: "/listado-comercios", icon: "<i class='mdi mdi-store'></i>" },
-        "Listado de administradores": { url: "/listado-admins", icon: "<i class='mdi mdi-view-list'></i>" },
-        "Listado de técnicos": { url: "/listado-tecnicos", icon: "<i class='mdi mdi-apple-finder'></i>" },
-        "Listado de incidencias": { url: "/listado-incidencias", icon: "<i class='mdi mdi-alert-outline'></i>" },
-        "Detalles de incidencia": { url: "/detalles-incidencia", icon: "<i class='mdi mdi-account-card-details'></i>" },
-        "API Tokens": { url: "/tokens-admin", icon: "<i class='mdi mdi-key-change'></i>" }
-    };
-
-    suggestionsContainer.innerHTML = '';
-
-    if (input.length > 0) {
-        Object.keys(searchOptions).forEach(function(option) {
-            if(option.toLowerCase().includes(input.toLowerCase())) {
-                var a = document.createElement("a");
-                a.href = searchOptions[option].url;
-                a.classList.add("suggestion-link");
-
-                // Crear un contenedor para el ícono y el texto
-                var iconSpan = document.createElement("span");
-                iconSpan.innerHTML = searchOptions[option].icon;
-                iconSpan.classList.add("icon-container");
-
-                var textSpan = document.createElement("span");
-                textSpan.textContent = option;
-                textSpan.classList.add("text-container");
-
-                a.appendChild(iconSpan);
-                a.appendChild(textSpan);
-
-                suggestionsContainer.appendChild(a);
-            }
-        });
-    }
-
-    suggestionsContainer.style.display = Object.keys(searchOptions).length > 0 ? "block" : "none";
-});
-
-</script>
