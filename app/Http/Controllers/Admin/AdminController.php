@@ -75,7 +75,11 @@ class AdminController extends Controller
 
     public function editAdmin(Request $request, $id) {
         session(['country' => $request->country]);
+        $admin = $this->adminTechnicianService->getAdmin($id);
         $validatedData = request()->validate($this->editRules);
+        if($validatedData['email'] != $admin->email) {
+            $validatedData['email'] = $request->validate(['email' => 'required|email|unique:users,email'])['email'];
+        }
         if($validatedData['country'] == 'ES') {
             $validatedData['town-select'] =  $request->validate(['town-select' => 'required|exists:poblations,name'])['town-select'];
         } else {

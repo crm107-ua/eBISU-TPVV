@@ -155,7 +155,7 @@
                     <div class="row align-items-center">
                       <div class="col-auto">
                         <button type="submit" class="btn btn-success me-2">Registrar</button>
-                        <a class="btn btn-dark" href="{{route('admin.admins')}}">Cancelar</a>
+                        <a class="btn btn-dark" href="{{route('admin.technicians')}}">Cancelar</a>
                       </div>
                       <div class="col">
                         <x-password-generator/>
