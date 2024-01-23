@@ -83,7 +83,11 @@ class TechnicianController extends Controller
     public function editTechnician(Request $request, $id)
     {
         session(['country' => $request->country]);
+        $tech = $this->adminTechnicianService->getTechnician($id);
         $validatedData = request()->validate($this->editRules);
+        if($tech->email != $validatedData['email']) {
+            $validatedData['email'] = $request->validate(['email' => 'required|email|unique:users,email'])['email'];
+        }
         if($validatedData['country'] == 'ES') {
             $validatedData['town-select'] =  $request->validate(['town-select' => 'required|exists:poblations,name'])['town-select'];
         } else {

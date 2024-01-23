@@ -29,6 +29,8 @@ Route::get('/technician/tickets', [TechnicianController::class, 'showTechnicianT
 Route::post('/technician/tickets/{id}/changeState', [TechnicianController::class, 'changeTicketState'])
     ->middleware(['auth', 'verified', 'technician'])->name('technician.changeTicketState');
 
+
+
 Route::get('/tickets', [TicketController::class, 'showTickets'])
     ->middleware(['auth', 'verified', 'business'])->name('tickets');
 

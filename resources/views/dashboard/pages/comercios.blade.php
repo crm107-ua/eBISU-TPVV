@@ -79,13 +79,11 @@
                                 <a class="dropdown-item" href="{{route('admin.business.edit', $business->id)}}">Editar</a>
                                 @if($business->user->discharge_date == null)
                                 <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                   data-bs-target="#confirmModal{{$business->id}}"
-                                   onclick="storeUrl('{{route('admin.business.discharge', $business->id)}}')">
+                                   data-bs-target="#confirmModal{{$business->id}}">
                                   Dar de baja</a>
                                 @else
                                   <a class="dropdown-item" href="#" data-bs-toggle="modal"
-                                     data-bs-target="#confirmModal{{$business->id}}"
-                                     onclick="storeUrl('{{route('admin.business.activate', $business->id)}}')">
+                                     data-bs-target="#confirmModal{{$business->id}}">
                                     Activar comercio</a>
                                 @endif
                               </div>
@@ -111,7 +109,10 @@
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
                                       </button>
-                                      <button type="button" class="btn btn-primary" id="confirmYes">
+                                      <button type="button" class="btn btn-primary" id="confirmYes"
+                                        onClick="changeBusinessState(`{{$business->user->discharge_date == null ?
+                                                        strval(route('admin.business.discharge', $business->id)) :
+                                                        strval(route('admin.business.activate', $business->id))}} `)">
                                         @if($business->user->discharge_date == null)
                                           Sí, dar de baja
                                         @else
@@ -155,19 +156,10 @@
   </div>
   @push('scripts')
     <script>
-      var url;
-
-      function storeUrl(route) {
-        url = route;
+      function changeBusinessState(ruta) {
+        console.log(ruta)
+        window.location.href = ruta;
       }
-
-      document.addEventListener('DOMContentLoaded', (event) => {
-        var confirmYes = document.getElementById('confirmYes');
-
-        confirmYes.onclick = function () {
-          window.location.href = url;
-        }
-      });
     </script>
   @endpush
 

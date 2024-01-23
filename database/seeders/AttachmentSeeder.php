@@ -59,6 +59,11 @@ class AttachmentSeeder extends Seeder
             ],
         ];
         $cont = 0;
+        $directoryPath = storage_path('app/attachments');
+
+        if (!is_dir($directoryPath)) {
+            mkdir($directoryPath, 0777, true);
+        }
         foreach ($attachments as $attachment) {
 
             $attachment['filename'] = $cont . '_seeder_file.txt';

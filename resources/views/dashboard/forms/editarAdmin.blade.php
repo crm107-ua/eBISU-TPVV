@@ -59,7 +59,7 @@
                             @endforeach
                           @endif
                           <input type="password" class="form-control" id="password"
-                                 name="password" style="color: white;" required
+                                 name="password" style="color: white;"
                                  value="{{old('password')}}"
                                  placeholder="Contraseña">
                         </div>
