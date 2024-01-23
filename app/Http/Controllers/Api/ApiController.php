@@ -139,11 +139,11 @@ class ApiController extends Controller
                 'error' => 'Transaction is refound',
                 'description' => 'Only non refound transactions can be refounded',
             ], 400);
-        $existsRefound = Transaction::where('refounds_id', $transaction->id)->first();
-        if($existsRefound) {
+
+        if($this->paymentService->transactionHasBeenRefounded($transaction->id)) {
             return response()->json([
                 'error' => 'Transaction already refunded',
-                'description' => 'This transaction already has a refound: ' . $existsRefound->id,
+                'description' => 'This transaction already has been refounded',
             ], 400);
         }
 

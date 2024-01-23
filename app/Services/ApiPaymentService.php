@@ -116,8 +116,6 @@ class ApiPaymentService
     {
         if (!$toBeRefoundedId)
             return null;
-        if (Transaction::where('refounds_id', $toBeRefoundedId)->exists())
-            return null;
         $toBeRefounded = Transaction::find($toBeRefoundedId);
         if (!$toBeRefounded)
             return null;
@@ -128,12 +126,28 @@ class ApiPaymentService
 
         $business = $toBeRefounded->business;
 
-        // if($toBeRefounded->amount > $business->balance)
+        if ($toBeRefounded->amount > $business->balance) {
+            $refound = new Transaction([
+                'concept' => $concept,
+                'receipt_number' => $receiptNumber,
+                'amount' => $toBeRefounded->amount * -1,
+                'state' => TransactionStateType::Cancelled,
+                'emision_date' => Carbon::now(),
+                'finished_date' => Carbon::now(),
+                'finalize_reason' => FinalizeReason::INSUFFICIENT_BALANCE,
+                'refounds_id' => $toBeRefounded->id,
+                'business_id' => $business->id,
+                'payment_id' => $toBeRefounded->payment_id,
+            ]);
+            if (!$refound->save())
+                return null;
+            return $refound;
+        }
 
         $refound = new Transaction([
             'concept' => $concept,
             'receipt_number' => $receiptNumber,
-            'amount' => $toBeRefounded->amount, // negativo?
+            'amount' => $toBeRefounded->amount * -1,
             'state' => TransactionStateType::Accepted,
             'emision_date' => Carbon::now(),
             'finished_date' => Carbon::now(),
@@ -145,10 +159,17 @@ class ApiPaymentService
         if (!$refound->save())
             return null;
 
-        $business->balance = $business->balance - $refound->amount;
+        $business->balance = $business->balance + $refound->amount;
         if (!$business->save())
             return null;
 
         return $refound;
+    }
+
+    public function transactionHasBeenRefounded($transactionId): bool
+    {
+        return Transaction::where('refounds_id', $transactionId)
+            ->where('state', TransactionStateType::Accepted)
+            ->exists();
     }
 }

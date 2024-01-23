@@ -21,12 +21,6 @@ class ApiJsonRequestMiddleware
                 'description' => 'The payload must be json',
             ], 400);
         $json = $request->json()->all();
-        if (count($json) == 0) {
-            return response()->json([
-                'error' => 'Invalid payload',
-                'description' => 'The payload is empty',
-            ], 400);
-        }
         $request->attributes->add(['json_body' => $json]);
         return $next($request);
     }
