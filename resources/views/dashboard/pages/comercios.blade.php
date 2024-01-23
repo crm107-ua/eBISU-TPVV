@@ -111,7 +111,8 @@
                                     <div class="modal-footer">
                                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar
                                       </button>
-                                      <button type="button" class="btn btn-primary" id="confirmYes">
+                                      <button type="button" class="btn btn-primary" id="confirmYes"
+                                        onClick="changeBusinessState()">
                                         @if($business->user->discharge_date == null)
                                           Sí, dar de baja
                                         @else
@@ -161,13 +162,22 @@
         url = route;
       }
 
+      /*
       document.addEventListener('DOMContentLoaded', (event) => {
         var confirmYes = document.getElementById('confirmYes');
-
+        console.log("url " + url);
         confirmYes.onclick = function () {
           window.location.href = url;
         }
       });
+      */
+      function changeBusinessState() {
+        if ({!! json_encode($business->user->discharge_date) !!}) {
+            window.location.href = "{{route('admin.business.activate', $business->id)}}";
+            } else {
+            window.location.href = "{{route('admin.business.discharge', $business->id)}}";
+        }
+      }
     </script>
   @endpush
 
