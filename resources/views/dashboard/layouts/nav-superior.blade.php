@@ -3,8 +3,11 @@
       <ul class="navbar-nav w-100">
         <li class="nav-item w-100">
           <form class="nav-link">
-            <input type="text" style="color:white;" class="form-control" placeholder="Buscar">
-          </form>
+            <input type="text" style="color:white;" class="form-control" id="searchInput" placeholder="Buscar">
+            <div id="suggestions" style="black; display: none;">
+                <!-- Las sugerencias aparecen aqui -->
+            </div>
+        </form>
         </li>
       </ul>
       <ul class="navbar-nav navbar-nav-right">
@@ -64,3 +67,18 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
   @csrf
 </form>
+
+<!-- Paso de rutas a js desde blade -->
+<script type="text/javascript">
+  var LaravelRoutes = {
+      dashboard: "{{ route('admin.dashboard') }}",
+      business: "{{ route('admin.business') }}",
+      admins: "{{ route('admin.admins') }}",
+      technicians: "{{ route('admin.technicians') }}",
+      tickets: "{{ route('admin.tickets') }}",
+      tokens: "{{ route('admin.tokens') }}",
+      createAdmin: "{{ route('admin.admins.create.post') }}",
+      createBusiness: "{{ route('admin.business.create.post') }}",
+      createTechnician: "{{ route('admin.technicians.create.post') }}"
+  };
+</script>
