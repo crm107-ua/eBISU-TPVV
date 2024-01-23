@@ -84,7 +84,7 @@ class ApiController extends Controller
         if (!is_numeric($page))
             return response()->json([
                 'error' => 'Invalid pagination page',
-                'description' => 'The pagination page must be 1 or more',
+                'description' => 'The pagination page must be a number greater than 0',
             ], 400);
         $page = (int) $page;
         if ($page < 1) {
@@ -97,13 +97,13 @@ class ApiController extends Controller
         if (!is_numeric($limit))
             return response()->json([
                 'error' => 'Invalid pagination limit',
-                'description' => 'The pagination limit must be a positive number',
+                'description' => 'The pagination limit must be a number greater than 0',
             ], 400);
         $limit = min((int) $limit, 100);
-        if ($limit < 0) {
+        if ($limit < 1) {
             return response()->json([
                 'error' => 'Invalid pagination limit',
-                'description' => 'The pagination limit must be positive',
+                'description' => 'The pagination limit must be 1 or more',
             ], 400);
         }
 

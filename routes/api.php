@@ -29,7 +29,7 @@ Route::post('/transactions/{id}', [ApiController::class, 'fulfillPendingTransact
 Route::get('/transactions/{id}', [ApiController::class, 'getTransactionDetails'])
     ->middleware(['api.transaction.refounded', 'api.token', 'api.transaction.url', 'api.transaction.access']);
 Route::post('/transactions/{id}/refound', [ApiController::class, 'refoundTransaction'])
-    ->middleware(['api.json', 'api.transaction.refounded', 'api.validation.requestrefoundinformation', 'api.token', 'api.transaction.url',  'api.transaction.access']);
+    ->middleware(['api.transaction.refounded', 'api.json', 'api.validation.requestrefoundinformation', 'api.token', 'api.transaction.url',  'api.transaction.access']);
 
 /**
  * @todo REMOVE THIS

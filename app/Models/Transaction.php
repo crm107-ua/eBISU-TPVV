@@ -7,6 +7,7 @@ use App\Enums\TransactionStateType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Payment;
+use App\Services\ApiPaymentService;
 
 class Transaction extends Model
 {
@@ -33,27 +34,39 @@ class Transaction extends Model
         'amount' => 'double'
     ];
 
-    public function isRefound(): bool {
+    public function jsonify($includeRefound = false): array
+    {
+        $service = new ApiPaymentService();
+        return $service->jsonify($this, $includeRefound);
+    }
+
+    public function isRefound(): bool
+    {
         return !is_null($this->refounds_id);
     }
 
-    public function payment() {
+    public function payment()
+    {
         return $this->belongsTo(Payment::class, 'payment_id');
     }
 
-    public function business() {
+    public function business()
+    {
         return $this->belongsTo(Business::class, 'business_id');
     }
 
-    public function refoundedBy() {
+    public function refoundedBy()
+    {
         return $this->belongsTo(Transaction::class, 'refounds_id');
     }
 
-    public function refoundsTo() {
+    public function refoundsTo()
+    {
         return $this->hasOne(Transaction::class, 'refounds_id');
     }
 
-    public function tickets() {
+    public function tickets()
+    {
         return $this->hasMany(Ticket::class, 'transaction_id');
     }
 }
