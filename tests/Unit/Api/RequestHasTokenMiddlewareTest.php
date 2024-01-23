@@ -2,10 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Enums\UserRole;
 use App\Models\ApiToken;
 use App\Models\Business;
-use App\Models\Country;
 use App\Models\User;
 use App\Services\ApiTokenService;
 use Carbon\Carbon;
@@ -15,6 +13,11 @@ use Illuminate\Support\Facades\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
+/**
+ * @group api
+ * @group middleware
+ * @group has_token
+ */
 class RequestHasTokenMiddlewareTest extends TestCase
 {
 
@@ -23,16 +26,11 @@ class RequestHasTokenMiddlewareTest extends TestCase
     private $url = '/test/middleware/apiqequesthastoken';
     private $apiTokenService;
 
-    public function __construct($name)
-    {
-        parent::__construct($name);
-        $this->apiTokenService = new ApiTokenService();
-    }
-
     protected function setUp(): void
     {
         parent::setUp();
 
+        $this->apiTokenService = new ApiTokenService();
         Route::middleware('api.token')->any($this->url, function () {
             return response()->json([
                 'message' => 'Middleware let the request pass',
@@ -40,10 +38,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
         });
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_valid_request_passes_the_middleware(): void
     {
         $apiToken = $this->createValidToken();
@@ -59,10 +53,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_valid_request_passes_the_middleware_and_increments_counter(): void
     {
         $apiToken = $this->createValidToken();
@@ -82,10 +72,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
         }
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_without_header_rejected(): void
     {
         $response = $this->getJson($this->url);
@@ -98,10 +84,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_empty_header_rejected(): void
     {
         $response = $this->getJson($this->url, [
@@ -116,10 +98,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_header_but_no_bearer_rejected(): void
     {
         $response = $this->getJson($this->url, [
@@ -134,10 +112,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_header_but_bearer_has_no_token_rejected(): void
     {
         $response = $this->getJson($this->url, [
@@ -152,10 +126,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_header_but_bearer_is_not_token_rejected(): void
     {
         $response = $this->getJson($this->url, [
@@ -170,10 +140,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_header_but_bearer_token_has_wrong_secret_rejected(): void
     {
         $response = $this->getJson($this->url, [
@@ -188,10 +154,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_header_but_bearer_token_non_existing_id_rejected(): void
     {
         $response = $this->getJson($this->url, [
@@ -206,10 +168,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_header_but_bearer_is_expired_rejected(): void
     {
         $expiration = Carbon::now()->subDay();
@@ -229,10 +187,6 @@ class RequestHasTokenMiddlewareTest extends TestCase
             ]);
     }
 
-    /**
-     * @group api
-     * @group middleware
-     */
     public function test_request_with_header_but_bearer_is_invalidated_rejected(): void
     {
         $apiToken = $this->createValidToken();

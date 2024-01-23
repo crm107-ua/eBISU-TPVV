@@ -20,13 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['api.token'])->group(function () {
-    Route::post('/transactions', [ApiController::class, 'createNewTransaction']);
-    Route::get('/transactions', [ApiController::class, 'getPaginatedTransactionList']);
-    Route::post('/transactions/{id}', [ApiController::class, 'fulfillPendingTransaction']);
-    Route::get('/transactions/{id}', [ApiController::class, 'getTransactionDetails']);
-    Route::post('/transactions/{id}/refound', [ApiController::class, 'refoundTransaction']);
-});
+Route::post('/transactions', [ApiController::class, 'createNewTransaction'])
+    ->middleware(['api.json', 'api.validation.requesttransactioncreation', 'api.token']);
+Route::get('/transactions', [ApiController::class, 'getPaginatedTransactionList'])
+    ->middleware(['api.transaction.refounded', 'api.token']);
+Route::post('/transactions/{id}', [ApiController::class, 'fulfillPendingTransaction'])
+    ->middleware(['api.json', 'api.validation.paymentinformation', 'api.token', 'api.transaction.url', 'api.transaction.access']);
+Route::get('/transactions/{id}', [ApiController::class, 'getTransactionDetails'])
+    ->middleware(['api.transaction.refounded', 'api.token', 'api.transaction.url', 'api.transaction.access']);
+Route::post('/transactions/{id}/refound', [ApiController::class, 'refoundTransaction'])
+    ->middleware(['api.transaction.refounded', 'api.json', 'api.validation.requestrefoundinformation', 'api.token', 'api.transaction.url',  'api.transaction.access']);
 
 /**
  * @todo REMOVE THIS
