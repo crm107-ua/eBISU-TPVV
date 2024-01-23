@@ -3,8 +3,8 @@
 @section('title', 'eBISU Dashboard - Detalle de Incidencia')
 
 @section('content')
-<div class="container-scroller">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <div class="container-scroller">
     @include('dashboard.layouts.nav-lateral')
     <div class="container-fluid page-body-wrapper">
         @include('dashboard.layouts.nav-superior')
@@ -51,8 +51,10 @@
 
                             @if($ticket->attachment != null)
                             <p><strong>Archivo adjunto:</strong>
-                                    <a href="{{ route('admin.tickets.download.attachment', $ticket->id) }}">{{$ticket->attachment->filename}}</a>
-                                </p>
+                              <a style="margin-left: 8px"
+                                 href="{{route('admin.tickets.download.attachment', $ticket->id)}}">
+                                <i class='bx bx-paperclip bx-sm bx-rotate-90'></i></a></p>
+                            </p>
                             @endif
                           </div>
                           <div class="col">
@@ -96,6 +98,13 @@
                             <div class="message sent mb-3">
                               <div class="message-header m-2">
                                 <strong>{{$comment->author->name}}</strong>
+                                @if($comment->attachment != null)
+                                  <a style="margin-left: 8px"
+                                     href="{{route('downloadFile', $comment->attachment->id)}}">
+                                    <i class='bx bx-paperclip bx-sm'></i></a>
+                                @else
+                                  <p> no hay nada</p>
+                                @endif
                               </div>
                               <div class="message-body p-2">
                                 {{$comment->message}}
@@ -105,6 +114,13 @@
                             <div class="message received mb-3">
                               <div class="message-header m-2">
                                 <strong>{{$comment->author->name}}</strong>
+                                @if($comment->attachment != null)
+                                  <a style="margin-left: 8px"
+                                     href="{{route('downloadFile', $comment->attachment->id)}}">
+                                    <i class='bx bx-paperclip bx-sm'></i></a>
+                                @else
+                                  <p> no hay nada</p>
+                                @endif
                               </div>
                               <div class="message-body p-2">
                                 {{$comment->message}}
