@@ -65,15 +65,17 @@
         </div>
         <br/>
         <div class="row">
+          <h1>{{old('paymentMethod', 'NO HAY VALOR')}}</h1>
+          <h1>{{old('paypal_username', 'NO HAY VALOR')}}</h1>
             <form method="POST" action="{{ route('payment.post.form', ['id' => $transaction->id]) }}">
                 @csrf
                 <div class="btn-group" role="group" aria-label="Método de pago">
                     <input type="radio" class="btn-check" tabindex="1" value="paypal" name="paymentMethod"
-                        id="payWithPaypalRadio" autocomplete="off">
+                        id="payWithPaypalRadio" autocomplete="off" {{ old('paymentMethod') == 'paypal' ? 'checked' : '' }} >
                     <label class="btn btn-outline-primary" for="payWithPaypalRadio">Pagar con PayPal</label>
 
                     <input type="radio" class="btn-check" tabindex="2" value="credit-card" name="paymentMethod"
-                        id="payWithCardRadio" autocomplete="off">
+                        id="payWithCardRadio" autocomplete="off" {{ old('paymentMethod') === 'credit-card' ? 'checked' : '' }}>
                     <label class="btn btn-outline-primary" for="payWithCardRadio">Pagar con tarjeta</label>
                 </div>
 

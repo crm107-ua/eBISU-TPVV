@@ -44,6 +44,16 @@ class FulfillPendingTransactionController extends Controller
             return view('payment.transactionNotFound');
         }
 
+        /**
+         *
+         */
+        $request->validate([
+            'paymentMethod' => 'required|numeric',
+        ]);
+         /**
+          *
+          */
+
         $paymentValues = [
             'values' => [],
         ];
