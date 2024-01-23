@@ -53,8 +53,8 @@ class FulfillPendingTransactionController extends Controller
         } else {
             $paymentValues['type'] = PaymentType::CreditCard->value;
             $paymentValues['values']['credit_card_number'] = $request->input('credit_card_number');
-            $paymentValues['values']['credit_card_month_of_expiration'] = $request->input('credit_card_month_of_expiration');
-            $paymentValues['values']['credit_card_year_of_expiration'] = $request->input('credit_card_year_of_expiration');
+            $paymentValues['values']['credit_card_expiration_month'] = $request->input('credit_card_month_of_expiration');
+            $paymentValues['values']['credit_card_expiration_year'] = $request->input('credit_card_year_of_expiration');
             $paymentValues['values']['credit_card_csv'] = $request->input('credit_card_csv');
         }
 
