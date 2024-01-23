@@ -50,4 +50,11 @@ class ApiTokenService
             ->where('expiration_date', '>', now())
             ->first();
     }
+
+    public function getLatestToken($businessId): ?ApiToken
+    {
+        return ApiToken::where('business_id', $businessId)
+            ->orderBy('expiration_date', 'desc')
+            ->first();
+    }
 }

@@ -15,7 +15,7 @@ class AttachmentSeeder extends Seeder
     public function run()
     {
         Attachment::truncate();
-        
+
         $attachments = [
             [
                 'filename' => 'sample_document_1.pdf',
@@ -58,8 +58,12 @@ class AttachmentSeeder extends Seeder
                 'upload_date' => Carbon::now(),
             ],
         ];
-
+        $cont = 0;
         foreach ($attachments as $attachment) {
+
+            $attachment['filename'] = $cont . '_seeder_file.txt';
+            file_put_contents(storage_path('app/attachments/' . $attachment['filename']), 'seeder file');
+            $cont++;
             DB::table('attachments')->insert($attachment);
         }
     }

@@ -4,15 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\ApiToken;
 use App\Models\Business;
-use App\Models\Ticket;
 use App\Models\Transaction;
+use App\Services\ApiTokenService;
 use Illuminate\Http\Request;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class BusinessController extends Controller
 {
+
+    private $apiTokenService;
+
+    public function __construct()
+    {
+        $this->apiTokenService = new ApiTokenService();
+    }
+
     public function showPayments(Request $request)
     {
         $business = Business::find(Auth::id());
@@ -42,10 +49,6 @@ class BusinessController extends Controller
         if ($payment == null) {
             return redirect()->route('payments');
         }
-        //TODO a menos que haya una mejor idea, si la id->business_id no es la misma que la del usuario, redirigir a la lista de pagos
-        if ($payment->business_id != Auth::id()) {
-            return redirect()->route('payments');
-        }
 
         return view('home.business-views.pago', [
             'payment' => $payment,
@@ -68,32 +71,23 @@ class BusinessController extends Controller
 
     public function showTokenDetails(Request $request)
     {
-        /**
-         * @todo CHANGE TO USE SERVICE METHOD
-         */
-        $activeToken = ApiToken::where('business_id', Auth::id())
-            ->where('invalidated', false)
-            ->where('expiration_date', '>', now())
-            ->first();
-        /**
-         * @todo CHANGE TO USE SERVICE METHOD
-         */
-        $encodedToken = 'asdasdsa';
-        $totalUses = ApiToken::where('business_id', '=', Auth::id())->sum('times_used');
+        $latestToken = $this->apiTokenService->getLatestToken(Auth::id());
+        if(!$latestToken)
+            $latestToken = $this->apiTokenService->createNewToken(Auth::id());
 
+        $encodedToken = $this->apiTokenService->encode($latestToken);
+        $totalUses = ApiToken::where('business_id', '=', Auth::id())->sum('times_used');
 
         return view('home.business-views.token', [
             'totalUses' => $totalUses,
-            'token' => $activeToken,
+            'token' => $latestToken,
             'encodedToken' => $encodedToken,
         ]);
     }
 
     public function createNewToken(Request $request)
     {
-        /**
-         * @todo USE SERVICE METHOD TO CREATE TOKEN
-         */
-        return $this->showTokenDetails($request);
+        $this->apiTokenService->createNewToken(Auth::id());
+        return redirect()->route('business-token');
     }
 }

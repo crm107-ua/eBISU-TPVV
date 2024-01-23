@@ -21,11 +21,13 @@
                                             <div style="position: relative; margin-bottom: 20px;margin-top: 40px;">
                                                 <h2 style="text-align:center; color:white; padding-bottom: 20px; ">
                                                     Detalles de pago</h2>
-                                                <a href="{{ route('report', $payment->id) }}"
-                                                   style="all: unset; background-color: #FFFFFF; color: #0f302d; padding: 15px 20px 15px 20px ;
+                                                @if(Auth::user()->role == \App\Enums\UserRole::Business)
+                                                    <a href="{{ route('report', $payment->id) }}"
+                                                       style="all: unset; background-color: #FFFFFF; color: #0f302d; padding: 15px 20px 15px 20px ;
                                                border-radius: 8px; position: absolute; right: 0; top: -15%; cursor: pointer">
-                                                    Crear incidencia
-                                                </a>
+                                                        Crear incidencia
+                                                    </a>
+                                                @endif
                                             </div>
                                             <div style="border: 1px solid white; border-radius: 10px; padding: 25px;">
                                                 <div
@@ -33,7 +35,7 @@
                                                     <div>
                                                         <p>Concepto: {{$payment->concept}}</p>
                                                         <p>Cantidad: {{$payment->amount}} €</p>
-                                                        <p>Estado: {{strtoupper($payment->state)}}</p>
+                                                        <p>Estado: {{strtoupper($payment->state->value)}}</p>
                                                     </div>
                                                     <div>
                                                         <p>Número de factura: {{$payment->receipt_number}}</p>
