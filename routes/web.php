@@ -65,6 +65,7 @@ Route::post('/send-email', [EmailController::class, 'sendEmail'])->name('send.em
 
 Route::post('/ticket/{id}/comment', [\App\Http\Controllers\TicketController::class, 'addComment'])
     ->middleware(['auth', 'verified', 'ticketAccess'])->name('addComment');
+require __DIR__ . '/auth.php';
 
 Route::get('404', function () {
     $htmlContent = file_get_contents(resource_path('views/dashboard/template/pages/samples/error-404.html'));

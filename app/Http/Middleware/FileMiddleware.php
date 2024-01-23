@@ -25,7 +25,7 @@ class FileMiddleware
                 if($ticket->transaction->business_id == Auth::id()){
                     return $next($request);
                 }
-                if ($ticket->technician_id == Auth::id()){
+                if ($ticket->technitian_id == Auth::id()){
                     return $next($request);
                 }
             }
@@ -34,7 +34,7 @@ class FileMiddleware
                 if($comment->author_id == Auth::id()){
                     return $next($request);
                 }
-                if ($comment->ticket->technician_id == Auth::id()){
+                if ($comment->ticket->technitian_id == Auth::id()){
                     return $next($request);
                 }
             }
