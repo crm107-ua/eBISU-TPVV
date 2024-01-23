@@ -2,6 +2,7 @@
 @section('title', 'Bienvenido a eBISU - Incidencia')
 @section('content')
     <div id="content" class="uicore-content">
+         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
         <script id="uicore-page-transition"></script>
         <div id="primary" class="content-area">
             <article id="post-13" class="post-13 page type-page status-publish hentry">
@@ -41,10 +42,10 @@
                                                 <form method="post" action="{{route('technician.changeTicketState', $ticket->id)}}">
                                                     @csrf
                                                     <label for="state" style="display: block; color: white;"><strong>Cambiar estado</strong></label>
-                                                    <select id="state" name="state" onchange="this.form.submit()" style="color:white">
+                                                    <select id="state" name="state" onchange="this.form.submit()" style="color:white; width: auto">
                                                         @foreach($states as $state)
                                                             <option value="{{$state}}" {{$ticket->state == $state ? 'selected' : ''}}
-                                                                style="color:black">
+                                                                style="color:black; width: auto">
                                                                 {{strtoupper($state)}}
                                                             </option>
                                                         @endforeach
@@ -56,8 +57,8 @@
                                             @if($ticket->attachment != null)
                                                 <p style="color: white;" class="mt-2"><strong>Archivos adjuntos</strong>
                                                     <a style="margin-left: 8px"
-                                                       href="{{route('downloadFile', $ticket->attachment_id)}}"><i
-                                                            class="fas fa-paperclip"></i></a></p>
+                                                       href="{{route('downloadFile', $ticket->attachment_id)}}">
+                                                      <i class="fas fa-paperclip"></i></a></p>
                                                 </p>
                                             @endif
                                             @if($ticket->state == \App\Enums\TicketStateType::Closed->value && $ticket->valoration_valoration != 0)

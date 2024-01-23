@@ -21,7 +21,7 @@ class TicketAccessMiddleware
                     return $next($request);
                 }
             } else if (Auth::user()->role == UserRole::Technician) {
-                if ($ticket->technician_id != Auth::id()) {
+                if ($ticket->technitian_id == Auth::id()) {
                     return $next($request);
                 }
             } else if (Auth::user()->role == UserRole::Admin) {

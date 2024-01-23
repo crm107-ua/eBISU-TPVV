@@ -77,5 +77,6 @@ class Kernel extends HttpKernel
         'attachmentAccess' => \App\Http\Middleware\FileMiddleware::class,
         'ticketAccess' => \App\Http\Middleware\TicketAccessMiddleware::class,
         'paymentAccess' => \App\Http\Middleware\PaymentAccessMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 }

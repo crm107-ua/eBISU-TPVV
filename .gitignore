@@ -19,3 +19,4 @@ yarn-error.log
 /.vscode
 /resources/views/dashboard/template/assets
 .DS_Store
+deploy.php

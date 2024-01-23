@@ -125,7 +125,7 @@
 												</div>
 												<div class="elementor-column elementor-col-25 elementor-inner-column elementor-element elementor-element-71c1821"
 													data-id="71c1821" data-element_type="column">
-													<a href="/generar-token" style="all: unset">
+													<a href="{{route('business-token')}}" style="all: unset">
 														<div
 															class="elementor-widget-wrap elementor-element-populated">
 															<div data-ep-wrapper-link="{&quot;url&quot;:&quot;#&quot;,&quot;is_external&quot;:&quot;&quot;,&quot;nofollow&quot;:&quot;&quot;,&quot;custom_attributes&quot;:&quot;&quot;}"
