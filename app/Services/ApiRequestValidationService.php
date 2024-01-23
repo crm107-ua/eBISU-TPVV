@@ -60,7 +60,7 @@ class ApiRequestValidationService
             return Validator::make($paymentInformation, [
                 'values.credit_card_number' => 'required|string',
                 'values.credit_card_expiration_month' => 'required|numeric|between:1,12',
-                'values.credit_card_expiration_year' => 'required|string',
+                'values.credit_card_expiration_year' => 'required|numeric|between:1970,9999',
                 'values.credit_card_csv' => 'required|numeric|between:0,999',
             ], [
                 'values.credit_card_number.required' => 'The credit card number is required for type "credit_card".',
@@ -68,6 +68,8 @@ class ApiRequestValidationService
                 'values.credit_card_expiration_month.numeric' => 'The credit card expiration month must be a number.',
                 'values.credit_card_expiration_month.between' => 'The credit card expiration month must be between 1 and 12.',
                 'values.credit_card_expiration_year.required' => 'The credit card expiration year is required for type "credit_card".',
+                'values.credit_card_expiration_year.numeric' => 'The credit card expiration must be a number.',
+                'values.credit_card_expiration_year.required' => 'The credit card expiration year must be between 1970 and 9999.',
                 'values.credit_card_csv.required' => 'The credit card CSV is required for type "credit_card".',
                 'values.credit_card_csv.numeric' => 'The credit card CSV must be a number.',
                 'values.credit_card_csv.between' => 'The credit card CSV must be between 0 and 999.',

@@ -122,7 +122,7 @@
                             <div class="col">
                                 <div class="input-group mb-3">
                                     <div class="form-floating">
-                                        <input type="number" min="1970" step="1" required
+                                        <input type="number" min="1970" max="9999" step="1" required
                                             class="form-control" tabindex="5" id="creditCardExpirationYear"
                                             name="credit_card_year_of_expiration" placeholder="####">
                                         <label for="creditCardExpirationYear">Año de expiración de la tarejeta</label>
