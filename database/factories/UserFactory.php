@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Enums\UserRole;
+use App\Models\Business;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -35,6 +37,27 @@ class UserFactory extends Factory
         ];
     }
 
+    public function withBusiness(): Factory
+    {
+        return $this->afterCreating(function (User $user) {
+            $businessData = [
+                'cif' => $this->faker->regexify('[A-Z]\d{8}'),
+                'registration_date' => now(),
+                'balance' => $this->faker->randomFloat(2, 0, 5000),
+                'contact_info_name' => $this->faker->name(),
+                'contact_info_phone_number' => $this->faker->phoneNumber(),
+                'contact_info_email' => $user->email,
+            ];
+            Business::factory()->state($businessData)->create(['id' => $user->id]);
+        });
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function (User $user) {
+            $user->business()->save(Business::factory()->make());
+        });
+    }
     /**
      * Indicate that the model's email address should be unverified.
      */

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\UserRole;
+use App\Models\Business;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,7 +17,7 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-
+        /*
         // Crear usuario Admin
         User::create([
             'name' => 'Admin User',
@@ -87,6 +88,17 @@ class UserSeeder extends Seeder
             'direction_poblation' => 'San Luis',
             'direction_country_id' => 199
         ]);
+        */
 
+        User::factory()->count(11)->create();
+
+        $businessUsers = User::where('role', UserRole::Business)->get();
+
+        foreach ($businessUsers as $user) {
+            Business::factory()->create([
+                'contact_info_email' => $user->email,
+                'id' => $user->id
+            ]);
+        }
     }
 }

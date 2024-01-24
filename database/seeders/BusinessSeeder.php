@@ -14,7 +14,7 @@ class BusinessSeeder extends Seeder
     public function run(): void
     {
         Business::truncate();
-
+        /*
         Business::create([
             'id' => 3,
             'cif' => 'A12345678',
@@ -54,5 +54,7 @@ class BusinessSeeder extends Seeder
             'contact_info_phone_number' => '123456789',
             'contact_info_email' => 'business4@ebisu.com',
         ]);
+        */
+        //Business::factory()->count(10)->create();
     }
 }
