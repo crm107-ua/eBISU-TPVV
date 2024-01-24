@@ -23,7 +23,7 @@
                         <h2 class="mb-0">{{$totalTransactionsAmount}}€</h2>
                         <p class="text-success ms-2 mb-0 font-weight-medium">en el sistema</p>
                       </div>
-                      <h6 class="text-muted font-weight-normal">{{$percentageTransactionsLastMonth}}% Since last month</h6>
+                      <h6 class="text-muted font-weight-normal">{{ number_format($percentageTransactionsLastMonth, 3, '.', '') }}% Since last month</h6>
                     </div>
                     <div class="col-4 col-sm-12 col-xl-4 text-center text-xl-right">
                       <i class="icon-lg mdi mdi-codepen text-primary ms-auto"></i>
