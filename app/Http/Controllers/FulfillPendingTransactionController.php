@@ -44,13 +44,15 @@ class FulfillPendingTransactionController extends Controller
         if (!$transaction) {
             return view('payment.transactionNotFound');
         }
-
+        if ($transaction->state !== TransactionStateType::Waiting) {
+            return view('payment.transactionFinished');
+        }
 
         $request->validate([
             'paymentMethod' => 'required|string|in:paypal,credit-card',
         ]);
 
-        if($request->input('paymentMethod') === 'paypal') {
+        if ($request->input('paymentMethod') === 'paypal') {
             $request->validate([
                 'paypal_username' => 'required|string|max:255',
             ]);
@@ -87,7 +89,7 @@ class FulfillPendingTransactionController extends Controller
         }
 
         $finalized = $this->paymentService->finalizePendingTransaction($transaction->id, $payment->id);
-        if(!$finalized) {
+        if (!$finalized) {
             DB::rollBack();
             return view('payment.serverError', [
                 'transacion' => $transaction,
@@ -106,8 +108,24 @@ class FulfillPendingTransactionController extends Controller
         if (!$transaction) {
             return view('payment.transactionNotFound');
         }
+        if ($transaction->state === TransactionStateType::Waiting)
+            return redirect()->route('payment.get.form', [
+                'id' => $transaction->id
+            ]);
+
+        if ($transaction->result_seen) {
+            return view('payment.transactionResultSeen');
+        }
+
+        $transaction->result_seen = true;
+        if (!$transaction->save()) {
+            return view('payment.serverError', [
+                'transacion' => $transaction,
+            ]);
+        }
         return view('payment.transactionResult', [
             'transaction' => $transaction,
+            'business' => $transaction->business,
         ]);
     }
 }

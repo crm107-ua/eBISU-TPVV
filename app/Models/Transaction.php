@@ -21,6 +21,7 @@ class Transaction extends Model
         'emision_date',
         'finished_date',
         'finalize_reason',
+        'result_seen',
         'refounds_id',
         'business_id',
         'payment_id',
@@ -31,7 +32,8 @@ class Transaction extends Model
         'finished_date' => 'datetime',
         'state' => TransactionStateType::class,
         'finalize_reason' => FinalizeReason::class,
-        'amount' => 'double'
+        'amount' => 'double',
+        'result_seen' => 'boolean',
     ];
 
     public function jsonify($includeRefound = false): array

@@ -67,6 +67,15 @@ class ApiController extends Controller
             ], 500);
         }
 
+        $transaction->result_seen = true;
+        if (!$transaction->save()) {
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Server error',
+                'description' => 'Could not finish the final steps',
+            ], 500);
+        }
+
         DB::commit();
 
         $transaction->refresh();

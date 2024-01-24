@@ -25,37 +25,39 @@
                         Usted está realizando un pago a {{ $business->user->name }} por cantidad de
                         <strong>{{ $transaction->amount }}€</strong>.
                     </p>
-                    <div>
-                        <h5>Concepto de transacción</h5>
-                        <p class="card-text">
-                            @if ($transaction->concept)
-                                {{ $transaction->concept }}
-                            @else
-                                <i>{{ $business->user->name }} no ha indicado un concepto al solicitar la
-                                    transacción.</i>
-                            @endif
-                        </p>
-                        <br>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h5>Concepto de transacción</h5>
+                                <p class="card-text">
+                                    @if ($transaction->concept)
+                                        {{ $transaction->concept }}
+                                    @else
+                                        <i>{{ $business->user->name }} no ha indicado un concepto al solicitar la
+                                            transacción.</i>
+                                    @endif
+                                </p>
+                            </div>
+                            <div class="col">
+                                <h5>Factura de transacción</h5>
+                                <p class="card-text">
+                                    @if ($transaction->receipt_number)
+                                        {{ $transaction->receipt_number }}
+                                    @else
+                                        <i>{{ $business->user->name }} no ha indicado una factura al solicitar la
+                                            transacción.</i>
+                                    @endif
+                                </p>
+                            </div>
+                            <div class="col">
+                                <h5>Tiempo restante</h5>
+                                <p class="card-text">
+                                    La transacción caducará el {{ $timeoutDate }}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <h5>Factura de transacción</h5>
-                        <p class="card-text">
-                            @if ($transaction->receipt_number)
-                                {{ $transaction->receipt_number }}
-                            @else
-                                <i>{{ $business->user->name }} no ha indicado una factura al solicitar la
-                                    transacción.</i>
-                            @endif
-                        </p>
-                        <br>
-                    </div>
-                    <div>
-                        <h5>Tiempo restante</h5>
-                        <p class="card-text">
-                            La transacción caducará el {{ $timeoutDate }}
-                        </p>
-                        <br>
-                    </div>
+                    <br/>
                     <p class="card-text">
                         Si considera que ha habido un error, puede ponerse en contacto con dicha empresa en el correo
                         <a href="mailto:"{{ $business->contact_info_email }}>{{ $business->contact_info_email }}</a>.
@@ -101,8 +103,8 @@
                             @endif
                             <span class="input-group-text">@</span>
                             <div class="form-floating">
-                                <input type="text" maxlength="255" required class="form-control" tabindex="3" id="paypalName"
-                                    name="paypal_username" placeholder="Usuario de paypal"
+                                <input type="text" maxlength="255" required class="form-control" tabindex="3"
+                                    id="paypalName" name="paypal_username" placeholder="Usuario de paypal"
                                     value="{{ old('paypal_username') }}">
                                 <label for="paypalName">Nombre de usuario de PayPal</label>
                             </div>
