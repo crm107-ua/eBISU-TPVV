@@ -188,7 +188,7 @@ class ApiPaymentService
             $json['concept'] = $transaction->concept;
 
         if ($transaction->receipt_number)
-            $json['concept'] = $transaction->receipt_number;
+            $json['receipt_number'] = $transaction->receipt_number;
 
         if ($transaction->state != TransactionStateType::Waiting) {
             $json['finalized_date'] = $this->formatDate($transaction->finished_date);
