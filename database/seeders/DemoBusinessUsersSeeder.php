@@ -92,5 +92,30 @@ class DemoBusinessUsersSeeder extends Seeder
             ]
         );
 
+        $businessUser4 = User::updateOrCreate(
+            ['email' => 'joseantonio.clubtenis@ebisu.client.com'],
+            [
+                'name' => 'Club Tenis',
+                'password' => Hash::make('!vBnMX3MUMyjAa1mMeOI'),
+                'role' => UserRole::Business,
+                'direction_direction' => 'Calle 123124',
+                'direction_postal_code' => '12345',
+                'direction_poblation' => 'San Juan',
+                'direction_country_id' => 199
+            ]
+        );
+
+        Business::updateOrCreate(
+            ['id' => $businessUser4->id],
+            [
+                'contact_info_email' => $businessUser4->email,
+                'contact_info_phone_number' => '123456789',
+                'contact_info_name' => $businessUser4->name,
+                'cif' => 'A19999909',
+                'registration_date' => now(),
+                'balance' => 8000
+            ]
+        );
+
     }
 }
