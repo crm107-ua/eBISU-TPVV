@@ -6,6 +6,7 @@ use App\Enums\PaymentType;
 use App\Enums\TransactionStateType;
 use App\Models\Transaction;
 use App\Services\ApiPaymentService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,6 +45,7 @@ class FulfillPendingTransactionController extends Controller
             return view('payment.transactionNotFound');
         }
 
+
         $request->validate([
             'paymentMethod' => 'required|string|in:paypal,credit-card',
         ]);
@@ -80,7 +82,7 @@ class FulfillPendingTransactionController extends Controller
         if (!$payment) {
             DB::rollBack();
             return view('payment.serverError', [
-                'transacion' => $transaction,
+                'transaction' => $transaction,
             ]);
         }
 
