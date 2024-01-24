@@ -29,6 +29,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
         $request->session()->regenerate();
 
+        if (Auth::user()->discharge_date != null) {
+            Auth::logout();
+            return redirect()->route('login')->withErrors(['email' => 'El usuario ha sido dado de baja. Ponte en contacto con el administrador para más información.']);
+        }
+
         // Aquí se maneja la redirección basada en el rol del usuario
         if (Auth::user()->role == UserRole::Admin) {
             return redirect()->route('admin.dashboard');

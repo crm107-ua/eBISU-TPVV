@@ -53,6 +53,7 @@ class BusinessService
         $business = Business::findOrFail($id);
         $user = $business->user;
         $user->discharge_date = now();
+        $business->apiTokens()->where('invalidated', false)->update(['invalidated' => true]);
         $user->save();
     }
 
