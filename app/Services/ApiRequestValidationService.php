@@ -11,7 +11,7 @@ class ApiRequestValidationService
     {
         $errors = Validator::make($requestTransactionCreation, [
             'concept' => 'nullable|string|max:255',
-            'amount' => 'required|numeric|min:0.01',
+            'amount' => 'required|numeric|between:0.01,1000000000',
             'receipt_number' => 'nullable|string|max:255',
             'payment' => 'array',
         ], [
@@ -19,7 +19,7 @@ class ApiRequestValidationService
             'concept.max' => 'The concept must not exceed :max characters.',
             'amount.required' => 'The amount field is required.',
             'amount.numeric' => 'The amount must be a numeric value.',
-            'amount.min' => 'The amount must be at least :min.',
+            'amount.between' => 'The amount must be between 0.01 and 1,000,000,000.',
             'receipt_number.string' => 'The receipt number must be a string.',
             'receipt_number.max' => 'The receipt number must not exceed :max characters.',
             'payment.array' => 'The payment field must be an object.',
@@ -51,23 +51,28 @@ class ApiRequestValidationService
         $type = $paymentInformation['type'];
         if ($type === 'paypal') {
             return Validator::make($paymentInformation, [
-                'values.paypal_user' =>  'required|string',
+                'values.paypal_user' =>  'required|string|max:255',
             ], [
                 'values.paypal_user.required' => 'The PayPal user is required for type "paypal".',
                 'values.paypal_user.required' => 'The PayPal user must be a string.',
+                'values.paypal_user.max' => 'The PayPal user must not exceed :max characters.',
             ])->errors()->merge($validator->errors());
         } else {
             return Validator::make($paymentInformation, [
-                'values.credit_card_number' => 'required|string',
+                'values.credit_card_number' => 'required|string|max:255',
                 'values.credit_card_expiration_month' => 'required|numeric|between:1,12',
-                'values.credit_card_expiration_year' => 'required|string',
+                'values.credit_card_expiration_year' => 'required|numeric|between:1970,9999',
                 'values.credit_card_csv' => 'required|numeric|between:0,999',
             ], [
                 'values.credit_card_number.required' => 'The credit card number is required for type "credit_card".',
+                'values.credit_card_number.string' => 'The credit card number must be a string.',
+                'values.credit_card_number.max' => 'The credit card number must not exceed :max characters.',
                 'values.credit_card_expiration_month.required' => 'The credit card expiration month is required for type "credit_card".',
                 'values.credit_card_expiration_month.numeric' => 'The credit card expiration month must be a number.',
                 'values.credit_card_expiration_month.between' => 'The credit card expiration month must be between 1 and 12.',
                 'values.credit_card_expiration_year.required' => 'The credit card expiration year is required for type "credit_card".',
+                'values.credit_card_expiration_year.numeric' => 'The credit card expiration must be a number.',
+                'values.credit_card_expiration_year.required' => 'The credit card expiration year must be between 1970 and 9999.',
                 'values.credit_card_csv.required' => 'The credit card CSV is required for type "credit_card".',
                 'values.credit_card_csv.numeric' => 'The credit card CSV must be a number.',
                 'values.credit_card_csv.between' => 'The credit card CSV must be between 0 and 999.',

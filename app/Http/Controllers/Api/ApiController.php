@@ -46,10 +46,7 @@ class ApiController extends Controller
 
         if (!$request->json('payment')) {
             DB::commit();
-            /**
-             * @todo VIEW TO PROVIDE PAYMENT METHOD
-             */
-            return response('To do... ' . $transaction->id, 200);
+            return redirect()->route('payment.get.form', ['id' => $transaction->id]);
         }
 
         $payment = $this->paymentService->savePaymentMethod($request->json('payment'));
@@ -67,6 +64,15 @@ class ApiController extends Controller
             return response()->json([
                 'error' => 'Server error',
                 'description' => 'Could not finalice transaction',
+            ], 500);
+        }
+
+        $transaction->result_seen = true;
+        if (!$transaction->save()) {
+            DB::rollBack();
+            return response()->json([
+                'error' => 'Server error',
+                'description' => 'Could not finish the final steps',
             ], 500);
         }
 
