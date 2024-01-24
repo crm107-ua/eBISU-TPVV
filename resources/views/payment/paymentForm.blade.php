@@ -63,19 +63,26 @@
                 </div>
             </div>
         </div>
-        <br/>
+        <br />
         <div class="row">
-          <h1>{{old('paymentMethod', 'NO HAY VALOR')}}</h1>
-          <h1>{{old('paypal_username', 'NO HAY VALOR')}}</h1>
             <form method="POST" action="{{ route('payment.post.form', ['id' => $transaction->id]) }}">
                 @csrf
+                @if ($errors->has('paymentMethod'))
+                    @foreach ($errors->get('paymentMethod') as $error)
+                        <div class="alert alert-danger mt-2">
+                            {{ $error }}
+                        </div>
+                    @endforeach
+                @endif
                 <div class="btn-group" role="group" aria-label="Método de pago">
                     <input type="radio" class="btn-check" tabindex="1" value="paypal" name="paymentMethod"
-                        id="payWithPaypalRadio" autocomplete="off" {{ old('paymentMethod') == 'paypal' ? 'checked' : '' }} >
+                        id="payWithPaypalRadio" autocomplete="off"
+                        {{ old('paymentMethod') == 'paypal' ? 'checked' : '' }}>
                     <label class="btn btn-outline-primary" for="payWithPaypalRadio">Pagar con PayPal</label>
 
                     <input type="radio" class="btn-check" tabindex="2" value="credit-card" name="paymentMethod"
-                        id="payWithCardRadio" autocomplete="off" {{ old('paymentMethod') === 'credit-card' ? 'checked' : '' }}>
+                        id="payWithCardRadio" autocomplete="off"
+                        {{ old('paymentMethod') === 'credit-card' ? 'checked' : '' }}>
                     <label class="btn btn-outline-primary" for="payWithCardRadio">Pagar con tarjeta</label>
                 </div>
 
@@ -85,10 +92,18 @@
                     </div>
                     <div class="card-body">
                         <div class="input-group mb-3">
+                            @if ($errors->has('paypal_username'))
+                                @foreach ($errors->get('paypal_username') as $error)
+                                    <span class="alert alert-danger input-group-text mt-2">
+                                        {{ $error }}
+                                    </span>
+                                @endforeach
+                            @endif
                             <span class="input-group-text">@</span>
                             <div class="form-floating">
-                                <input type="text" required class="form-control" tabindex="3" id="paypalName"
-                                    name="paypal_username" placeholder="Usuario de paypal">
+                                <input type="text" maxlength="255" required class="form-control" tabindex="3" id="paypalName"
+                                    name="paypal_username" placeholder="Usuario de paypal"
+                                    value="{{ old('paypal_username') }}">
                                 <label for="paypalName">Nombre de usuario de PayPal</label>
                             </div>
                         </div>
@@ -103,9 +118,17 @@
                     <div class="card-body">
                         <div class="form-row align-items-center">
                             <div class="input-group mb-3">
+                                @if ($errors->has('credit_card_number'))
+                                    @foreach ($errors->get('credit_card_number') as $error)
+                                        <span class="alert alert-danger input-group-text mt-2">
+                                            {{ $error }}
+                                        </span>
+                                    @endforeach
+                                @endif
                                 <div class="form-floating">
-                                    <input type="text" required class="form-control" tabindex="3"
-                                        id="creditCardNumber" name="credit_card_number" placeholder="Número de tarjeta">
+                                    <input type="text" maxlength="255" required class="form-control" tabindex="3"
+                                        id="creditCardNumber" name="credit_card_number" placeholder="Número de tarjeta"
+                                        value="{{ old('credit_card_number') }}">
                                     <label for="creditCardNumber">Número de tarjeta</label>
                                 </div>
                             </div>
@@ -113,30 +136,54 @@
                         <div class="row">
                             <div class="col">
                                 <div class="input-group mb-3">
+                                    @if ($errors->has('credit_card_month_of_expiration'))
+                                        @foreach ($errors->get('credit_card_month_of_expiration') as $error)
+                                            <span class="alert alert-danger input-group-text mt-2">
+                                                {{ $error }}
+                                            </span>
+                                        @endforeach
+                                    @endif
                                     <div class="form-floating">
                                         <input type="number" min="1" max="12" step="1" required
                                             class="form-control" tabindex="4" id="creditCardExpirationMonth"
-                                            name="credit_card_month_of_expiration" placeholder="##">
+                                            name="credit_card_month_of_expiration" placeholder="##"
+                                            value="{{ old('credit_card_month_of_expiration') }}">
                                         <label for="creditCardExpirationMonth">Mes de expiración de la tarejeta</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="input-group mb-3">
+                                    @if ($errors->has('credit_card_year_of_expiration'))
+                                        @foreach ($errors->get('credit_card_year_of_expiration') as $error)
+                                            <span class="alert alert-danger input-group-text mt-2">
+                                                {{ $error }}
+                                            </span>
+                                        @endforeach
+                                    @endif
                                     <div class="form-floating">
                                         <input type="number" min="1970" max="9999" step="1" required
                                             class="form-control" tabindex="5" id="creditCardExpirationYear"
-                                            name="credit_card_year_of_expiration" placeholder="####">
+                                            name="credit_card_year_of_expiration" placeholder="####"
+                                            value="{{ old('credit_card_year_of_expiration') }}">
                                         <label for="creditCardExpirationYear">Año de expiración de la tarejeta</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="input-group mb-3">
+                                    @if ($errors->has('credit_card_csv'))
+                                        @foreach ($errors->get('credit_card_csv') as $error)
+                                            <span class="alert alert-danger input-group-text mt-2">
+                                                {{ $error }}
+                                            </span>
+                                        @endforeach
+                                    @endif
                                     <div class="form-floating">
                                         <input type="number" min="1" max="999" step="1" required
                                             class="form-control" tabindex="6" id="creditCardCsv"
-                                            name="credit_card_csv" placeholder="###">
+                                            name="credit_card_csv" placeholder="###"
+                                            value="{{ old('credit_card_csv') }}">
                                         <label for="creditCardCsv">CSV</label>
                                     </div>
                                 </div>
@@ -147,10 +194,11 @@
                 </div>
             </form>
         </div>
-        <br/>
+        <br />
         <h6><i>¿Qué es esto?</i></h6>
         <p>
-            Se encuentra en la página de pagos de <a href={{ route('home') }}>eBISU</a> realizando un pago seguro a {{ $business->user->name }}.
+            Se encuentra en la página de pagos de <a href={{ route('home') }}>eBISU</a> realizando un pago seguro a
+            {{ $business->user->name }}.
         </p>
     </div>
     <script defer>
@@ -182,6 +230,8 @@
                     break;
             }
         }
+
+        {{ old('paymentMethod') === null ? '' : 'updateForms(`' . old('paymentMethod') . '`);' }}
     </script>
 </body>
 

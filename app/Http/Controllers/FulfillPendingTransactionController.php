@@ -44,15 +44,22 @@ class FulfillPendingTransactionController extends Controller
             return view('payment.transactionNotFound');
         }
 
-        /**
-         *
-         */
         $request->validate([
-            'paymentMethod' => 'required|numeric',
+            'paymentMethod' => 'required|string|in:paypal,credit-card',
         ]);
-         /**
-          *
-          */
+
+        if($request->input('paymentMethod') === 'paypal') {
+            $request->validate([
+                'paypal_username' => 'required|string',
+            ]);
+        } else {
+            $request->validate([
+                'credit_card_number' => 'required|string|max:255',
+                'credit_card_month_of_expiration' => 'required|numeric|between:1,12',
+                'credit_card_year_of_expiration' => 'required|numeric|between:1970,9999',
+                'credit_card_csv' => 'required|numeric|between:0,999',
+            ]);
+        }
 
         $paymentValues = [
             'values' => [],
