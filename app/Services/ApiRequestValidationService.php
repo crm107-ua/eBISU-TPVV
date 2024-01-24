@@ -11,7 +11,7 @@ class ApiRequestValidationService
     {
         $errors = Validator::make($requestTransactionCreation, [
             'concept' => 'nullable|string|max:255',
-            'amount' => 'required|numeric|min:0.01',
+            'amount' => 'required|numeric|between:0.01,1000000000',
             'receipt_number' => 'nullable|string|max:255',
             'payment' => 'array',
         ], [
@@ -19,7 +19,7 @@ class ApiRequestValidationService
             'concept.max' => 'The concept must not exceed :max characters.',
             'amount.required' => 'The amount field is required.',
             'amount.numeric' => 'The amount must be a numeric value.',
-            'amount.min' => 'The amount must be at least :min.',
+            'amount.between' => 'The amount must be between 0.01 and 1,000,000,000.',
             'receipt_number.string' => 'The receipt number must be a string.',
             'receipt_number.max' => 'The receipt number must not exceed :max characters.',
             'payment.array' => 'The payment field must be an object.',

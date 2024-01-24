@@ -50,7 +50,7 @@ class FulfillPendingTransactionController extends Controller
 
         if($request->input('paymentMethod') === 'paypal') {
             $request->validate([
-                'paypal_username' => 'required|string',
+                'paypal_username' => 'required|string|max:255',
             ]);
         } else {
             $request->validate([
