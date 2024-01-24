@@ -17,8 +17,6 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-        /*
-        // Crear usuario Admin
         User::create([
             'name' => 'Admin User',
             'email' => 'admin@ebisu.com',
@@ -30,7 +28,6 @@ class UserSeeder extends Seeder
             'direction_country_id' => 199
         ]);
 
-        // Crear usuario Tecnico
         User::create([
             'name' => 'Technician User',
             'email' => 'technician@ebisu.com',
@@ -42,7 +39,6 @@ class UserSeeder extends Seeder
             'direction_country_id' => 199
         ]);
 
-        // Crear usuario Cliente
         User::create([
             'name' => 'Sport español',
             'email' => 'business@ebisu.com',
@@ -88,17 +84,7 @@ class UserSeeder extends Seeder
             'direction_poblation' => 'San Luis',
             'direction_country_id' => 199
         ]);
-        */
 
-        User::factory()->count(11)->create();
-
-        $businessUsers = User::where('role', UserRole::Business)->get();
-
-        foreach ($businessUsers as $user) {
-            Business::factory()->create([
-                'contact_info_email' => $user->email,
-                'id' => $user->id
-            ]);
-        }
+        User::factory()->times(10)->create();
     }
 }

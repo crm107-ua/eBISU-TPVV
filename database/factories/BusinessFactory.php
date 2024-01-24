@@ -20,7 +20,6 @@ class BusinessFactory extends Factory
             'cif' => fake()->unique()->regexify('[A-Z]\d{8}'),
             'registration_date' => fake()->dateTimeBetween('-5 year', 'now'),
             'balance' => fake()->numberBetween(0, 5000),
-            'contact_info_email' => fake()->email(),
             'contact_info_name' => fake()->name(),
             'contact_info_phone_number' => fake()->phoneNumber(),
         ];
