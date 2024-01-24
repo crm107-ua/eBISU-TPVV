@@ -214,16 +214,6 @@ class ApiController extends Controller
         return response()->json($this->paymentService->jsonify($refound, $includeRefound));
     }
 
-    /**
-     * @todo REMOVE THIS
-     */
-    public function createToken(Request $request, $id)
-    {
-        $token = $this->apiTokenService->createNewToken($id);
-        $token = $this->apiTokenService->encode($token);
-        return response($token, 201);
-    }
-
     public static function getRequestToken(Request $request): ApiToken
     {
         return $request->attributes->get('api_token');
