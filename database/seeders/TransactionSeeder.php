@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Enums\FinalizeReason;
+use App\Models\Business;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
