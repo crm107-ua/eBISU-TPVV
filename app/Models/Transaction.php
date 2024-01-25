@@ -22,6 +22,7 @@ class Transaction extends Model
         'finished_date',
         'finalize_reason',
         'result_seen',
+        'token',
         'refounds_id',
         'business_id',
         'payment_id',

@@ -9,6 +9,7 @@ use App\Jobs\TimeoutTransactionFulfillment;
 use App\Models\Payment;
 use App\Models\Transaction;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class ApiPaymentService
 {
@@ -22,6 +23,7 @@ class ApiPaymentService
             'business_id' => $businessId,
             'emision_date' => Carbon::now(),
             'state' => TransactionStateType::Waiting,
+            'token' => Str::random(255),
         ]);
 
         if (!$transaction->save())

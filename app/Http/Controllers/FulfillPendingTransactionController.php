@@ -22,7 +22,7 @@ class FulfillPendingTransactionController extends Controller
 
     public function getPaymentForm(Request $request, $transactionId)
     {
-        $transaction = Transaction::find($transactionId);
+        $transaction = self::getTransaction($transactionId);;
         if (!$transaction) {
             return view('payment.transactionNotFound');
         }
@@ -40,7 +40,7 @@ class FulfillPendingTransactionController extends Controller
 
     public function postPaymentForm(Request $request, $transactionId)
     {
-        $transaction = Transaction::find($transactionId);
+        $transaction = self::getTransaction($transactionId);
         if (!$transaction) {
             return view('payment.transactionNotFound');
         }
@@ -104,7 +104,7 @@ class FulfillPendingTransactionController extends Controller
 
     public function getResultView(Request $request, $transactionId)
     {
-        $transaction = Transaction::find($transactionId);
+        $transaction = self::getTransaction($transactionId);
         if (!$transaction) {
             return view('payment.transactionNotFound');
         }
@@ -127,5 +127,9 @@ class FulfillPendingTransactionController extends Controller
             'transaction' => $transaction,
             'business' => $transaction->business,
         ]);
+    }
+
+    private static function getTransaction($transactionId): ?Transaction {
+        return Transaction::where('token', $transactionId)->first();
     }
 }
