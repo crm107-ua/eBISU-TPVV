@@ -23,7 +23,7 @@
                           <div class="col">
                             <p><strong>Creador de la incidencia:</strong> {{$ticket->transaction->business->contact_info_name}}</p>
                             <p><strong>Empresa:</strong> {{$ticket->transaction->business->user->name}}</p>
-                            <p><strong>Fecha:</strong> {{$ticket->creation_date}}</p>
+                            <p><strong>Fecha:</strong> <span data-date="{{ $ticket->creation_date }}" data-date-month="long"></span></p>
                             <p><strong>Pago asociado:</strong> {{$ticket->transaction->concept}}</p>
                             <div class="d-flex align-items-center">
                               <p class="mb-0"><strong>Técnico:</strong> {{$ticket->technitian->user->name}}</p>

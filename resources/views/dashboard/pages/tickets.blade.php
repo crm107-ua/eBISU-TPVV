@@ -1,4 +1,4 @@
-@extends('dashboard.partials.master')
+  @extends('dashboard.partials.master')
 @section('title', 'eBISU Dashboard - Incidencias')
 @section('content')
 

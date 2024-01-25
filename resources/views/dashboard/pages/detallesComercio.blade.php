@@ -34,8 +34,8 @@
                       <p class="lead"><strong>Email:</strong> {{ $business->contact_info_email }}</p>
                       <p class="lead"><strong>Teléfono:</strong> {{ $business->contact_info_phone_number }}</p>
                       <p class="lead"><strong>CIF:</strong> {{ $business->cif }}</p>
-                      <p class="lead"><strong>Fecha de registro:</strong> {{ $business->registration_date }}</p>
-                      <p class="lead"><strong>Fecha de baja:</strong> {{ $business->discharge_date }}</p>
+                      <p class="lead"><strong>Fecha de registro:</strong> <span data-date="{{ $business->registration_date }}" data-date-month="long"></span></p>
+                      <p class="lead"><strong>Fecha de baja:</strong> <span data-date="{{ $business->user->discharge_date }}" data-date-month="long"></span></p>
                       <p class="lead"><strong>Balance:</strong> {{ $business->balance }}</p>
                     </div>
                   </div>

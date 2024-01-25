@@ -55,5 +55,24 @@
     <script src="{{ asset('assets/js/search-bar.js') }}"></script>
     <script src="https://cdnjs.com/libraries/Chart.js"></script>
     @stack('scripts')
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        const dateElements = document.querySelectorAll('[data-date]');
+        dateElements.forEach(element => {
+          if(!element.dataset.date) return;
+          const month = element.dataset.dateMonth || 'numeric';
+          const date = new Date(element.dataset.date);
+          const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          element.textContent = new Intl.DateTimeFormat('default', {
+            timeZone: userTimezone,
+            year: 'numeric',
+            month,
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric'
+          }).format(date);
+        });
+      });
+    </script>
   </body>
 </html>
