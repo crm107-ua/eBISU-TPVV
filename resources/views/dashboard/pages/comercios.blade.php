@@ -65,7 +65,7 @@
                           <td>{{ $business->contact_info_name }}</td>
                           <td>{{ $business->contact_info_email }}</td>
                           <td>{{ $business->contact_info_phone_number }}</td>
-                          <td>{{ $business->registration_date }}</td>
+                          <td><span data-date="{{ $business->registration_date }}"></span></td>
                           <td>{{ $business->cif }}</td>
                           <td>
                             <div class="dropdown">

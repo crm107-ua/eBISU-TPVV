@@ -46,7 +46,7 @@
                             <tr>
                                 <td>{{$token->business->user->name}}</td>
                                 <td>{{$token->issuer}} </td>
-                                <td>{{ date('d/m/Y', strtotime($token->expiration_date))}}</td>
+                                <td><span data-date="{{ $token->expiration_date }}"></span></td>
                                 <td>{{$token->times_used}}</td>
                                 <td>
                                     <a href="{{route('admin.tokens.invalidate', $token->id)}}" class="mdi mdi-delete-forever mdi-24px"></a>
