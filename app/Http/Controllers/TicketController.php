@@ -26,7 +26,7 @@ class TicketController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'attachment' => 'file|max:1024|mimes:pdf,jpg,jpeg,png,webp,zip,rar,tar.gz',
+            'attachment' => 'file|mimes:pdf,jpg,jpeg,png,webp,zip,rar,tar.gz|max:1024',
         ]);
 
 

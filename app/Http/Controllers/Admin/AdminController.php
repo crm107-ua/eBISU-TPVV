@@ -15,17 +15,17 @@ class AdminController extends Controller
 
     private $rules = [
         'password' => 'required|min:16|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
-        'name' => 'required|string',
-        'email' => 'required|email|unique:users,email',
-        'address' => 'required|string',
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email|max:255',
+        'address' => 'required|string|max:255',
         'country' => 'required|exists:countries,code',
         'cp' => 'required|size:5|regex:/^[0-9]*$/',
     ];
 
     private $editRules = [
-        'name' => 'required|string',
-        'email' => 'required|email',
-        'address' => 'required|string',
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'address' => 'required|string|max:255',
         'country' => 'required|exists:countries,code',
         'cp' => 'required|size:5|regex:/^[0-9]*$/',
     ];

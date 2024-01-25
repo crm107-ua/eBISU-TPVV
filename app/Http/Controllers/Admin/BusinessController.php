@@ -14,23 +14,23 @@ class BusinessController extends Controller
 
     private $businessRules = [
         'cif' => 'required|unique:businesses,cif|size:9|regex:/^[A-Z][0-9]{8}$/',
-        'contact-name' => 'string',
+        'contact-name' => 'string|max:255',
         'password' => 'required|min:16|regex:/[a-z]/|regex:/[A-Z]/|regex:/[0-9]/|regex:/[@$!%*#?&]/',
-        'business-name' => 'required|string',
-        'email' => 'required|email|unique:users,email',
-        'phone' => 'regex:/^[\+0-9]*$/',
-        'address' => 'required|string',
+        'business-name' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:users,email',
+        'phone' => 'max:255|regex:/^[\+0-9]*$/',
+        'address' => 'required|string|max:255',
         'country' => 'required|exists:countries,code',
         'cp' => 'required|size:5|regex:/^[0-9]*$/',
     ];
 
     private $editRules = [
         'cif' => 'required|size:9|regex:/^[A-Z][0-9]{8}$/',
-        'contact-name' => 'string',
-        'business-name' => 'required|string',
-        'email' => 'required|email',
-        'phone' => 'regex:/^[\+0-9]*$/',
-        'address' => 'required|string',
+        'contact-name' => 'string|max:255',
+        'business-name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'phone' => 'max:255|regex:/^[\+0-9]*$/',
+        'address' => 'required|string|max:255',
         'country' => 'required|exists:countries,code',
         'cp' => 'required|size:5|regex:/^[0-9]*$/',
     ];
