@@ -53,8 +53,7 @@
                                                 </form>
                                             @endif
                                             <p style="color: white;" class="mt-2"><strong>Descripción</strong></p>
-                                            <p style="color: white;" class="mt-2"><i>{{$ticket->description}}</i></p>
-                                            @if($ticket->attachment != null)
+                                          <p style="color: white; word-wrap: break-word;" class="mt-2"><i>{{$ticket->description}}</i></p>                                            @if($ticket->attachment != null)
                                                 <p style="color: white;" class="mt-2"><strong>Archivos adjuntos</strong>
                                                     <a style="margin-left: 8px"
                                                        href="{{route('downloadFile', $ticket->attachment_id)}}">
