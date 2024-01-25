@@ -50,8 +50,10 @@
                                                         </p>
                                                     </div>
                                                 </div>
+                                              @if($payment->finalize_reason != null)
                                                 <p style="color:white;">Razón de
-                                                    finalización: {{str_replace('_', ' ', $payment->finalize_reason->name)}}</p>
+                                                  finalización: {{str_replace('_', ' ', $payment->finalize_reason->name)}}</p>
+                                              @endif
                                             </div>
                                         </div>
                                     </div>
