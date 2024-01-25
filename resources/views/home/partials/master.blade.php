@@ -285,5 +285,18 @@
 
         <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4HRCJB" height="0" width="0"
                 style="display:none;visibility:hidden"></iframe></noscript>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        const dateElements = document.querySelectorAll('[data-date]');
+        dateElements.forEach(element => {
+          if(!element.dataset.date) return;
+          const date = new Date(element.dataset.date);
+          const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+          const options = { timeZone: userTimezone, year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+          element.textContent = new Intl.DateTimeFormat('default', options).format(date);
+        });
+      });
+    </script>
     </body>
 </html>

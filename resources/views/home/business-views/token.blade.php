@@ -24,7 +24,7 @@
                                                     <i class="mdi mdi-content-paste"></i>
                                                 </button>
                                             </div>
-                                            <p>Fecha de expiración: <span {{ $token->expiration_date->isPast() ? 'style=color:red;' : '' }} >{{ $token->expiration_date }}</span></p>
+                                            <p>Fecha de expiración: <span {{ $token->expiration_date->isPast() ? 'style=color:red;' : '' }} ><span data-date="{{ $token->expiration_date }}"></span></span></p>
                                             <p>Nº de usos: {{ $token->times_used }}</p>
                                             <p>Nº de usos totales: {{ $totalUses }}</p>
                                             @if($token->invalidated)

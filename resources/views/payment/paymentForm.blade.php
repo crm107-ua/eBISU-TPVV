@@ -52,7 +52,7 @@
                             <div class="col">
                                 <h5>Tiempo restante</h5>
                                 <p class="card-text">
-                                    La transacción caducará el {{ $timeoutDate }}
+                                    La transacción caducará el <span data-date="{{ $timeoutDate->toIso8601String() }}"></span>
                                 </p>
                             </div>
                         </div>
@@ -204,6 +204,16 @@
         </p>
     </div>
     <script defer>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const dateElements = document.querySelectorAll('[data-date]');
+            dateElements.forEach(element => {
+                const date = new Date(element.dataset.date);
+                const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                const options = { timeZone: userTimezone, year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+                element.textContent = new Intl.DateTimeFormat('default', options).format(date);
+            });
+        });
+
         const paypalInputs = [
             document.getElementById('paypalName'),
         ];

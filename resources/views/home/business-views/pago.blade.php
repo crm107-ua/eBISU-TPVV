@@ -39,8 +39,15 @@
                                                     </div>
                                                     <div>
                                                         <p>Número de factura: {{$payment->receipt_number}}</p>
-                                                        <p>Fecha de emisión: {{$payment->emision_date}}</p>
-                                                        <p>Fecha de finalización: {{$payment->finished_date}}</p>
+                                                        <p>Fecha de emisión: <span data-date="{{$payment->emision_date}}"></span></p>
+                                                        <p>
+                                                          Fecha de finalización:
+                                                          @if($payment->finished_date)
+                                                              <span data-date="{{$payment->finished_date}}"></span>
+                                                          @else
+                                                             <i>Sin terminar</i>
+                                                          @endif
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <p style="color:white;">Razón de

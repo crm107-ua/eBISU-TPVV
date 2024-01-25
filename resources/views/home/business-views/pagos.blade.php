@@ -84,8 +84,14 @@
                                                         <td style="padding: 10px 0; color:white;">{{$payment->amount}} €</td>
                                                         <td style="padding: 10px 0; color:white;">{{strtoupper($payment->state->value)}}</td>
                                                         <td style="padding: 10px 0; color:white;">{{$payment->receipt_number}}</td>
-                                                        <td style="padding: 10px 0; color:white;">{{$payment->emision_date}}</td>
-                                                        <td style="padding: 10px 0; color:white;">{{$payment->finished_date}}</td>
+                                                        <td style="padding: 10px 0; color:white;"><span data-date="{{ $payment->emision_date }}"></span></td>
+                                                        <td style="padding: 10px 0; color:white;">
+                                                          @if($payment->finished_date)
+                                                              <span data-date="{{ $payment->finished_date }}"></span>
+                                                          @else
+                                                              <i>Sin terminar</i>
+                                                          @endif
+                                                        </td>
                                                         <td style="padding: 10px 0; color:white;">
                                                             <a href="{{  route('payment', $payment->id) }}" style="all: unset; cursor: pointer">Ver más</a>
                                                         </td>
