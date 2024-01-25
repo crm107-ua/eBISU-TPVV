@@ -38,13 +38,28 @@
                                                         <p>Estado: {{strtoupper($payment->state->value)}}</p>
                                                     </div>
                                                     <div>
-                                                        <p>Número de factura: {{$payment->receipt_number == null ? 'Sin factura' : $payment->receipt_number}}</p>
-                                                        <p>Fecha de emisión: {{$payment->emision_date}}</p>
-                                                        <p>Fecha de finalización: {{$payment->finished_date}}</p>
+                                                      <p>Número de factura:
+                                                        @if($payment->receipt_number)
+                                                        {{ $payment->receipt_number }}
+                                                        @else
+                                                          <i>Sin factura</i>
+                                                        @endif
+                                                      </p>
+                                                        <p>Fecha de emisión: <span data-date="{{$payment->emision_date}}"></span></p>
+                                                        <p>
+                                                          Fecha de finalización:
+                                                          @if($payment->finished_date)
+                                                              <span data-date="{{$payment->finished_date}}"></span>
+                                                          @else
+                                                             <i>Sin terminar</i>
+                                                          @endif
+                                                        </p>
                                                     </div>
                                                 </div>
+                                              @if($payment->finalize_reason != null)
                                                 <p style="color:white;">Razón de
-                                                    finalización: {{str_replace('_', ' ', $payment->finalize_reason->name)}}</p>
+                                                  finalización: {{str_replace('_', ' ', $payment->finalize_reason->name)}}</p>
+                                              @endif
                                             </div>
                                         </div>
                                     </div>

@@ -69,7 +69,7 @@
                     @if ($transaction->state === \App\Enums\TransactionStateType::Waiting)
                         <p class="card-text">Aún se está procesando</p>
                     @else
-                        <h6 class="card-subtitle mb-2 text-muted">Finalizada el {{ $transaction->finished_date }}</h6>
+                        <h6 class="card-subtitle mb-2 text-muted">Finalizada el <span data-date="{{ $transaction->finished_date }}"></span></h6>
                         <p class="card-text">
                             @if ($transaction->finalize_reason === \App\Enums\FinalizeReason::OK)
                                 Finalizada con éxito
@@ -96,6 +96,17 @@
             {{ $business->user->name }}.
         </p>
     </div>
+<script>
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const dateElements = document.querySelectorAll('[data-date]');
+    dateElements.forEach(element => {
+      const date = new Date(element.dataset.date);
+      const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      const options = { timeZone: userTimezone, year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+      element.textContent = new Intl.DateTimeFormat('default', options).format(date);
+    });
+  });
+</script>
 </body>
 
 </html>

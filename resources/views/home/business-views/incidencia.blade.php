@@ -34,7 +34,7 @@
                                                     asociado: </strong><i>{{$ticket->transaction->concept == null ? '<i>Sin concepto</i>' : $ticket->transaction->concept}}</i></p>
                                             <p style="color: white;" class="mt-2">
                                                 <strong>Fecha: </strong>
-                                                <i>{{date('d-m-Y', strtotime($ticket->creation_date))}}</i></p>
+                                                <span data-date="{{ $ticket->creation_date }}" data-date-month="long"></span></p>
                                             <p style="color: white;" class="mt-2">
                                                 <strong>Estado: </strong>
                                                 <i>{{strtoupper($ticket->state)}}</i></p>
@@ -113,10 +113,8 @@
                                                         {{$comment->message}}
                                                     </p>
 
-                                                    <span
-                                                        style="position: absolute; bottom: 10px; right: 20px; color: black;">
-                                                        {{ date('d-m-Y H:i', strtotime($comment->sent_date)) }}
-                                                    </span></div>
+                                                    <span data-date="{{ $comment->sent_date }}" data-date-month="long"
+                                                        style="position: absolute; bottom: 10px; right: 20px; color: black;"></span></div>
                                             @endforeach
 
                                             @if($ticket->state != \App\Enums\TicketStateType::Closed->value)
