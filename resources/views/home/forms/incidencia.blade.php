@@ -31,11 +31,15 @@
                                             @endif
                                             <div style="margin-bottom: 20px;">
                                                 <label for="title" style="font-weight: bold; display: block; margin-bottom: 10px;">Título*</label>
-                                                <input type="text" id="title" name="title" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Describe brevemente el problema" required>
+                                                <input type="text" id="title" name="title" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
+                                                       placeholder="Describe brevemente el problema"
+                                                       required value="{{old('title')}}">
                                             </div>
                                             <div style="margin-bottom: 20px;">
                                                 <label for="description" style="font-weight: bold; display: block; margin-bottom: 10px;">Descripción*</label>
-                                                <textarea id="description" name="description" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;" placeholder="Escribe tu mensaje" required></textarea>
+                                                <textarea id="description" name="description" rows="4" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px;"
+                                                          placeholder="Escribe tu mensaje" required
+                                                          >{{old('description')}}</textarea>
                                             </div>
                                             <div style="margin-bottom: 20px;">
                                                 <label for="attachment" style="font-weight: bold; display: block; margin-bottom: 10px;">Subir archivo</label>
