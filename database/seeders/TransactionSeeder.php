@@ -29,7 +29,7 @@ class TransactionSeeder extends Seeder
         if (count($businesses) === 0)
             return;
 
-        for ($i = 0; $i < random_int(100, 10000); $i++) {
+        for ($i = 0; $i < random_int(1000, 10000); $i++) {
             $business = fake()->randomElement($businesses);
             $finalizeReason = fake()->randomElement($finalizeReasons);
             $amount = random_int(10, 1000);
