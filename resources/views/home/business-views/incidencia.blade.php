@@ -137,10 +137,12 @@
                                                                style="display: block; color: white;"><strong>Mensaje*</strong></label>
                                                         <textarea id="message" rows="2" name="message"
                                                                   style="padding: 20px; border-radius: 8px; margin-top: 10px; width: 100%;"
-                                                                  placeholder="Escribe un comentario aqui"></textarea>
+                                                                  placeholder="Escribe un comentario aqui"
+                                                        >{{old('message')}}</textarea>
                                                         <div style="margin-bottom: 20px; margin-top: 20px">
                                                             <label for="attachment" style="font-weight: bold; display: block; margin-bottom: 10px; color: white">Subir archivo</label>
-                                                            <input type="file" id="attachment" name="attachment" style="padding: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: whitesmoke; width: 50%">
+                                                            <input type="file" id="attachment" name="attachment" style="padding: 10px; border: 1px solid #ccc; border-radius: 10px; background-color: whitesmoke; width: 50%"
+                                                                   accept=".pdf,.jpg,.jpeg,.png,.webp,.zip,.rar,.tar.gz">
                                                         </div>
                                                         <span style="color: white;margin-top: 30px; display: block">*campo requerido</span>
                                                         <button type="submit"
