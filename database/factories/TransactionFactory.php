@@ -31,6 +31,24 @@ class TransactionFactory extends Factory
         ];
     }
 
+    public function withEmissionDate(?Carbon $date): TransactionFactory
+    {
+        return $this->state(function (array $attributes) use ($date) {
+            return [
+                'emision_date' => $date,
+            ];
+        });
+    }
+
+    public function withAmount(float $amount): TransactionFactory
+    {
+        return $this->state(function (array $attributes) use ($amount) {
+            return [
+                'amount' => $amount,
+            ];
+        });
+    }
+
     public function withFinalizeReason(FinalizeReason $reason): TransactionFactory
     {
         return $this->state(function (array $attributes) use ($reason) {
@@ -38,6 +56,15 @@ class TransactionFactory extends Factory
                 'state' => $reason->getReasonState(),
                 'finalize_reason' => $reason,
                 'finished_date' => Carbon::now(),
+            ];
+        });
+    }
+
+    public function withFinalizedDate(?Carbon $date): TransactionFactory
+    {
+        return $this->state(function (array $attributes) use ($date) {
+            return [
+                'finished_date' => $date,
             ];
         });
     }
@@ -64,7 +91,15 @@ class TransactionFactory extends Factory
     {
         return $this->state(function (array $attributes) use ($transaction) {
             return [
-                'refounds_id' => $transaction ? $transaction->id : Transaction::factory()->withFinalizeReason(FinalizeReason::OK)->create()->id,
+                'refounds_id' => $transaction ? $transaction->id : Transaction::factory()
+                    ->withAmount($attributes['amount'])
+                    ->withFinalizeReason(FinalizeReason::OK)
+                    ->withEmissionDate($attributes['emision_date'])
+                    ->withFinalizedDate($attributes['emision_date'])
+                    ->create([
+                        'business_id' => $attributes['business_id'],
+                        'payment_id' => $attributes['payment_id'],
+                    ])->id,
                 'amount' => $attributes['amount'] * -1,
             ];
         });

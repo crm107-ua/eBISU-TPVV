@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Enums\FinalizeReason;
+use App\Models\Business;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use App\Models\Transaction;
 
@@ -15,109 +16,49 @@ class TransactionSeeder extends Seeder
     public function run()
     {
         Transaction::truncate();
-
-        $transactions = [
-            [
-                'concept' => 'Service Payment',
-                'amount' => 100.50,
-                'state' => 'waiting',
-                'receipt_number' => 'RPP123411',
-                'emision_date' => Carbon::now()->subMonth(4),
-                'finished_date' => null,
-                'finalize_reason' => 0,
-                'refounds_id' => null,
-                'business_id' => 3,
-                'payment_id' => 1,
-            ],
-            [
-                'concept' => 'Product Purchase',
-                'amount' => 250.00,
-                'state' => 'accepted',
-                'receipt_number' => 'RX1234229',
-                'emision_date' => Carbon::now()->subDay(22),
-                'finished_date' => Carbon::now(),
-                'finalize_reason' => 0,
-                'refounds_id' => null,
-                'business_id' => 4,
-                'payment_id' => 2,
-            ],
-            [
-                'concept' => 'Box Purchase',
-                'amount' => 300.00,
-                'state' => 'cancelled',
-                'receipt_number' => 'RX1134761',
-                'emision_date' => Carbon::now()->subMonth(7),
-                'finished_date' => Carbon::now(),
-                'finalize_reason' => 1,
-                'refounds_id' => null,
-                'business_id' => 4,
-                'payment_id' => 2,
-            ],
-            [
-                'concept' => 'House Purchase',
-                'amount' => 1000.00,
-                'state' => 'cancelled',
-                'receipt_number' => 'RWW134761',
-                'emision_date' => Carbon::now()->subMonth(9),
-                'finished_date' => Carbon::now(),
-                'finalize_reason' => 3,
-                'refounds_id' => null,
-                'business_id' => 3,
-                'payment_id' => 1,
-            ],
-            [
-                'concept' => 'Kibab Purchase',
-                'amount' => 1000.00,
-                'state' => 'cancelled',
-                'receipt_number' => 'RXZZ23449',
-                'emision_date' => Carbon::now()->subDay(10),
-                'finished_date' => Carbon::now(),
-                'finalize_reason' => 2,
-                'refounds_id' => 3,
-                'business_id' => 4,
-                'payment_id' => 2,
-            ],
-            [
-                'concept' => 'Service Payment 432234',
-                'amount' => 100.50,
-                'state' => 'waiting',
-                'receipt_number' => 'RPP143343411',
-                'emision_date' => Carbon::now()->subMonth(1),
-                'finished_date' => null,
-                'finalize_reason' => 0,
-                'refounds_id' => null,
-                'business_id' => 3,
-                'payment_id' => 1,
-            ],
-            [
-                'concept' => 'Service Payment 442334',
-                'amount' => 100.50,
-                'state' => 'waiting',
-                'receipt_number' => 'RPP143343411',
-                'emision_date' => Carbon::now(),
-                'finished_date' => null,
-                'finalize_reason' => 0,
-                'refounds_id' => null,
-                'business_id' => 6,
-                'payment_id' => 15,
-            ],
-            [
-                'concept' => 'Service Payment 234423',
-                'amount' => 100.50,
-                'state' => 'waiting',
-                'receipt_number' => 'RPP143343411',
-                'emision_date' => Carbon::now()->subDay(8),
-                'finished_date' => null,
-                'finalize_reason' => 0,
-                'refounds_id' => null,
-                'business_id' => 6,
-                'payment_id' => 14,
-            ]
+        $finalizeReasons = [
+            null, null,
+            FinalizeReason::OK, FinalizeReason::OK, FinalizeReason::OK,
+            FinalizeReason::INSUFFICIENT_BALANCE,
+            FinalizeReason::TIMEOUT,
+            FinalizeReason::INVALID_PAYMENT_INFORMATION,
+            FinalizeReason::CANCELLED,
         ];
 
-        // Insert transactions into the database
-        foreach ($transactions as $transaction) {
-            DB::table('transactions')->insert($transaction);
+        $businesses = Business::all();
+        if (count($businesses) === 0)
+            return;
+
+        for ($i = 0; $i < random_int(1000, 10000); $i++) {
+            $business = fake()->randomElement($businesses);
+            $finalizeReason = fake()->randomElement($finalizeReasons);
+            $amount = random_int(10, 1000);
+            $emittedXDaysAgo = random_int(1, 365);
+
+            $tFactory = Transaction::factory()
+                ->withEmissionDate(Carbon::now()->subDays($emittedXDaysAgo))
+                ->withBusiness($business)
+                ->withAmount($amount);
+            if (!$finalizeReason) {
+                $tFactory->create();
+                continue;
+            }
+            $tFactory = $tFactory->withFinalizeReason($finalizeReason);
+            $tFactory = $tFactory->withFinalizedDate(Carbon::now()->subDays(random_int(0, $emittedXDaysAgo)));
+            if ($finalizeReason->hasAssociatedPaymentMethod())
+                $tFactory = $tFactory->withPaymentInformation(null); // crear metodo de pago ahora
+
+            $isRefound = $finalizeReason == FinalizeReason::OK && random_int(0, 100) <= 5;
+            if ($isRefound) {
+                $tFactory = $tFactory->refounds(null); // crear transacicon a devolver ahora
+            } else {
+                $business->balance += $amount;
+            }
+            $tFactory->create();
+        }
+
+        foreach ($businesses as $business) {
+            $business->save();
         }
     }
 }

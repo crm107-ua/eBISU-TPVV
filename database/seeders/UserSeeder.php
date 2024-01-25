@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Enums\UserRole;
+use App\Models\Business;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -16,8 +17,6 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::truncate();
-
-        // Crear usuario Admin
         User::create([
             'name' => 'Admin User',
             'email' => 'admin@ebisu.com',
@@ -29,7 +28,6 @@ class UserSeeder extends Seeder
             'direction_country_id' => 199
         ]);
 
-        // Crear usuario Tecnico
         User::create([
             'name' => 'Technician User',
             'email' => 'technician@ebisu.com',
@@ -41,7 +39,6 @@ class UserSeeder extends Seeder
             'direction_country_id' => 199
         ]);
 
-        // Crear usuario Cliente
         User::create([
             'name' => 'Sport español',
             'email' => 'business@ebisu.com',
@@ -88,5 +85,6 @@ class UserSeeder extends Seeder
             'direction_country_id' => 199
         ]);
 
+        User::factory()->times(10)->create();
     }
 }

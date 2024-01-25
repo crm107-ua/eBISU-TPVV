@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TransactionSeeder::class,
             TicketSeeder::class,
             CommentSeeder::class,
+            DemoBusinessUsersSeeder::class,
         ]);
     }
 }

@@ -15,7 +15,7 @@ class PaymentSeeder extends Seeder
     public function run()
     {
         Payment::truncate();
-        
+
         $payments = [
             [
                 'type' => 'credit_card',
@@ -166,5 +166,7 @@ class PaymentSeeder extends Seeder
         foreach ($payments as $payment) {
             DB::table('payments')->insert($payment);
         }
+
+        Payment::factory()->times(10)->create();
     }
 }
