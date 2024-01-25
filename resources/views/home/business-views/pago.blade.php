@@ -33,12 +33,18 @@
                                                 <div
                                                     style="display: flex; justify-content: space-between; margin-bottom: 10px; color:white;">
                                                     <div>
-                                                        <p>Concepto: {{$payment->concept}}</p>
+                                                        <p>Concepto: {{$payment->concept == null ? 'Sin concepto' : $payment->concept}}</p>
                                                         <p>Cantidad: {{$payment->amount}} €</p>
                                                         <p>Estado: {{strtoupper($payment->state->value)}}</p>
                                                     </div>
                                                     <div>
-                                                        <p>Número de factura: {{$payment->receipt_number}}</p>
+                                                      <p>Número de factura:
+                                                        @if($payment->receipt_number)
+                                                        {{ $payment->receipt_number }}
+                                                        @else
+                                                          <i>Sin factura</i>
+                                                        @endif
+                                                      </p>
                                                         <p>Fecha de emisión: <span data-date="{{$payment->emision_date}}"></span></p>
                                                         <p>
                                                           Fecha de finalización:
