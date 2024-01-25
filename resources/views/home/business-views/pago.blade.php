@@ -33,12 +33,12 @@
                                                 <div
                                                     style="display: flex; justify-content: space-between; margin-bottom: 10px; color:white;">
                                                     <div>
-                                                        <p>Concepto: {{$payment->concept}}</p>
+                                                        <p>Concepto: {{$payment->concept == null ? 'Sin concepto' : $payment->concept}}</p>
                                                         <p>Cantidad: {{$payment->amount}} €</p>
                                                         <p>Estado: {{strtoupper($payment->state->value)}}</p>
                                                     </div>
                                                     <div>
-                                                        <p>Número de factura: {{$payment->receipt_number}}</p>
+                                                        <p>Número de factura: {{$payment->receipt_number == null ? 'Sin factura' : $payment->receipt_number}}</p>
                                                         <p>Fecha de emisión: {{$payment->emision_date}}</p>
                                                         <p>Fecha de finalización: {{$payment->finished_date}}</p>
                                                     </div>

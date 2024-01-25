@@ -31,7 +31,7 @@
                                                 @endif
                                             </div>
                                             <p style="color: white;" class="mt-2"><strong>Concepto de pago
-                                                    asociado: </strong><i>{{$ticket->transaction->concept}}</i></p>
+                                                    asociado: </strong><i>{{$ticket->transaction->concept == null ? '<i>Sin concepto</i>' : $ticket->transaction->concept}}</i></p>
                                             <p style="color: white;" class="mt-2">
                                                 <strong>Fecha: </strong>
                                                 <i>{{date('d-m-Y', strtotime($ticket->creation_date))}}</i></p>
