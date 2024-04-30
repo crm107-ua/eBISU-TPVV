@@ -29,8 +29,8 @@ class ApiRequestHasToken
             ], 401);
         }
 
-        $secret = env('JWT_SECRET');
-        $algorithm = env('JWT_ALGO');
+        $secret = 'vFufZkVXAsPnEDg1O81XE8G8EXAg6dbuyeBsKv1lxCIdszCM1U8whMoMfyqokLmg';
+        $algorithm = 'HS256';
 
         try {
             $token = JWT::decode($token, new Key($secret, $algorithm));

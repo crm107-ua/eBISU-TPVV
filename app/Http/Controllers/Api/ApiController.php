@@ -46,7 +46,8 @@ class ApiController extends Controller
 
         if (!$request->json('payment')) {
             DB::commit();
-            return redirect()->route('payment.get.form', ['id' => $transaction->id]);
+            $route = route('payment.get.form', ['id' => $transaction->id]);
+            return response()->json(['url' => $route, 'id' => $transaction->id]);
         }
 
         $payment = $this->paymentService->savePaymentMethod($request->json('payment'));
